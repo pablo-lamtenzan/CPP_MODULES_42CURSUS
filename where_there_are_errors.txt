@@ -6,3 +6,13 @@ BONUS :
 ex 08 not way to copy function addr (wtf im idiot?)
 ex09 cause i cant did ex 08
 ex10 is a cat i dont have time for this now do it later
+
+
+Module 03:
+
+Inheritance ex03;
+special atack ex04;
+ex05 cuase ex03 and ex04;
+
+Module 04:
+Same problems with inheritance Clang is making me crazy 
