@@ -15,4 +15,4 @@ special atack ex04;
 ex05 cuase ex03 and ex04;
 
 Module 04:
-Same problems with inheritance Clang is making me crazy 
+ex00 ex01 ex02 03 ok but need to test
