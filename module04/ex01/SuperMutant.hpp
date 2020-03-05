@@ -6,7 +6,7 @@
 /*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 07:23:36 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/04 07:35:09 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/03/05 02:40:01 by plamtenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,20 @@
 
 class SuperMutant : public Enemy
 {
-    private :
-
     public :
     
+    // Constructors
     SuperMutant();
+    SuperMutant(const SuperMutant &src);
+
+    // Destructor
     ~SuperMutant();
 
-    //here take damage is diferent so if i have the same definition but diff content i could redefine and modify functions
+    // Operators
+    SuperMutant &operator= (const SuperMutant &src);
+
+    // Methods
+    virtual void takeDamage(int amounnt);
 };
 
 #endif

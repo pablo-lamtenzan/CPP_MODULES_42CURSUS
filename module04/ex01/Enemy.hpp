@@ -6,7 +6,7 @@
 /*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 07:15:38 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/04 07:20:57 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/03/05 03:16:18 by plamtenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,34 @@
 # define ENEMY_HPP
 
 #include <iostream>
+#include <string>
 
 class Enemy
 {
-    private :
+    protected :
+
+    std::string __type;
+
 
     public :
+
+    int __hp; // need to put here for Character.cpp ???????
     
+    // Constructor
     Enemy(int hp, std::string const &type);
+    Enemy();
+    Enemy(const Enemy &src);
+
+    // Destructors
     ~Enemy();
-    Enemy(const Enemy&);
+    
+    // Operatros
     Enemy &operator=(const Enemy&);
 
-    std::string type;
-    int hp;
-
-    std::string getType()
-    {
-        return (type);
-    }
-    
-    int getHP()
-    {
-        return (hp);
-    }
-
-    virtual void takeDamage(int amount)
-    {
-        hp = hp - amount > 0 ? hp - amount : 0;
-    }
+    // Methods
+    std::string getType() const;
+    int getHP() const;
+    virtual void takeDamage(int amount);
 };
 
-#ifndef
+#endif

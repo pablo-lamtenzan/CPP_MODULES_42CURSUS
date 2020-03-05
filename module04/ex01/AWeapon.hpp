@@ -1,53 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AWaepon.hpp                                        :+:      :+:    :+:   */
+/*   AWeapon.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 06:36:54 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/04 07:08:41 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/03/05 02:15:21 by plamtenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AWAEPON_HPP
+#ifndef AWEAPON_HPP
 # define AWEAPON_HPP
 
 #include <iostream>
+#include <String>
 
 class AWeapon
 {
-    private :
+    protected :
+
+    std::string __name;
+    int Damage;
+    int APCost;
+
 
     public :
     
-    AWeapon(std::string const &name, int apcost, int damage); //constructor
+    // Constructors
+    AWeapon(std::string const &name, int apcost, int damage);
     AWeapon();
-    AWeapon(const AWeapon&); //copy of constructor
-    ~AWeapon(); // destructor
-    AWeapon &operator=(const AWeapon&); // affection operartor
+    AWeapon(const AWeapon &src);
+
+    // Destructors
+    ~AWeapon();
+
+    // Operators
+    AWeapon &operator=(const AWeapon &src);
     
-    std::string name;
-    int Damage;
-    int APCost;
-    std::string sound;
-    
-    std::string getName() const
-    {
-        return (name);
-    }
-    int getAPCost() const
-    {
-        return (APCost);
-    }
-    int getDamage() const
-    {
-        return (Damage);
-    }
-    void attack() const /* = 0 */
-    {
-        std::cout << sound;
-    }
+    // Methods
+    const std::string getName() const;
+    int getAPCost() const;
+    int getDamage() const;
+    // Virtual Pure
+    virtual void attack() const = 0;
 };
 
 #endif
