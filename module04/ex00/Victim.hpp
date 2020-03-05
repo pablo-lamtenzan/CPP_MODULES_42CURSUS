@@ -6,7 +6,7 @@
 /*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 05:52:52 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/04 06:24:44 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/03/05 01:47:09 by plamtenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,34 @@
 # define VICTIM_HPP
 
 #include <iostream>
-#include "Peon.hpp"
+#include <string>
 
 class Victim
 {
+
+    private :
+
+    std::string __name;
+    
     public :
 
-    Victim(std::string name);
+    // Constructors
     Victim();
+    Victim(std::string name);
+    Victim(const Victim &src);
+    
+    // Destructors
     ~Victim();
 
-    std::string name;
+    // Operators
+    Victim &operator=(const Victim &src);
 
-    void introduce_hisself()
-    {
-        std::cout << "I'm " << name << " and I like otters!\n";
-    }
-
-    void getPolymorphed() const
-    {
-        std::cout << name << " has been urned into a cute little sheep!\n";
-    }
+    // methods
+    std::string get_Name() const;
+    //void introduce_hisself();
+    void getPolymorphed() const;
 };
+
+std::ostream &operator<< (std::ostream &out, const Victim &src);
 
 #endif
