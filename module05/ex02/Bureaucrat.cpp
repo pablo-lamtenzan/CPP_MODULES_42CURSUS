@@ -6,7 +6,7 @@
 /*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 08:38:20 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/06 07:30:10 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/03/06 09:32:39 by plamtenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ Bureaucrat
 std::ostream
 &operator<< (std::ostream &out, const Bureaucrat &src)
 {
-    out << '<' << src.getName() << ">, bureaucrat grade <" << src.getGrade() << ">\n";
+    out << '<' << src.getName() << ">, bureaucrat grade <" << src.getGrade() << '>' << std::endl;
     return (out);
 }
 
@@ -142,6 +142,40 @@ Bureaucrat::DecrementGrade()
     this->CheckExeption(this->__grade + 1);
     return ;
 }
+
+void
+Bureaucrat::signForm(Form &obj)
+{
+    if (obj.isSigned())
+    {
+        std::cout << '<' << this->__name << "> cannot sign <" << obj.getName() << "> because is already signed" <<  std::endl; //yeah now i use this (more portable)
+    }
+    try
+    {
+        obj.beSigned(*this);
+        std::cout << '<' << this->__name << "> signs <" << obj.getName() << '>' << std::endl;
+    }
+    catch (Form::GradeToolowException &)
+    {
+        std::cout << '<' << this->__name << "> cannot sign <" << obj.getName() << "> because grade is too low" <<  std::endl;
+    }
+}
+
+void
+Bureaucrat::executeForm(Form const &form)
+{
+    try
+    {
+        form.execute(*this);
+        std::cout << '<' << this->getName() << "> executes <" << form.getName() << std::endl;
+    }
+    catch(const std::exception &e)
+    {
+        std::cout << e.what() << std::endl;
+    }
+    
+}
+
 
 int
 HIGHT::getGrade() const

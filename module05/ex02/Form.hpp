@@ -6,7 +6,7 @@
 /*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 09:42:35 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/06 07:26:40 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/03/06 09:42:27 by plamtenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 #define _HIGHT Form::GradeTooHighException
 #define _LOW Form::GradeToolowException
+#define NOTSIGNED Form::FormNotSignedException
 
 class Form
 {
@@ -33,12 +34,16 @@ class Form
     const std::string __name;
     const int __GradeSign;
     const int __GradeExec;
+    const std::string __target;
     bool _signed;
+
+    virtual void __execute(Bureaucrat const &executor) const = 0;
     
     public :
 
     // Constructors
-    Form(std::string name, int sign, int exec);
+    Form(std::string name, int sign, int exec, std::string target);
+    Form();
     Form(const Form &src);
 
     // Destructors
@@ -52,7 +57,10 @@ class Form
     const int getGradeSign() const;
     const int getGradeExec() const;
     bool isSigned() const;
-    void beSigned(const Bureaucrat &obj); // form is signed if bureaucrat is HighEnounght
+    void beSigned(const Bureaucrat &obj);
+
+    void execute(Bureaucrat const &executor) const;
+    std::string getTarget() const ;
 
     // Shared Classes
 
@@ -99,8 +107,28 @@ class Form
 
         // Shared Methods
         int getGrade() const;
-        const char *what()const throw();
+        const char *what() const throw();
     };
+
+    class FormNotSignedException : public std::exception
+    {
+        private :
+
+        public :
+
+        // Constructors
+        FormNotSignedException();
+        FormNotSignedException(const FormNotSignedException &src);
+
+        // Destructors
+        ~FormNotSignedException() throw();
+
+        // Operators
+        FormNotSignedException &operator= (const FormNotSignedException &src);
+
+        // Shared Methods
+        const char *what() const throw();
+    }
     
 };
 

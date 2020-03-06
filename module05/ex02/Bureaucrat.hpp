@@ -1,60 +1,58 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/05 09:42:35 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/06 07:26:40 by plamtenz         ###   ########.fr       */
+/*   Created: 2020/03/05 08:11:52 by plamtenz          #+#    #+#             */
+/*   Updated: 2020/03/06 09:28:03 by plamtenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-# define FORM_HPP
-
-#include <iostream>
-#include <string>
+#ifndef BUREAUCRAT_HPP
+# define BUREAUCRAT_HPP
 
 #include <iostream>
 #include <string>
 #include <stdexcept>
-#include <stdbool.h>
+#include "Form.hpp"
 
-#include "Bureaucrat.hpp"
+#define HIGHT Bureaucrat::GradeTooHighException
+#define LOW Bureaucrat::GradeToolowException
 
-#define _HIGHT Form::GradeTooHighException
-#define _LOW Form::GradeToolowException
-
-class Form
+class Bureaucrat
 {
     private :
 
-    const std::string __name;
-    const int __GradeSign;
-    const int __GradeExec;
-    bool _signed;
-    
+    std::string __name;
+    int __grade;
+
     public :
 
     // Constructors
-    Form(std::string name, int sign, int exec);
-    Form(const Form &src);
+    Bureaucrat();
+    Bureaucrat(std::string name, int grade);
+    Bureaucrat(const Bureaucrat &src);
 
     // Destructors
-    ~Form();
+    ~Bureaucrat();
 
     // Operators
-    Form &operator= (const Form &src);
+    Bureaucrat &operator= (const Bureaucrat &src);
 
     // Shared Methods
-    const std::string getName() const;
-    const int getGradeSign() const;
-    const int getGradeExec() const;
-    bool isSigned() const;
-    void beSigned(const Bureaucrat &obj); // form is signed if bureaucrat is HighEnounght
+    std::string getName() const;
+    int getGrade() const;
+    void CheckExeption(int grade);
+    void IncrementGrade();
+    void DecrementGrade();
 
-    // Shared Classes
+    void signForm(Form &obj);
+
+    void executeForm(Form const & form);
+
+    // Shared Sub-Classes
 
     class GradeTooHighException : public std::exception
     {
@@ -101,9 +99,8 @@ class Form
         int getGrade() const;
         const char *what()const throw();
     };
-    
 };
 
-std::ostream &operator<< (std::ostream &out, const Form &src);
+std::ostream &operator<< (std::ostream &out, Bureaucrat const &src);
 
 #endif

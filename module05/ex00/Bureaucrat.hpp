@@ -6,7 +6,7 @@
 /*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 08:11:52 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/05 09:51:26 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/03/06 07:28:58 by plamtenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ class Bureaucrat
 
         // Shared Methods
         int getGrade() const;
-        const std::string TooHigh() const throw();
+        const char *what() const throw();
     };
 
     class GradeToolowException : public std::exception
@@ -92,7 +92,7 @@ class Bureaucrat
 
         // Shared Methods
         int getGrade() const;
-        const std::string TooLow()const throw();
+        const char *what()const throw();
     };
 };
 

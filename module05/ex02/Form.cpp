@@ -6,7 +6,7 @@
 /*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 10:13:16 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/06 09:38:34 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/03/06 09:43:11 by plamtenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // Constructors
 
-Form::Form(std::string name, int sign, int exec) : __name(name), __GradeSign(sign), __GradeExec(exec), _signed(false)
+Form::Form(std::string name, int sign, int exec, std::string const target) : __name(name), __GradeSign(sign), __GradeExec(exec), _signed(false), __target(target)
 {
     if (sign < 1)
         throw GradeTooHighException(sign);
@@ -27,7 +27,12 @@ Form::Form(std::string name, int sign, int exec) : __name(name), __GradeSign(sig
     return ;
 }
 
-Form::Form(const Form &src) : __name(src.__name), __GradeSign(src.__GradeSign), __GradeExec(src.__GradeExec), _signed(src._signed)
+Form::Form() : __name(NULL), __GradeSign(0), __GradeExec(0), _signed(false), __target(NULL)
+{
+    
+}
+
+Form::Form(const Form &src) : __name(src.__name), __GradeSign(src.__GradeSign), __GradeExec(src.__GradeExec), _signed(src._signed),  __target(src.__target)
 {
     return ;
 }
@@ -133,6 +138,22 @@ Form::beSigned(const Bureaucrat &obj)
     return ;
 }
 
+void
+Form::execute(const Bureaucrat &executor) const
+{
+    if (!this->isSigned())
+        throw FormNotSignedException();
+    if (executor.getGrade() > this->__GradeExec)
+        throw GradeToolowException(executor.getGrade());
+    this->__execute(executor);
+}
+
+std::string
+Form::getTarget() const
+{
+    return (this->__target);
+}
+
 int
 _HIGHT::getGrade() const
 {
@@ -155,4 +176,31 @@ const char
 *_LOW::what() const throw()
 {
     return ("Grade is too low\n");
+}
+
+NOTSIGNED::FormNotSignedException()
+{
+    
+}
+
+NOTSIGNED::FormNotSignedException(const NOTSIGNED &src)
+{
+    
+}
+
+NOTSIGNED::~FormNotSignedException() throw()
+{
+    
+}
+
+NOTSIGNED
+&NOTSIGNED::operator= (const NOTSIGNED &src)
+{
+    return (*this);
+}
+
+const char
+*NOTSIGNED::what() const throw()
+{
+    return ("Form is not signed");
 }
