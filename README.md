@@ -1,6 +1,6 @@
 # C++ 42 Schools "Piscine"
 
-A "Piscine" in 42 Schools is 2 weeks (did in 10 days :) ) of hard work discovering a new programming lenguage. In this case, as you could see is C++. Here an index:
+A "Piscine" in 42 Schools is 2 weeks of hard work discovering a new programming lenguage. In this case, as you could see is C++. Here an index:
 
 ### Module 00
 - namespace
