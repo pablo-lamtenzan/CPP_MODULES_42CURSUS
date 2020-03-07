@@ -6,7 +6,7 @@ A "Piscine" in 42 Schools is 2 weeks (did in 10 days :) ) of hard work discoveri
 - namespace
 - class concept
 - class member functions
-- Itream
+- Stream
 - Init list
 - Static concept
 - Const concept
