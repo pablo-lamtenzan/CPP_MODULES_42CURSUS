@@ -6,7 +6,7 @@
 /*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 04:33:33 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/03 05:04:18 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/03/08 16:56:01 by plamtenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,20 @@
 
 class Human
 {
-    private :
+    private:
     const Brain newBrain;
     
     public :
+    
+    // Constructors
     Human();
-    Brain getBrain()
-    {
-        return (newBrain);
-    }
-    std::string identify()
-    {
-        return (newBrain.identify());
-    }
+
+    // Destructors
+    ~Human();
+
+    // Shared methods
+    Brain getBrain() const;
+    std::string identify() const;
 };
 
 

@@ -6,7 +6,7 @@
 /*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 09:16:03 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/06 09:45:22 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/03/06 10:31:51 by plamtenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // Constructors
 
-PresidentialPardonForm::PresidentialPardonForm(const std::string target) : Form("Presidential", 25, 5, target)
+PresidentialPardonForm::PresidentialPardonForm(const std::string target) : Form("presidential pardon", 25, 5, target)
 {
 
 }

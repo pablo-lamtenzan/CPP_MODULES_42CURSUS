@@ -6,7 +6,7 @@
 /*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 21:03:12 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/03 21:29:09 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/03/08 17:16:46 by plamtenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,23 @@
 
 class HumanA
 {
+    private :
+
+    Weapon *__weapon;
+    std::string __name;
+    
     public :
     
+    // Contructors
     HumanA(std::string name, Weapon weapon);
+    HumanA(std::string name);
 
-    Weapon *weapon;
-    std::string name;
+    // Destructors
+    ~HumanA();
     
-    void attack()
-    {
-        std::cout << name << " attacks with his " << weapon->type << '\n';
-    }
-
-    void setWeapon(Weapon newWeapon)
-    {
-        weapon = &newWeapon;
-    }
+    // Shared methods
+    void attack();
+    void setWeapon(Weapon &newWeapon);
+    std::string getName() const;
 };
-
 #endif

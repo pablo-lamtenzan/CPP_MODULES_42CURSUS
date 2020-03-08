@@ -6,7 +6,7 @@
 /*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 01:08:57 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/03 01:44:47 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/03/08 16:08:18 by plamtenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,19 @@ void            randomChump(void);
 
 class ZombieEvent
 {
+    private :
+
+    std::string __type;
+    
     public :
+
+    // Constructors
+    ZombieEvent();
     
-    std::string type;
-    void setZombieType(void) // bad i think
-    {
-        std::string type;
-        std::cout << "Please set the type of this Zombie.\n";
-        std::cin >> type;
-        this->type = type;
-    }
-    
-    Zombie *newZombie(std::string name)
-    {
-        Zombie *brainssss = new Zombie(name, this->type);
-        return (brainssss);
-    }
+    // Shared methods
+    void setZombieType(void);
+    std::string getType() const;
+    Zombie *newZombie(std::string name);
 };
 
 #endif

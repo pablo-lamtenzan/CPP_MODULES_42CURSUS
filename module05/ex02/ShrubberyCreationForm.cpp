@@ -6,7 +6,7 @@
 /*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 07:35:26 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/06 09:45:34 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/03/06 10:30:46 by plamtenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // Constructors
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) : Form("Shruberry", 145, 137, target)
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) : Form("shrubbery creation", 145, 137, target)
 {
     
 }

@@ -6,7 +6,7 @@
 /*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 03:58:19 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/03 05:19:53 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/03/08 16:55:08 by plamtenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,31 @@
 
 class Brain
 {
-    public :
-    Brain(std::string IQ, std::string Energy, std::string Age, std::string Crazyness);
-    Brain();
-    std::string IQ;
-    std::string Energy;
-    std::string Age;
-    std::string Crazyness;
-    const void *id;
+    private :
 
-    std::string identify() const // const used for const class Brain
-    {
-        std::ostringstream address;
-        address << id;
-        return (address.str());
-    }
+    std::string __IQ;
+    std::string __Energy;
+    std::string __Age;
+    std::string __Crazyness;
+
+    protected :
+
+    const void *__id;
+
+    public :
+    
+    // Contructors
+    Brain();
+    Brain(std::string IQ, std::string Energy, std::string Age, std::string Crazyness);
+
+    ~Brain();
+
+    // Shared Methods
+    std::string identify() const;
+    std::string getIQ() const;
+    std::string getEnergy() const;
+    std::string getAge() const;
+    std::string getCrazyness() const;
 };
 
 #endif

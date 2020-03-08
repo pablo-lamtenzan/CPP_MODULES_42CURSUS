@@ -6,7 +6,7 @@
 /*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 09:01:25 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/06 09:45:27 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/03/06 10:31:25 by plamtenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // Constructors
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string target) : Form("Robotomy", 72, 45, target)
+RobotomyRequestForm::RobotomyRequestForm(const std::string target) : Form("robotomy request", 72, 45, target)
 {
     
 }

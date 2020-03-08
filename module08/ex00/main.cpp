@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/03 00:46:48 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/03 01:06:40 by plamtenz         ###   ########.fr       */
+/*   Created: 2020/03/08 20:20:48 by plamtenz          #+#    #+#             */
+/*   Updated: 2020/03/08 20:25:53 by plamtenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_HPP
-# define ZOMBIE_HPP
-
-#include <cstring>
 #include <iostream>
+#include <vector>
+#include "easyfind.hpp"
 
-class Zombie
+int main()
 {
-    public :
-    Zombie(std::string name, std::string type);
-    std::string name;
-    std::string type;
-    
-    void announce(void)
+    std::vector<int> vec;
+    vec.push_back(12);
+    vec.push_back(13);
+    vec.push_back(14);
+    vec.push_back(15);
+    std::cout << easyfind(vec, 12) << std::endl;
+    try
     {
-        std::cout << '<' << name << " (" << type << ")> Braiiiiiiinnnssss...";
+        std::cout << easyfind(vec, 10) << std::endl;
     }
-};
-
-#endif
+    catch (const std::exception& e)
+    {
+        std::cout << "exception catched :" << e.what() << std::endl;
+    }
+    return (0);
+}
