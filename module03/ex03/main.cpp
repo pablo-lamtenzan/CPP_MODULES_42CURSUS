@@ -5,16 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/04 04:35:19 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/09 21:07:47 by plamtenz         ###   ########.fr       */
+/*   Created: 2020/03/09 21:50:56 by plamtenz          #+#    #+#             */
+/*   Updated: 2020/03/09 21:51:57 by plamtenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#include "NinjaTrap.hpp"
 #include "FragTrap.hpp"
 #include "ScavTrap.hpp"
 
-int main()
+int main(void)
 {
 	FragTrap ft("FR4GGY");
 
@@ -43,5 +43,19 @@ int main()
 
 	for (int i = 0; i < 5; i++)
 		st.challengeNewcomer();
-    return (0);
+
+	NinjaTrap n("NINJA");
+
+	for (int i = 0; i < 7; i++)
+		n.takeDamage(20);
+
+	for (int i = 0; i < 7; i++)
+		n.beRepaired(20);
+
+	n.ninjaShoebox(n);
+	n.ninjaShoebox(ft);
+	n.ninjaShoebox(st);
+
+	ClapTrap t(10, 10, 10, 10, 1 ,"Hi", 10, 10, 10);
+	n.ninjaShoebox(t);
 }

@@ -6,7 +6,7 @@
 /*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 08:11:52 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/06 07:49:34 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/03/09 22:55:38 by plamtenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ class Bureaucrat
     // Shared Methods
     std::string getName() const;
     int getGrade() const;
+    void setGrade(int grade);
     void CheckExeption(int grade);
     void IncrementGrade();
     void DecrementGrade();

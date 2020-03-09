@@ -6,11 +6,12 @@
 /*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 10:13:16 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/06 09:38:34 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/03/09 23:01:19 by plamtenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
 // Constructors
 
@@ -80,6 +81,7 @@ Form
 std::ostream &operator<< (std::ostream &out, const Form &src)
 {
     out << "Form: " << src.getName() << " (sign " << src.getGradeSign() << ", exec " << src.getGradeExec() << ")\n";
+    return (out);
 }
 
 _HIGHT
@@ -125,7 +127,7 @@ Form::isSigned() const
 }
 
 void
-Form::beSigned(const Bureaucrat &obj)
+Form::beSigned(Bureaucrat &obj)
 {
     if (obj.getGrade() > this->__GradeSign)
         throw GradeToolowException(obj.getGrade());

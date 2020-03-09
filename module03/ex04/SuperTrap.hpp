@@ -6,7 +6,7 @@
 /*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 05:20:06 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/04 05:36:58 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/03/09 21:58:32 by plamtenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,24 @@
 #include "FragTrap.hpp"
 #include "NinjaTrap.hpp"
 
-class SuperTrap : public FragTrap , public NinjaTrap
+class SuperTrap : virtual public FragTrap , virtual public NinjaTrap
 {
     public :
 
-    SuperTrap(std::string self_name, std::string _FragTrap, std::string _NinjaTrap);
+    // Constructors
+    SuperTrap();
+    SuperTrap(std::string name);
+    SuperTrap(const SuperTrap &src);
 
-    std::string name;
-    const void *ptr;
-    FragTrap *fragtrap;
-    NinjaTrap *ninjatrap;
+    // Destructors
+	~SuperTrap(void);
 
-    int HitPoints;
-    int MaxHitPoints;
-    int EnergyPoints;
-    int MaxEnergyPoints;
-    int Level;
-    int MeleeAttackDamage;
-    int RangedAttackDamage;
-    int ArmorDamageReduction;
+    // Operators
+	SuperTrap &	operator=(const SuperTrap &ssrc);
 
-    // if inheritance works i have shared properties and shared special functions and for not have public function i just have to pu tthen in reserved or private
+    // Shared Methods
+	void rangedAttack(std::string const &target);
+	void meleeAttack(std::string const &target);
 };
 
 #endif

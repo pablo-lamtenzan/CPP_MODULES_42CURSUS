@@ -6,7 +6,7 @@
 /*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 09:31:26 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/06 07:32:21 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/03/09 22:32:46 by plamtenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 int main()
 {
     Bureaucrat A("A", 1);
-    Bureaucrat B("A", 0);
-    Bureaucrat C("A", 151); // mmm this is strange;
+    Bureaucrat B("B", 149);
+    Bureaucrat C("C", 149);
 
+    B.DecrementGrade();
+    std::cout << A << B << C;
     //A.IncrementGrade();
-    A.DecrementGrade();
-    std::cout << A.getGrade() << A << B << C;
 }

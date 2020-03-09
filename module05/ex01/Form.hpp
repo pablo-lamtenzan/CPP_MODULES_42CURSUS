@@ -6,7 +6,7 @@
 /*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 09:42:35 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/06 07:26:40 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/03/09 23:00:00 by plamtenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,10 @@
 
 #include <iostream>
 #include <string>
-
-#include <iostream>
-#include <string>
 #include <stdexcept>
-#include <stdbool.h>
 
-#include "Bureaucrat.hpp"
+//#include "Bureaucrat.hpp"
+class Bureaucrat; // problems including it
 
 #define _HIGHT Form::GradeTooHighException
 #define _LOW Form::GradeToolowException
@@ -52,7 +49,7 @@ class Form
     const int getGradeSign() const;
     const int getGradeExec() const;
     bool isSigned() const;
-    void beSigned(const Bureaucrat &obj); // form is signed if bureaucrat is HighEnounght
+    void beSigned(Bureaucrat &obj);
 
     // Shared Classes
 

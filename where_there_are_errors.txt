@@ -51,8 +51,19 @@ ex02 -> ok but... litle problem with b value have to coorec and is nice
 
 ------LAZY ME---------------- -> is easy to correct but repetive and long as fck work
 ---DAY 03
+ex00 -> ok
+ex01 -> ok
+ex02 -> ok but need to check "You have constructed ClapTrap <[SCAVVY]> !
+ClapTrap <[SCAVVY]> died young but happy"
+ex03 -> ok but same problem as before + problem in copy constructor NinjaTrap
+ex04 -> ok but check contructor comments (+ check right the output)
+
 ---DAY 04
 ---DAY 05
+ex00 -> ok
+ex01 -> looks ok have to check more
+ex03 -> have to copy all the changes did in ex01 before correct
+
 ------END OF LAZY ME---------
 
 ---DAY 06

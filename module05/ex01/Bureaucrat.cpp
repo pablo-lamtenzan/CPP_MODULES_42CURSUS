@@ -6,7 +6,7 @@
 /*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 08:38:20 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/06 08:00:13 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/03/09 22:58:43 by plamtenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Bureaucrat::Bureaucrat()
 Bureaucrat::Bureaucrat(std::string name, int  grade)
 {
     this->__name = name;
-    this->__grade = grade;
+    CheckExeption(grade);
     return ;
 }
 
@@ -120,6 +120,12 @@ Bureaucrat::getGrade() const
 }
 
 void
+Bureaucrat::setGrade(int grade)
+{
+    CheckExeption(grade);
+}
+
+void
 Bureaucrat::CheckExeption(int grade)
 {
     if (grade < 1)
@@ -148,7 +154,8 @@ Bureaucrat::signForm(Form &obj)
 {
     if (obj.isSigned())
     {
-        std::cout << '<' << this->__name << "> cannot sign <" << obj.getName() << "> because is already signed" <<  std::endl; //yeah now i use this (more portable)
+        std::cout << '<' << this->__name << "> cannot sign <" << obj.getName() << "> because is already signed" <<  std::endl;
+        return ;
     }
     try
     {

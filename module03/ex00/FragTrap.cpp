@@ -6,24 +6,104 @@
 /*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 03:03:57 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/04 03:53:30 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/03/09 19:31:28 by plamtenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap(std::string name)
+FragTrap::FragTrap(std::string name) : __HitPoints(100), __MaxHitPoints(100),
+    __EnergyPoints(100), __MaxEnergyPoints(100), __Level(1), __name(name), __MeleeAttackDamage(30),
+    __RangedAttackDamage(20), __ArmorDamageReduction(5)
 {
-    this->HitPoints = 100;
-    this->MaxHitPoints = 100;
-    this->EnergyPoints = 100;
-    this->MaxEnergyPoints = 100;
-    this->Level = 1;
-    this->name = name;
-    this->MeleeAttackDamage = 30;
-    this->RangedAttackDamage = 20;
-    this->ArmorDamageReduction = 5;
-    this->ptr = (const void *)this;
+    std::cout << "FragTrap name: \"" << name << "\" has been created!\n" << "Hit Points: " << this->__HitPoints << "\nMax Hit Points: " << this->__MaxHitPoints << "\nEnergy Points: " << this->__EnergyPoints << "\nMax Energy Points: " << this->__MaxEnergyPoints << "\nLevel: " << this->__Level << "\nMelee Attack Damage: " << this->__MeleeAttackDamage << "\nRanged Attack Damage: " << this->__RangedAttackDamage << "\nArmor Damage Reduction: " << this->__ArmorDamageReduction << '\n';
+}
 
-    std::cout << "FragTrap name: \"" << name << "\" has been created!\n" << "Hit Points: " << this->HitPoints << "\nMax Hit Points: " << this->MaxHitPoints << "\nEnergy Points: " << this->EnergyPoints << "\nMax Energy Points: " << this->MaxEnergyPoints << "\nLevel: " << this->Level << "\nMelee Attack Damage: " << this->MeleeAttackDamage << "\nRanged Attack Damage: " << this->RangedAttackDamage << "\nArmor Damage Reduction: " << this->ArmorDamageReduction << '\n';
+FragTrap::FragTrap()
+{
+    
+}
+
+FragTrap::FragTrap(const FragTrap &src)
+{
+    *this = src;
+}
+
+FragTrap::~FragTrap()
+{
+    
+}
+
+FragTrap
+&FragTrap::operator= (const FragTrap &src)
+{
+    if (this != &src)
+    {
+        this->__HitPoints = src.__HitPoints;
+        this->__MaxHitPoints = src.__MaxHitPoints;
+        this->__EnergyPoints = src.__EnergyPoints;
+        this->__MaxEnergyPoints = src.__MaxEnergyPoints;
+        this->__Level = src.__Level;
+        this->__name = src.__name;
+        this->__MeleeAttackDamage = src.__MeleeAttackDamage;
+        this->__RangedAttackDamage = src.__RangedAttackDamage;
+        this->__ArmorDamageReduction = src.__ArmorDamageReduction;
+    }
+    return (*this);
+}
+
+void
+FragTrap::rangedAttack(std::string const &target)
+{
+    std::cout << "FR4G-TP <" << this->__name << "> attacks <" << target << "> at range, causing <" << this->__RangedAttackDamage << "> points of damage !" << std::endl;
+    //EnergyPoints = (EnergyPoints - 15) > 0 ? EnergyPoints - 15 : 0;
+}
+
+void
+FragTrap::meleeAttack(std::string const &target)
+{
+    std::cout << "FR4G-TP <" << this->__name << "> attacks <" << target << "> at melee, causing <" << this->__MeleeAttackDamage << "> points of damage !" << std::endl;
+    //EnergyPoints = (EnergyPoints - 10) > 0 ? EnergyPoints - 10 : 0;
+}
+
+void
+FragTrap::takeDamage(unsigned int amount)
+{
+    std::cout << "FR4G-TP <" << this->__name << "> has been atacked by <" << amount << "> hp!" << std::endl;
+    this->__HitPoints = (this->__HitPoints - amount) + this->__ArmorDamageReduction > 0 ? (this->__HitPoints - amount) + this->__ArmorDamageReduction : 0;
+    this->__HitPoints = this->__HitPoints < 0 ? 0 : (this->__HitPoints > this->__MaxHitPoints ? this->__MaxHitPoints : this->__HitPoints);
+}
+        
+void
+FragTrap::beRepaired(unsigned int amount)
+{
+    std::cout << "FRAG-TP <" << this->__name << "> has been repared by <" << amount << "> hp!" << std::endl;
+    this->__HitPoints = (this->__HitPoints + amount) <= this->__MaxHitPoints ? this->__HitPoints + amount : this->__MaxHitPoints;
+}
+
+void
+FragTrap::vaulthunter_dot_exe(std::string const &target)
+{
+    if (this->__EnergyPoints >= 25)
+    {
+        const char *attacks[] = {"Sword Attack!\n", "Hummer Attack!\n", "Physical Attack!\n", "Gun Attack!\n", "Arrow Attack!\n", NULL};
+                
+        int random = rand() % 5;
+        const char *attack = attacks[random];
+
+        int i = -1;
+        while (strcmp(attacks[++i], attack));
+
+        std::cout << attack;
+        i > 2 ? rangedAttack(target) : meleeAttack(target);
+        this->__EnergyPoints -= 25;
+    }
+    else
+        std::cout << "FRAG-TP <" << this->__name << "> has not enought energy for vaulthunder (Energy is " << this->__EnergyPoints << ")." << std::endl;   
+}
+
+int
+FragTrap::getHitPoints() const
+{
+    return (this->__HitPoints);
 }

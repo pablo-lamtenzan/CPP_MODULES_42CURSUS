@@ -6,7 +6,7 @@
 /*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 08:38:20 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/06 09:32:39 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/03/09 22:34:34 by plamtenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Bureaucrat::Bureaucrat()
 Bureaucrat::Bureaucrat(std::string name, int  grade)
 {
     this->__name = name;
-    this->__grade = grade;
+    CheckExeption(grade);
     return ;
 }
 
