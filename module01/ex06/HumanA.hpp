@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanA.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 21:03:12 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/08 17:16:46 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/20 06:58:03 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,17 @@ class HumanA
 {
     private :
 
-    Weapon *__weapon;
-    std::string __name;
+	// mutable address, a pointer is necesarry
+    Weapon		*weapon;
+    std::string	name;
     
     public :
     
-    // Contructors
-    HumanA(std::string name, Weapon weapon);
-    HumanA(std::string name);
-
-    // Destructors
+    HumanA(const std::string& n, Weapon &w);
+    HumanA(const std::string& n);
     ~HumanA();
-    
-    // Shared methods
     void attack();
-    void setWeapon(Weapon &newWeapon);
-    std::string getName() const;
+    void setWeapon(Weapon& w);
+    const std::string getName() const;
 };
 #endif
