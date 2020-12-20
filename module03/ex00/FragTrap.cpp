@@ -3,107 +3,86 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 03:03:57 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/09 19:31:28 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/20 12:33:32 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap(std::string name) : __HitPoints(100), __MaxHitPoints(100),
-    __EnergyPoints(100), __MaxEnergyPoints(100), __Level(1), __name(name), __MeleeAttackDamage(30),
-    __RangedAttackDamage(20), __ArmorDamageReduction(5)
-{
-    std::cout << "FragTrap name: \"" << name << "\" has been created!\n" << "Hit Points: " << this->__HitPoints << "\nMax Hit Points: " << this->__MaxHitPoints << "\nEnergy Points: " << this->__EnergyPoints << "\nMax Energy Points: " << this->__MaxEnergyPoints << "\nLevel: " << this->__Level << "\nMelee Attack Damage: " << this->__MeleeAttackDamage << "\nRanged Attack Damage: " << this->__RangedAttackDamage << "\nArmor Damage Reduction: " << this->__ArmorDamageReduction << '\n';
-}
+FragTrap::FragTrap(const std::string& n) : HitPoints(100), MaxHitPoints(100),
+   EnergyPoints(100), MaxEnergyPoints(100), Level(1), name(n), MeleeAttackDamage(30),
+    RangedAttackDamage(20), ArmorDamageReduction(5), ptr((const void*const)this)
+{ std::cout << "New FragTrap " << name << " has been created!" << std::endl; }
 
-FragTrap::FragTrap()
-{
-    
-}
+FragTrap::FragTrap() : HitPoints(0), MaxHitPoints(0),
+   EnergyPoints(0), MaxEnergyPoints(0), Level(0), name("Undefined"), MeleeAttackDamage(0),
+    RangedAttackDamage(0), ArmorDamageReduction(0), ptr((const void*const)this)
+{ std::cout << "An unitialised TragTrap has been created!" << std::endl; }
 
-FragTrap::FragTrap(const FragTrap &src)
+FragTrap::FragTrap(const FragTrap& src) : ptr((const void*const)&src)
 {
-    *this = src;
+	std::cout << "New FragTrap " << src.name << " has been created by copy constructor!" << std::endl;
+	if (this != &src)
+		*this = src;
 }
+FragTrap::~FragTrap() { std::cout << "A FragTrap has been destroyed!" << std::endl; }
 
-FragTrap::~FragTrap()
-{
-    
-}
-
-FragTrap
-&FragTrap::operator= (const FragTrap &src)
+FragTrap&	FragTrap::operator=(const FragTrap &src)
 {
     if (this != &src)
     {
-        this->__HitPoints = src.__HitPoints;
-        this->__MaxHitPoints = src.__MaxHitPoints;
-        this->__EnergyPoints = src.__EnergyPoints;
-        this->__MaxEnergyPoints = src.__MaxEnergyPoints;
-        this->__Level = src.__Level;
-        this->__name = src.__name;
-        this->__MeleeAttackDamage = src.__MeleeAttackDamage;
-        this->__RangedAttackDamage = src.__RangedAttackDamage;
-        this->__ArmorDamageReduction = src.__ArmorDamageReduction;
+        HitPoints = src.HitPoints;
+        MaxHitPoints = src.MaxHitPoints;
+        EnergyPoints = src.EnergyPoints;
+        MaxEnergyPoints = src.MaxEnergyPoints;
+        Level = src.Level;
+        name = src.name;
+        MeleeAttackDamage = src.MeleeAttackDamage;
+        RangedAttackDamage = src.RangedAttackDamage;
+        ArmorDamageReduction = src.ArmorDamageReduction;
     }
     return (*this);
 }
 
-void
-FragTrap::rangedAttack(std::string const &target)
-{
-    std::cout << "FR4G-TP <" << this->__name << "> attacks <" << target << "> at range, causing <" << this->__RangedAttackDamage << "> points of damage !" << std::endl;
-    //EnergyPoints = (EnergyPoints - 15) > 0 ? EnergyPoints - 15 : 0;
-}
+void		FragTrap::rangedAttack(std::string const &target) { std::cout << "FR4G-TP <" << name << "> attacks <" << target << "> at range, causing <" << RangedAttackDamage << "> points of damage !" << std::endl; }
+void		FragTrap::meleeAttack(std::string const &target) { std::cout << "FR4G-TP <" << name << "> attacks <" << target << "> at melee, causing <" << MeleeAttackDamage << "> points of damage !" << std::endl; }
 
-void
-FragTrap::meleeAttack(std::string const &target)
+void		FragTrap::takeDamage(unsigned int amount)
 {
-    std::cout << "FR4G-TP <" << this->__name << "> attacks <" << target << "> at melee, causing <" << this->__MeleeAttackDamage << "> points of damage !" << std::endl;
-    //EnergyPoints = (EnergyPoints - 10) > 0 ? EnergyPoints - 10 : 0;
-}
-
-void
-FragTrap::takeDamage(unsigned int amount)
-{
-    std::cout << "FR4G-TP <" << this->__name << "> has been atacked by <" << amount << "> hp!" << std::endl;
-    this->__HitPoints = (this->__HitPoints - amount) + this->__ArmorDamageReduction > 0 ? (this->__HitPoints - amount) + this->__ArmorDamageReduction : 0;
-    this->__HitPoints = this->__HitPoints < 0 ? 0 : (this->__HitPoints > this->__MaxHitPoints ? this->__MaxHitPoints : this->__HitPoints);
+    std::cout << "FR4G-TP <" << name << "> has been atacked by <" << amount << "> hp!" << std::endl << "FR4G-TP " << name << " has shield <" << ArmorDamageReduction <<"> damage!" << std::endl;
+    HitPoints = (HitPoints - amount) + ArmorDamageReduction > 0 ? (HitPoints - amount) + ArmorDamageReduction : 0;
+    HitPoints = HitPoints < 0 ? 0 : (HitPoints > MaxHitPoints ? MaxHitPoints : HitPoints);
 }
         
-void
-FragTrap::beRepaired(unsigned int amount)
+void		FragTrap::beRepaired(unsigned int amount)
 {
-    std::cout << "FRAG-TP <" << this->__name << "> has been repared by <" << amount << "> hp!" << std::endl;
-    this->__HitPoints = (this->__HitPoints + amount) <= this->__MaxHitPoints ? this->__HitPoints + amount : this->__MaxHitPoints;
+    std::cout << "FRAG-TP <" << name << "> has been repared by <" << amount << "> hp!" << std::endl;
+    HitPoints = (HitPoints + amount) <= MaxHitPoints ? HitPoints + amount : MaxHitPoints;
 }
 
-void
-FragTrap::vaulthunter_dot_exe(std::string const &target)
+void		FragTrap::vaulthunter_dot_exe(std::string const &target)
 {
-    if (this->__EnergyPoints >= 25)
+	static const char*const attacks[] {
+		"Normal attack",
+		"Heavy attack",
+		"Surprise attack",
+		"Fast attack",
+		"Special attack"
+	};
+
+    if (EnergyPoints >= 25)
     {
-        const char *attacks[] = {"Sword Attack!\n", "Hummer Attack!\n", "Physical Attack!\n", "Gun Attack!\n", "Arrow Attack!\n", NULL};
-                
-        int random = rand() % 5;
-        const char *attack = attacks[random];
-
-        int i = -1;
-        while (strcmp(attacks[++i], attack));
-
-        std::cout << attack;
-        i > 2 ? rangedAttack(target) : meleeAttack(target);
-        this->__EnergyPoints -= 25;
+		int r;
+		const std::string attack(attacks[(r = rand() % (sizeof(attacks) / sizeof(*attacks)))]);
+        std::cout << "[" << attack << "] ";
+        r % 2 ? rangedAttack(target) : meleeAttack(target);
+		EnergyPoints -= 25;
     }
     else
-        std::cout << "FRAG-TP <" << this->__name << "> has not enought energy for vaulthunder (Energy is " << this->__EnergyPoints << ")." << std::endl;   
+        std::cout << "FRAG-TRAP <" << name << "> has not enought energy points for execute vaulthunder to <" << target << "> (Energy is " << EnergyPoints << ")." << std::endl;   
 }
 
-int
-FragTrap::getHitPoints() const
-{
-    return (this->__HitPoints);
-}
+ssize_t			FragTrap::get_hp() const { return(HitPoints); }
