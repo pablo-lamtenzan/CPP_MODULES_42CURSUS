@@ -20,9 +20,16 @@ class XYZ
 
     std::string __firstname;
     std::string __lastname;
+	std::string __nickname; // new
     std::string __login;
+	std::string __postal_address; // new
+	std::string __email_addres; // new
     std::string __number;
     std::string __birthday;
+	std::string __favorite_meal; // new
+	std::string __underwear_color; // new
+	std::string __darkest_secret; // new
+
 
     public :
 
@@ -34,6 +41,7 @@ class XYZ
     const std::string &getLogin() const {return (__login);}
     const std::string &getNumber() const {return (__number);}
     const std::string &getBirthay() const {return (__birthday);}
+
 
     void setFirstName(std::string s) {__firstname = s;}
     void setLastName(std::string s) {__lastname = s;}

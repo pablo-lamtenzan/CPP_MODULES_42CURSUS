@@ -20,9 +20,10 @@ int main(int ac, char **argv)
     else
     {
         int i = 0;
+		size_t j;
         while (++i < ac)
         {
-            int j = -1;
+            j = -1;
             std::string s(argv[i]);
             while (++j < s.length())
                 std::cout << char(toupper(s.at(j)));
