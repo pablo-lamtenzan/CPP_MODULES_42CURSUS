@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 22:00:35 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/08 18:12:20 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/20 07:49:40 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,48 +15,52 @@
 #include <fstream>
 #include <sstream>
 
-int main(int ac, char **argv)
+int	print_error(const std::string& err_msg)
 {
-    // Check input errors
-    if (ac != 4)
-    {
-        std::cout << "Usage error, bad format" << std::endl;
-        return (-1);
-    }
-    std::string _find = argv[2];
-    std::string _replace = argv[3];
-    std::string filename = argv[1];
+	std::cout << err_msg << std::endl;
+	return (-1);
+}
 
-    if (!_find.length() || !_replace.length() || !_replace.length())
-    {
-        std::cout << "Usage error, bad format" << std::endl;
-        return (-1);
-    }
-    // Open check filename
-    std::ifstream fs(filename);
-    if (!fs.good())
-    {
-        std::cout << "Not openable file" << std::endl;
-        return (-1);
-    }
-    // Read all the input file and but the read bytes in a buffer
-    std::stringstream buff;
-    std::string buff_in_string_type;
-    buff << fs.rdbuf();
-    buff_in_string_type = buff.str();
-    // Replace
-    size_t match;
-    while ((match = buff_in_string_type.find(_find)) != std::string::npos) // if i forget the day of the evaluation npos (max size_t) in nomenclature for not find
-        buff_in_string_type.replace(match, _find.length(), _replace);
-    // Rewrite the file
-    std::ofstream of(filename + ".replace");
-    if (!of.good())
-    {
-        std::cout << "Not openable file" << std::endl;
-        return (-1);
-    }
-    of << buff_in_string_type;
-    // close
-    of.close();
-    return (0);
+int main(int ac, const char** av)
+{
+	static const char *const errors[] {
+		"Error: Usage: Wrong argument number.",
+		"Error: Arguments must not be empty!",
+		"Error: File is not openable ..."
+	};
+	std::string filename;
+	std::string	find;
+	std::string replace;
+
+	// Sanitize wrong argument number
+	if (ac != 4)
+		return (print_error(errors[0]));
+	// Arguments must be not empty
+	if ((filename = av[1]).empty() || (find = av[2]).empty() || (replace = av[3]).empty())
+		return (print_error(errors[1]));
+	// Open the filename
+	std::ifstream ifs(filename);
+	// Sanitize the fd
+	if (!ifs.good())
+		return (print_error(errors[2]));
+	// Read the resulting file descriptor and write it in "buff"
+	std::stringstream buff;
+	buff << ifs.rdbuf();
+	// Copy the resulting read-writted buffer in "target"
+	std::string target = buff.str();
+	// Inspect the resulting string and replace the occurences (npos means false, some std functions uses it as error catch value)
+	size_t lenght;
+	while ((lenght = target.find(find)) != std::string::npos)
+		target.replace(lenght, find.length(), replace);
+	// Opening the filename appended with ".replace" (new fd)
+	std::ofstream ofs(filename + ".replace");
+	// Sanitize the file descriptor
+	if (!ofs.good())
+		return (print_error(errors[2]));
+	// Write the "seded" string in the ".replace" file
+	ofs << target;
+	// Close the both file descriptors
+	ifs.close();
+	ofs.close();
+	return (0);
 }

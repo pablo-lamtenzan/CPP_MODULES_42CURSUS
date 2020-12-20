@@ -1,0 +1,6 @@
+This is a test and the objective of this test is to check 3 importants things:
+1) All the error sanitize is handled correctly
+2) Find the ocurrences and replaces it
+3) Has a coherent behavior when there's no occurences to replace
+
+la le li lo lu da de di do du la le li lo lu da de di do du
