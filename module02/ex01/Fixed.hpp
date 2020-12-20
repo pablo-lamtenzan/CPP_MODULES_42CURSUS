@@ -21,33 +21,26 @@ class Fixed
 {
     private :
 
-    int __raw;
-    static const int __fract = 8; // dont work ? set it like global xd
-    static const int __powershift = 256;
-    static const int __mask = 255;
+    int					raw;
+    static const int	fract = 8;
+    static const int	powershift = 256;
+    static const int	mask = 255;
 
     public :
 
-    // Constructors
     Fixed();
     Fixed(const int intValue);
     Fixed(const float floatValue);
-    Fixed(const Fixed &src);
-
-    // Destructors
+    Fixed(const Fixed& src);
     ~Fixed();
-
-    // Operators
-    Fixed &operator= (const Fixed &src);
-
-    // Shared Methods
+    Fixed& operator=(const Fixed& src);
     int getRawBits() const;
-    void setRawBits(int const raw);
+    void setRawBits(int const r);
     float toFloat() const;
     int toInt() const;
 
 };
 
-std::ostream &operator<< (std::ostream &out, const Fixed &src);
+std::ostream& operator<<(std::ostream& out, const Fixed& src);
 
 #endif
