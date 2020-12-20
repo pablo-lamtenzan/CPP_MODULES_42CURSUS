@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Pony.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 23:27:55 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/08 15:46:54 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/20 02:14:43 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,26 @@
 #include <cstring>
 #include <iostream>
 
-
-void        ponyOnTheHeap();
-void        ponyOnTheStack();
-
 class Pony
 {
     private :
 
-    std::string __color;
-    std::string __size;
-    std::string __magic;
-    std::string __name;
+	std::string name;
+    std::string color;
+    std::string height;
+    std::string fav_meal;
 
     public :
 
-    // Shared methods
-    
-    Pony(std::string name, std::string color, std::string size, std::string magic);
-    std::string getColor() const;
-    std::string getSize() const;
-    std::string getMagic() const;
-    std::string getName() const;
+    Pony(std::string n, std::string c, std::string h, std::string fm);
+	~Pony();
+    const std::string get_name() const;
+    const std::string get_color() const;
+    const std::string get_height() const;
+    const std::string get_fav_meal() const;
 };
+
+void        ponyOnTheHeap();
+void        ponyOnTheStack();
 
 #endif

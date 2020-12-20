@@ -3,80 +3,80 @@
 /*                                                        :::      ::::::::   */
 /*   Pony.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 23:41:01 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/08 16:03:41 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/20 02:54:18 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Pony.hpp"
 
-Pony::Pony(std::string name, std::string color, std::string size, std::string magic) : 
-    __name(name), __color(color), __size(size), __magic(magic)
+Pony::Pony(std::string n, std::string c, std::string h, std::string fm)
+	: name(n), color(c), height(h), fav_meal(fm) {}
+	
+Pony::~Pony() {}
+
+const std::string	Pony::get_name() const { return (name); }
+const std::string	Pony::get_color() const { return (color); }
+const std::string	Pony::get_height() const { return (height); }
+const std::string	Pony::get_fav_meal() const { return (fav_meal); }
+
+void		ponyOnTheHeap()
 {
+	std::string	name;
+	std::string color;
+	std::string height;
+	std::string fav_meal;
 
-}
+	std::cout << "Welcome to PONY ON THE HEAP! Customize your Pony:" << std::endl;
+	std::cout << "Name:" << std::endl << ">> ";
+	std::cin >> name;
+	std::cout << "Color:" << std::endl << ">> ";
+	std::cin >> color;
+	std::cout << "Height:" << std::endl << ">> ";
+	std::cin >> height;
+	std::cout << "Favorite meal:" << std::endl << ">> ";
+	std::cin >> fav_meal;
+	
+	Pony *P = new Pony(name, color, height, fav_meal);
+	if (!P)
+	{
+		std::cout << "Error: Not enought heap room avlaible in your device!" << std::endl;
+		return ;
+	}
+	
+	std::cout << P->get_name() << " is allocated in the heap!" << std::endl << \
+			"Color: " << P->get_color() << std::endl << \
+			"Height: " << P->get_height() << std::endl << \
+			"Favorite meal: " << P->get_fav_meal() << std::endl;
 
-std::string
-Pony::getColor() const 
-{
-    return (this->__color);
-}
-
-std::string
-Pony::getName() const
-{
-    return (this->__name);
-}
-
-std::string
-Pony::getMagic() const
-{
-    return (this->__magic);
-}
-
-std::string
-Pony::getSize() const
-{
-    return (this->__size);
-}
-
-void        ponyOnTheHeap(void)
-{
-    std::string color;
-    std::string size;
-    std::string magic;
-    std::string name;
-    std::cout << "What is your Pony Name?\n";
-    std::cin >> name;
-    std::cout << "What color is your Pony?\n";
-    std::cin >> color;
-    std::cout << "Your Pony size?\n";
-    std::cin >> size;
-    std::cout << "Has your Pony Magic ?\n";
-    std::cin >> magic;
-
-    Pony *not_a_horse = new Pony(name, color, size, magic);
-    std::cout << "Congrats your have allocated: " << not_a_horse->getName() << '\n' << "His size is: " << not_a_horse->getSize() << '\n' << "His color is: " << not_a_horse->getColor() << '\n' << "His magic is: " << not_a_horse->getMagic() << std::endl;
-    delete not_a_horse;
+	delete P;
+	std::cout << "Awesome! Now " << name << " has been delete from the heap. (type any key to continue)" << std::endl;
 }
 
 void        ponyOnTheStack(void)
 {
-    std::string color;
-    std::string size;
-    std::string magic;
-    std::string name;
-    std::cout << "What is your Pony Name?\n";
-    std::cin >> name;
-    std::cout << "What color is your Pony?\n";
-    std::cin >> color;
-    std::cout << "Your Pony size?\n";
-    std::cin >> size;
-    std::cout << "Has your Pony Magic ?\n";
-    std::cin >> magic;
+    std::string	name;
+	std::string color;
+	std::string height;
+	std::string fav_meal;
 
-    Pony not_a_horse(name, color, size, magic);
-    std::cout << "Congrats your have stacked: " << not_a_horse.getName() << '\n' << "His size is: " << not_a_horse.getSize() << '\n' << "His color is: " << not_a_horse.getColor() << '\n' << "His magic is: " << not_a_horse.getMagic() << std::endl;
+	std::cout << "Welcome to PONY ON THE HEAP! Customize your Pony:" << std::endl;
+	std::cout << "Name:" << std::endl << ">> ";
+	std::cin >> name;
+	std::cout << "Color:" << std::endl << ">> ";
+	std::cin >> color;
+	std::cout << "Height:" << std::endl << ">> ";
+	std::cin >> height;
+	std::cout << "Favorite meal:" << std::endl << ">> ";
+	std::cin >> fav_meal;
+
+    const Pony P(name, color, height, fav_meal);
+   std::cout << P.get_name() << " is allocated in the stack!" << std::endl << \
+			"Color: " << P.get_color() << std::endl << \
+			"Height: " << P.get_height() << std::endl << \
+			"Favorite meal: " << P.get_fav_meal() << std::endl;
+
+	std::cout << "In this case, " << P.get_name() << " exits only in its scope ... (type any key to continue)" << std::endl;
 }
