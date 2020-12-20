@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 23:41:01 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/20 02:54:18 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2020/12/20 02:58:09 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 Pony::Pony(std::string n, std::string c, std::string h, std::string fm)
 	: name(n), color(c), height(h), fav_meal(fm) {}
 	
-Pony::~Pony() {}
+Pony::~Pony() { std::cout << "Pony was destroyed by its destructor." << std::endl; }
 
 const std::string	Pony::get_name() const { return (name); }
 const std::string	Pony::get_color() const { return (color); }
