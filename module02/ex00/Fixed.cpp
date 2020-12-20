@@ -12,64 +12,44 @@
 
 #include "Fixed.hpp"
 
-// Contructors
-
-Fixed::Fixed() : __raw(0)
+Fixed::Fixed() : raw(0) { std::cout << "Default constructor called" << std::endl; }
+Fixed::Fixed(const Fixed& src) : raw(0)
 {
-    std::cout << "Default constructor called" << std::endl;
-}
-
-Fixed::Fixed(const Fixed &src) : __raw(0)
-{
-    *this = src;
+	if (this != &src)
+    	*this = src;
     std::cout << "Copy constructor called" << std::endl;
 }
+Fixed::~Fixed() { std::cout << "Destructor called" << std::endl; }
 
-// Destructors
-
-Fixed::~Fixed()
-{
-    std::cout << "Destructor called" << std::endl;
-}
-
-// Operators
-
-Fixed
-&Fixed::operator= (const Fixed &src)
+Fixed&	Fixed::operator=(const Fixed& src)
 {
     if (&src != this)
-    {
-        this->__raw = src.__raw;
-        std::cout << "Assignation operator called" << std::endl;
-    }
+		raw = src.getRawBits();
+	std::cout << "Assignation operator called" << std::endl;
     return (*this);
 }
 
-// Methods
-
-int
-Fixed::getRawBits() const
+int		Fixed::getRawBits() const
 {
     std::cout << "getRawBits member function called" << std::endl;
-    return (this->__raw);
+    return (raw);
 }
 
-void
-Fixed::setRawBits(const int raw)
+void	Fixed::setRawBits(const int r)
 {
     std::cout << "setRawBits member function called" << std::endl;
-    this->__raw = raw;
-
+    raw = r;
 }
 
+int		main()
+{
+	Fixed a;
+	Fixed b( a );
+	Fixed c;
+	c = b;
 
-int main( void ) {
-Fixed a;
-Fixed b( a );
-Fixed c;
-c = b;
-std::cout << a.getRawBits() << std::endl;
-std::cout << b.getRawBits() << std::endl;
-std::cout << c.getRawBits() << std::endl;
-return 0;
+	std::cout << a.getRawBits() << std::endl;
+	std::cout << b.getRawBits() << std::endl;
+	std::cout << c.getRawBits() << std::endl;
+	return 0;
 }

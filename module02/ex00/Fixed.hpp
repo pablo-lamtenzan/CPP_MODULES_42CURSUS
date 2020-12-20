@@ -21,24 +21,17 @@ class Fixed
 {
     private :
 
-    int __raw;
-    static const int __fract = 8; // dont work ? set it like global xd
+    int					raw;
+    static const int	fract = 8; // dont work ? set it like global xd
 
     public :
 
-    // Constructors
     Fixed();
-    Fixed(const Fixed &src);
-
-    // Destructors
+    Fixed(const Fixed& src);
     ~Fixed();
-
-    // Operators
-    Fixed &operator= (const Fixed &src);
-
-    // Shared Methods
+    Fixed &operator=(const Fixed& src);
     int getRawBits() const;
-    void setRawBits(int const raw);
+    void setRawBits(int const r);
 };
 
 #endif
