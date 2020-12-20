@@ -23,9 +23,9 @@ Fixed::~Fixed() { std::cout << "Destructor called" << std::endl; }
 
 Fixed&	Fixed::operator=(const Fixed& src)
 {
+	std::cout << "Assignation operator called" << std::endl;
     if (&src != this)
 		raw = src.getRawBits();
-	std::cout << "Assignation operator called" << std::endl;
     return (*this);
 }
 

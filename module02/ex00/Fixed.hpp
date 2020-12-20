@@ -22,7 +22,7 @@ class Fixed
     private :
 
     int					raw;
-    static const int	fract = 8; // dont work ? set it like global xd
+    static const int	fract = 8;
 
     public :
 
