@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ZombieHorde.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 02:38:43 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/08 16:28:04 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/20 05:09:39 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,17 @@ class ZombieHorde
 {
     private :
 
-    int __N;
+    size_t amount;
+	Zombie *HordeZombies;
 
-    protected :
-    
-    Zombie *HordeZombies;
-    
     public :
-    
-    // Constructors
-    ZombieHorde();
-    ZombieHorde(int N);
-    
-    // Destructors
-    ~ZombieHorde();
-    
-    // Shared methods
+
+	ZombieHorde();
+	ZombieHorde(size_t zombies_amount);
+	~ZombieHorde();
     void foreach_anounce();
-    int getN() const;
+    size_t get_amount() const;
+	Zombie *get_horde() const &;
 };
 
 #endif

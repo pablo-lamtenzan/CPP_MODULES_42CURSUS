@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 00:46:48 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/08 16:32:09 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/20 04:33:45 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,19 @@ class Zombie
 {
     private :
 
-    std::string __name;
-    std::string __type;
+    std::string name;
+    std::string type;
     
     public :
-    
-    // Constructors
+	
     Zombie();
-    Zombie(std::string name, std::string type);
-
-    // Shared methods
+	~Zombie();
+    Zombie(std::string& n, std::string &t);
     void announce();
     void RandName();
     void RandType();
-    std::string getName() const;
-    std::string getType() const;
+    const std::string get_name() const;
+    const std::string get_type() const;
 };
 
 #endif

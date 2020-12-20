@@ -3,52 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   ZombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo     ~ZombieHorde();
+<pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 02:42:54 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/08 16:33:35 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/20 04:55:40 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ZombieHorde.hpp"
 
-ZombieHorde::ZombieHorde()
-{
-    
-}
+ZombieHorde::ZombieHorde() : amount(0) { std::cout << "An horde can be named an horde if is empty!" << std::endl; }
 
-ZombieHorde::ZombieHorde(int N)
+ZombieHorde::ZombieHorde(size_t zombies_amount)
 {
-    if (N >= 0)
-        this->__N = N;
+    if (zombies_amount >= 0)
+        amount = zombies_amount;
     else
+	{
+		std::cout << "An horde can be named an horde if is empty!" << std::endl;
         return ;
-    this->HordeZombies = new Zombie[N];
-    int i = -1;
-    while (++i < N)
+	}
+    HordeZombies = new Zombie[amount];
+    size_t i = -1;
+    while (++i < amount)
     {
         HordeZombies[i].RandName();
         HordeZombies[i].RandType();
     }
+	std::cout << "An horde containing " << amount << " zombies has been created!" << std::endl;
 }
 
 ZombieHorde::~ZombieHorde()
 {
     delete[] HordeZombies;
+	std::cout << "An horde containing " << amount << " zombies has been deleted!" << std::endl;
 }
 
-int
-ZombieHorde::getN() const
-{
-    return (this->__N);
-}
+size_t	ZombieHorde::get_amount() const { return (amount); }
+Zombie	*ZombieHorde::get_horde() const & { return (HordeZombies); }
 
 void
 ZombieHorde::foreach_anounce()
 {
-    int i = -1;
-    while (++i < this->getN())
-    {
-        HordeZombies[i].announce();
-    }
+	for (size_t i = 0; i < amount; i++)
+		HordeZombies[i].announce();
 }
