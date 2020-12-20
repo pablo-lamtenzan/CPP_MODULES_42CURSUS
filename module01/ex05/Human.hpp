@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Human.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 04:33:33 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/08 16:56:01 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/20 05:44:46 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,13 @@
 class Human
 {
     private:
-    const Brain newBrain;
+    const Brain brain;
     
     public :
-    
-    // Constructors
+
     Human();
-
-    // Destructors
     ~Human();
-
-    // Shared methods
-    Brain getBrain() const;
+    Brain get_brain() const;
     std::string identify() const;
 };
 

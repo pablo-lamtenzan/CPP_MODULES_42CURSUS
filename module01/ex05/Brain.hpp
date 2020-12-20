@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 03:58:19 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/08 16:55:08 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/20 05:42:20 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,29 +20,22 @@ class Brain
 {
     private :
 
-    std::string __IQ;
-    std::string __Energy;
-    std::string __Age;
-    std::string __Crazyness;
-
-    protected :
-
-    const void *__id;
+    std::string age;
+    std::string iq;
+    std::string memory;
+    std::string control;
+	const void*const id;
 
     public :
-    
-    // Contructors
+
     Brain();
-    Brain(std::string IQ, std::string Energy, std::string Age, std::string Crazyness);
-
+    Brain(const std::string& a, const std::string& i, const std::string& m, const std::string& c);
     ~Brain();
-
-    // Shared Methods
     std::string identify() const;
-    std::string getIQ() const;
-    std::string getEnergy() const;
-    std::string getAge() const;
-    std::string getCrazyness() const;
+    const std::string get_age() const;
+    const std::string get_iq() const;
+    const std::string get_memory() const;
+    const std::string get_control() const;
 };
 
 #endif

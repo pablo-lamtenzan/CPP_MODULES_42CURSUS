@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ex04.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 03:31:37 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/08 16:39:13 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/20 05:17:04 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,16 @@
 
 void        print_adress()
 {
-    std::string reference = "HI THIS IS BRAIN";
+	static const char work[] = "HI THIS IS BRAIN";
+
+    std::string reference = work;
+	std::cout << "Reference: " << reference << std::endl;
     std::string *pointer = &reference;
-    std::cout << "Reference: " << reference << std::endl << "Pointer: " << *pointer << "\n\nHave a Nice Day" << std::endl << "Brainsszzz" << std::endl;
+    std::cout << "Pointer: " << *pointer << std::endl;
 }
 
 int main()
 {
     print_adress();
-    return (0)
+    return (0);
 }
