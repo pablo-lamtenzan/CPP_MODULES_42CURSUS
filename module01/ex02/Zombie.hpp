@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ZombieEvent.hpp                                    :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/03 01:08:57 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/20 04:15:24 by pablo            ###   ########lyon.fr   */
+/*   Created: 2020/03/03 00:46:48 by plamtenz          #+#    #+#             */
+/*   Updated: 2020/12/20 04:33:45 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIEEVENT_HPP
-# define ZOMBIEEVENT_HPP
+#ifndef ZOMBIE_HPP
+# define ZOMBIE_HPP
 
-#include "Zombie.hpp"
+#include <string>
+#include <iostream>
 
-class ZombieEvent
+class Zombie
 {
     private :
 
-    std::string	type;
-
+    std::string name;
+    std::string type;
+    
     public :
-
-    ZombieEvent();
-	~ZombieEvent();
-    void setZombieType();
-    std::string get_type() const;
-	Zombie *newZombie(std::string& name);
+	
+    Zombie();
+	~Zombie();
+    Zombie(std::string& n, std::string &t);
+    void announce();
+    void RandName();
+    void RandType();
+    const std::string get_name() const;
+    const std::string get_type() const;
 };
-
-void		randomChump(void);
 
 #endif
