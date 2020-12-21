@@ -3,38 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 02:20:47 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/09 21:06:19 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/21 03:26:49 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAG_TRAP_HPP
-# define FRAG_TRAP_HPP
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
 
+#include <iostream>
+#include <random>
 #include "ClapTrap.hpp"
 
 class FragTrap : public ClapTrap
-{
+{	
     public :
 
-    // Constructors
     FragTrap();
-    FragTrap(std::string name);
-    FragTrap(const FragTrap &src);
-
-    // Destructors
+    FragTrap(const std::string& n);
+    FragTrap(const FragTrap& src);
     ~FragTrap();
-
-    // Operators
-    FragTrap &operator= (const FragTrap &src);
-
-    // Shared methods
-    void rangedAttack(std::string const &target);
-    void meleeAttack(std::string const &target);
-    void vaulthunter_dot_exe(std::string const &target);
-    int getHitPoints() const;
+    FragTrap&	operator=(const FragTrap& src);
+    void		rangedAttack(std::string const& target);
+    void		meleeAttack(std::string const& target);
+    void		vaulthunter_dot_exe(std::string const& target);
 };
 
 #endif

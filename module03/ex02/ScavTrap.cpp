@@ -3,84 +3,76 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 03:41:16 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/09 21:23:13 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/21 04:40:01 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap(std::string name)
+ScavTrap::ScavTrap(const std::string& n)
 {
-    ClapTrap(100, 100, 100, 100, 1, name, 20, 15, 3);
-    this->__HitPoints = 100;
-    this->__MaxHitPoints = 100;
-    this->__EnergyPoints = 100;
-    this->__MaxEnergyPoints = 100;
-    this->__Level = 1;
-    this->__name = name;
-    this->__MeleeAttackDamage = 20;
-    this->__RangedAttackDamage = 15;
-    this->__ArmorDamageReduction = 3;
-    std::cout << "Hi im ur new Scavtrap, [" << name << "] and i ve been created!" << std::endl;
-}
+	HitPoints = 100;
+	MaxHitPoints = 100;
+	EnergyPoints = 50;
+	MaxEnergyPoints = 50;
+	Level = 1;
+	name = n;
+	MeleeAttackDamage = 20;
+	RangedAttackDamage = 15;
+	ArmorDamageReduction = 3;
+	std::cout << "New ScavTrap " << name << " has been created!"  << std::endl; }
 
 ScavTrap::ScavTrap()
+{ ClapTrap Clap; std::cout << "An unitialised ScavTrap has been created!" << std::endl; }
+
+ScavTrap::ScavTrap(const ScavTrap& src)
 {
-    
+	std::cout << "New ScavTrap " << src.name << " has been created by copy constructor!" << std::endl;
+    if (this != &src)
+		*this = src;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &src)
-{
-    ClapTrap(100, 100, 100, 100, 1, src.__name, 20, 15, 3);
-    std::cout << "Hi im ur new Scavtrap, [" << src.__name << "] and i ve been created!" << std::endl;
-}
+// This is not right the solution ...
+ScavTrap::~ScavTrap() { itself->~ClapTrap(); std::cout << "A ScavTrap has been destroyed!" << std::endl; }
 
-ScavTrap::~ScavTrap()
-{
-    
-}
-
-ScavTrap
-&ScavTrap::operator= (const ScavTrap &src)
+ScavTrap&	ScavTrap::operator= (const ScavTrap& src)
 {
     if (this != &src)
     {
-        this->__HitPoints = src.__HitPoints;
-        this->__MaxHitPoints = src.__MaxHitPoints;
-        this->__EnergyPoints = src.__EnergyPoints;
-        this->__MaxEnergyPoints = src.__MaxEnergyPoints;
-        this->__Level = src.__Level;
-        this->__name = src.__name;
-        this->__MeleeAttackDamage = src.__MeleeAttackDamage;
-        this->__RangedAttackDamage = src.__RangedAttackDamage;
-        this->__ArmorDamageReduction = src.__ArmorDamageReduction;
+        HitPoints = src.HitPoints;
+        MaxHitPoints = src.MaxHitPoints;
+        EnergyPoints = src.EnergyPoints;
+        MaxEnergyPoints = src.MaxEnergyPoints;
+        Level = src.Level;
+        name = src.name;
+        MeleeAttackDamage = src.MeleeAttackDamage;
+        RangedAttackDamage = src.RangedAttackDamage;
+        ArmorDamageReduction = src.ArmorDamageReduction;
     }
     return (*this);
 }
 
-void
-ScavTrap::rangedAttack(std::string const &target)
+void		ScavTrap::rangedAttack(std::string const& target) { std::cout << "SCAV-TP <" << name << "> attacks <" << target << "> at range, causing <" << RangedAttackDamage << "> points of damage !" << std::endl; }
+void		ScavTrap::meleeAttack(std::string const& target) { std::cout << "SCAV-TP <" << name << "> attacks <" << target << "> at melee, causing <" << MeleeAttackDamage << "> points of damage !" << std::endl; }
+
+void		ScavTrap::challengeNewcomer()
 {
-    std::cout << "FR4G-TP [" << this->__name << "] attacks [" << target << "] at range, causing [" << this->__RangedAttackDamage << "] points of damage !" << std::endl;
-    //EnergyPoints = (EnergyPoints - 15) > 0 ? EnergyPoints - 15 : 0;
-}
+    static const char*const challenges[] {
+		"Imagine a challenge",
+		"Having imagination to imagine challenges",
+		"Do not think about imagine challenges",
+		"Do not think about this sentence",
+		"Do imagine you not imaginating you"
+	};
 
-void
-ScavTrap::meleeAttack(std::string const &target)
-    {
-    std::cout << "FR4G-TP [" << this->__name << "] attacks [" << target << "] at melee, causing [" << this->__MeleeAttackDamage << "] points of damage !" << std::endl;
-    //EnergyPoints = (EnergyPoints - 10) > 0 ? EnergyPoints - 10 : 0;
-    }
-
-void
-ScavTrap::challengeNewcomer()
-{
-    const char *challenges[] = {"Imagine Challenges!\n", "Imagine You Imagine Challenges!\n", "Imagine You Challenging You To Imagine To Chalenging You To Imagine Challenges!\n", "Don't think about imagine challenges!\n", NULL};
-        
-    int random = rand() % 4;
-
-    std::cout << "Hey dude!, This is your challenge: " << challenges[random];
+	if (EnergyPoints >= 25)
+	{
+    	std::cout << "SC4V-TP " << name << " challenges you to: \"" << challenges[rand() % (sizeof(challenges) / sizeof(*challenges))] << "\"" << std::endl;
+		EnergyPoints -= 25;
+	}
+	else
+		std::cout << "SC4V-TRAP <" << name << "> has not enought energy points for execute challengeNewcomer" << " (Energy is " << EnergyPoints << ")." << std::endl;   
 }

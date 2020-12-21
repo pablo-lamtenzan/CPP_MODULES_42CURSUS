@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 03:41:16 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/20 13:18:33 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2020/12/21 04:05:28 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 ScavTrap::ScavTrap(const std::string& n) : HitPoints(100), MaxHitPoints(100), EnergyPoints(50),
     MaxEnergyPoints(50), Level(1), name(n), MeleeAttackDamage(20), RangedAttackDamage(15), ArmorDamageReduction(3), ptr((const void*const)this)
-{ std::cout << "New ScavTrap " << name << "has been created!"  << std::endl; }
+{ std::cout << "New ScavTrap " << name << " has been created!"  << std::endl; }
 
 ScavTrap::ScavTrap() : HitPoints(0), MaxHitPoints(0), EnergyPoints(0),
     MaxEnergyPoints(0), Level(0), name("Undefined"), MeleeAttackDamage(0), RangedAttackDamage(0), ArmorDamageReduction(0), ptr((const void*const)this)
@@ -29,7 +29,7 @@ ScavTrap::ScavTrap(const ScavTrap& src) : ptr((const void*const)&src)
 
 ScavTrap::~ScavTrap() { std::cout << "A ScavTrap has been destroyed!" << std::endl; }
 
-ScavTrap&	ScavTrap::operator= (const ScavTrap &src)
+ScavTrap&	ScavTrap::operator= (const ScavTrap& src)
 {
     if (this != &src)
     {
@@ -46,8 +46,8 @@ ScavTrap&	ScavTrap::operator= (const ScavTrap &src)
     return (*this);
 }
 
-void		ScavTrap::rangedAttack(std::string const &target) { std::cout << "SCAV-TP <" << name << "> attacks <" << target << "> at range, causing <" << RangedAttackDamage << "> points of damage !" << std::endl; }
-void		ScavTrap::meleeAttack(std::string const &target) { std::cout << "SCAV-TP <" << name << "> attacks <" << target << "> at melee, causing <" << MeleeAttackDamage << "> points of damage !" << std::endl; }
+void		ScavTrap::rangedAttack(std::string const& target) { std::cout << "SCAV-TP <" << name << "> attacks <" << target << "> at range, causing <" << RangedAttackDamage << "> points of damage !" << std::endl; }
+void		ScavTrap::meleeAttack(std::string const& target) { std::cout << "SCAV-TP <" << name << "> attacks <" << target << "> at melee, causing <" << MeleeAttackDamage << "> points of damage !" << std::endl; }
 
 void		ScavTrap::takeDamage(unsigned int amount)
 {
@@ -74,7 +74,7 @@ void		ScavTrap::challengeNewcomer()
 
 	if (EnergyPoints >= 25)
 	{
-    	std::cout << "SC4V-TP " << name << "challenges you to: \"" << challenges[rand() % (sizeof(challenges) / sizeof(*challenges))] << "\"" << std::endl;
+    	std::cout << "SC4V-TP " << name << " challenges you to: \"" << challenges[rand() % (sizeof(challenges) / sizeof(*challenges))] << "\"" << std::endl;
 		EnergyPoints -= 25;
 	}
 	else
