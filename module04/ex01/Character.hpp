@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Character.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 07:38:58 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/05 02:59:28 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/21 10:30:01 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,33 +20,26 @@ class Character
 {
     private :
 
-    AWeapon *__weapon;
-    int __ap;
-    std::string __name;
+	Character();
+    AWeapon*	weapon;
+    int			ap;
+    std::string name;
 
     public :
 
-    // Constructors
-    Character(std::string const & name);
-    Character();
-    Character(const Character &src);
-
-    // Destructors
+    Character(std::string const& n);
+    Character(const Character& src);
     ~Character();
 
-    // Operators
-
-    Character &operator= (const Character &src);
-    
-    // Methods
-    int getAP() const;
-    AWeapon *getWeapon() const;
-    const std::string getName() const;
-    void recoverAP();
-    void equip(AWeapon *weapon);
-    void attack(Enemy *Enemy);
+    Character&			operator= (const Character& src);
+    int					getAP() const;
+    AWeapon*			getWeapon() const;
+    const std::string&	getName() const;
+    void				recoverAP();
+    void				equip(AWeapon* w);
+    void				attack(Enemy* e);
 };
 
-std::ostream &operator<< (std::ostream &out, const Character &src);
+std::ostream& operator<< (std::ostream& out, const Character& src);
 
 #endif

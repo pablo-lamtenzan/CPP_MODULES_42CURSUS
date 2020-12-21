@@ -3,48 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   RadScorpion.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 07:35:26 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/05 02:50:31 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/21 09:54:42 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RadScorpion.hpp"
 
-// Constructors
+RadScorpion::RadScorpion() : Enemy(80, "Rad Scorpion") { std::cout << "* click click click *" << std::endl; }
+RadScorpion::RadScorpion(const RadScorpion &src)  : Enemy(src) { std::cout << "* click click click *" << std::endl; }
+RadScorpion::~RadScorpion() { std::cout << "* SPROTCH *" << std::endl; }
 
-RadScorpion::RadScorpion()
+RadScorpion&RadScorpion::operator= (const RadScorpion &src)
 {
-    this->__hp = 80;
-    this->__type = "Rad Scorpion";
-    std::cout << "* click click click *\n";
-    return ;
-}
-
-RadScorpion::RadScorpion(const RadScorpion &src)
-{
-    *this = src;
-    return ;
-}
-
-// Destructors
-
-RadScorpion::~RadScorpion()
-{
-    std::cout << "* SPROTCH *\n";
-    return ;
-}
-
-// Operators
-
-RadScorpion
-&RadScorpion::operator= (const RadScorpion &src)
-{
-    if (this != &src)
-    {
-        this->__type = src.__type;
-        this->__hp = src.__hp;
-    }
+    Enemy::operator=(src);
     return (*this);
 }

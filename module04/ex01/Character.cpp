@@ -3,115 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 07:57:40 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/05 03:23:53 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/21 12:03:34 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
 
+Character::Character(std::string const& n) : name(n) { weapon = NULL; ap = 40; }
 
-// Constructors
-
-Character::Character(std::string const &name)
+Character::Character(const Character& src)
 {
-    this->__name = name;
-    this->__weapon = NULL;
-    this->__ap = 40;
-    return ;
+	if (this != &src)
+    	*this = src;
 }
 
-Character::Character()
-{
-    this->__name = "default";
-    this->__weapon = NULL;
-    this->__ap = 40;
-    return ;
-}
+Character::~Character() { }
 
-Character::Character(const Character &src)
-{
-    *this = src;
-    return ;
-}
-
-// Destructors
-
-Character::~Character()
-{
-    return ;
-}
-
-// Operators
-
-Character
-&Character::operator= (const Character &src)
+Character&	Character::operator= (const Character& src)
 {
     if (this != &src)
     {
-        this->__name = src.__name;
-        this->__weapon = src.__weapon;
-        this->__ap = src.__ap;
+        name = src.name;
+        weapon = src.weapon;
+        ap = src.ap;
     }
     return (*this);
 }
 
-std::ostream
-&operator<< (std::ostream &out, const Character &src)
+std::ostream&	operator<<(std::ostream& out, const Character& src)
 {
     if (src.getWeapon())
-    {
-        out << src.getName() << " has " << src.getAP() << " AP and wields a " << src.getWeapon()->getName() << '\n';
-        return (out);
-    }
-    out << src.getName() << " has " << src.getAP() << " AP and is unarmed\n";
-    return (out);
+        return (out << src.getName() << " has " << src.getAP() << " AP and wields a " << src.getWeapon()->getName() << std::endl);
+    return (out << src.getName() << " has " << src.getAP() << " AP and is unarmed" << std::endl);
 }
 
-// Methods
+void			Character::recoverAP() { ap += ap <= 30 && ap >= 0 ? 10 : 0; }
+void			Character::equip(AWeapon* w) { weapon = w; }
 
-void
-Character::recoverAP()
+void			Character::attack(Enemy* enemy)
 {
-    if (this->__ap <= 30 && this->__ap >= 0)
-        this->__ap += 10;
-    return ;
-}
+	ssize_t tmp;
 
-void
-Character::equip(AWeapon *weapon)
-{
-    this->__weapon = weapon;
-}
+	if (!weapon || !enemy)
+	return ;
 
-void
-Character::attack(Enemy *enemy)
-{
-    if (!this->__weapon || !enemy)
-        return ;
-    this->__ap = this->__ap - this->__weapon->getAPCost() > 0 ? this->__ap - this->__weapon->getAPCost() : 0;
-    std::cout << this->__name << "attacks " << enemy->getType() << " with a " << this->__weapon->getName() << '\n';
-    enemy->__hp = enemy->__hp - this->__weapon->getDamage() > 0 ? enemy->__hp - this->__weapon->getDamage() : 0;
-    if (!enemy->__hp)
+	tmp = ap - weapon->getAPCost();
+	ap = tmp > 0 ? tmp : 0;
+
+    std::cout << name << " attacks " << enemy->getType() << " with a " << weapon->getName() << " (Using " << weapon->getAPCost() << " ap!)" << std::endl;
+	weapon->attack();
+	tmp = enemy->getHP() - weapon->getDamage();
+	enemy->setHP(tmp > 0 ? tmp : 0);
+
+    if (!enemy->getHP())
         delete enemy;
 }
 
-int
-Character::getAP() const
-{
-    return (this->__ap);
-}
-
-AWeapon
-*Character::getWeapon() const
-{
-    return (this->__weapon);
-}
-
-const std::string
-Character::getName() const
-{
-    return (this->__name);
-}
+int					Character::getAP() const { return (ap); }
+AWeapon*			Character::getWeapon() const { return (weapon); }
+const std::string&	Character::getName() const { return (name); }
