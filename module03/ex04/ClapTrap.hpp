@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 04:17:55 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/09 21:45:54 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/21 04:26:49 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,33 +20,27 @@ class ClapTrap
 {
     protected :
 
-    int __HitPoints;
-    int __MaxHitPoints;
-    int __EnergyPoints;
-    int __MaxEnergyPoints;
-    int __Level;
-    std::string __name;
-    int __MeleeAttackDamage;
-    int __RangedAttackDamage;
-    int __ArmorDamageReduction;
+	ClapTrap			*itself;
+    ssize_t				HitPoints;
+    ssize_t				MaxHitPoints;
+    ssize_t				EnergyPoints;
+    ssize_t				MaxEnergyPoints;
+    ssize_t				Level;
+    std::string 		name;
+    ssize_t				MeleeAttackDamage;
+    ssize_t				RangedAttackDamage;
+    ssize_t				ArmorDamageReduction;
 
     public :
 
-    // Constructors
-    ClapTrap(int HitPoints, int MaxHitPoints, int EnergyPoints, int MaxEnergyPoints, int Level, std::string name, int MeleeAttackDamage, int RangedAttackDamage, int ArmorDamageReduction);
-    ClapTrap(const ClapTrap &src);
+    ClapTrap(const ClapTrap& src);
     ClapTrap();
-
-    // Destructors
     ~ClapTrap();
-
-    // Operators
-    ClapTrap &operator= (const ClapTrap &src);
-
-    std::string getName() const;
-    void takeDamage(unsigned int amount);
-    void beRepaired(unsigned int amount);
-    
+    ClapTrap& operator=(const ClapTrap& src);
+    void 		takeDamage(unsigned int amount);
+    void		beRepaired(unsigned int amount);
+	std::string getName() const;
+	ssize_t		get_hp() const;
 };
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   SuperTrap.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 05:20:06 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/09 21:58:32 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/21 05:20:46 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,13 @@ class SuperTrap : virtual public FragTrap , virtual public NinjaTrap
 {
     public :
 
-    // Constructors
     SuperTrap();
-    SuperTrap(std::string name);
-    SuperTrap(const SuperTrap &src);
-
-    // Destructors
+    SuperTrap(const std::string& name);
+    SuperTrap(const SuperTrap& src);
 	~SuperTrap(void);
-
-    // Operators
-	SuperTrap &	operator=(const SuperTrap &ssrc);
-
-    // Shared Methods
-	void rangedAttack(std::string const &target);
-	void meleeAttack(std::string const &target);
+	SuperTrap&	operator=(const SuperTrap& src);
+	void		rangedAttack(std::string const& target);
+	void		meleeAttack(std::string const& target);
 };
 
 #endif

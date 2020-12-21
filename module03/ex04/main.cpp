@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 22:09:25 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/09 22:10:33 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/21 05:42:47 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,58 +15,56 @@
 #include "NinjaTrap.hpp"
 #include "SuperTrap.hpp"
 
-int main(void)
+int main()
 {
-	{
-		FragTrap ft("FR4GGY");
+    srand(time(NULL));
+    FragTrap F("Frag-Frag");
+	std::cout << "[FRAG-TRAP] TEST PART 1: ATTACK!" << std::endl << std::endl;
+	std::cout << "Initial energy points are 100" << std::endl;
+    F.vaulthunter_dot_exe("Target1");
+    F.vaulthunter_dot_exe("Target2");
+    F.vaulthunter_dot_exe("Target3");
+    F.vaulthunter_dot_exe("Target4");
+    F.vaulthunter_dot_exe("Target5");
+    F.vaulthunter_dot_exe("Target6");
 
-		for (int i = 0; i < 7; i++)
-			ft.takeDamage(20);
+	std::cout << std::endl << "[FRAG-TRAP] TEST PART 2: TAKE DAMAGE AND BE REPAREID" << std::endl << std::endl;
+	std::cout << "HP now is: " << F.get_hp() << std::endl;
+    F.takeDamage(50);
+	std::cout << "HP now is: " << F.get_hp() << std::endl;
+    F.beRepaired(42);
+    std::cout << "HP now is: " << F.get_hp() << std::endl;
+    F.beRepaired(150);
+    std::cout << "HP now is: " << F.get_hp() << std::endl;
+    F.takeDamage(800);
+    std::cout << "HP now is: " << F.get_hp() << std::endl;
 
-		for (int i = 0; i < 7; i++)
-			ft.beRepaired(20);
+	std::cout << std::endl << "[SCAV-TRAP] TEST: \"ChallengeNewcomer\"" << std::endl << std::endl;
+	ScavTrap S("Scav-Scav");
+	std::cout << "Initial energy points are 50" << std::endl;
+	S.challengeNewcomer();
+	S.challengeNewcomer();
+	S.challengeNewcomer();
+	S.challengeNewcomer();
+	S.challengeNewcomer();
+	S.challengeNewcomer();
 
-		ft.rangedAttack("alice");
-		ft.meleeAttack("bob");
+	std::cout << std::endl << "Lets proceed with NinjaTrap tests:" << std::endl << std::endl;
+	NinjaTrap N("Ninja-G");
+	N.ninjaShoebox(S);
+	N.ninjaShoebox(F);
+	N.ninjaShoebox(S);
+	N.ninjaShoebox(F);
 
-		for (int i = 0; i < 10; i++)
-			ft.vaulthunter_dot_exe("GLADOS");
+	std::cout << std::endl << "And FINALLY, lest test the ultimate Trap: SuperTrap" << std::endl << std::endl;
 
-		ScavTrap st("SCAVVY");
-
-		for (int i = 0; i < 7; i++)
-			st.takeDamage(20);
-
-		for (int i = 0; i < 7; i++)
-			st.beRepaired(20);
-
-		st.rangedAttack("bobby");
-		st.meleeAttack("john");
-
-		for (int i = 0; i < 5; i++)
-			st.challengeNewcomer();
-
-		NinjaTrap n("NINJA");
-
-		for (int i = 0; i < 7; i++)
-			n.takeDamage(20);
-
-		for (int i = 0; i < 7; i++)
-			n.beRepaired(20);
-
-		n.ninjaShoebox(n);
-		n.ninjaShoebox(ft);
-		n.ninjaShoebox(st);
-
-		ClapTrap t(10, 10, 10, 10, 1, "hi", 10, 10, 10);
-		n.ninjaShoebox(t);
-	}
-
-	{
-		std::cout << std::endl;
-		SuperTrap s("hello");
-
-		s.rangedAttack("hello");
-		s.meleeAttack("hello");
-	}
+	SuperTrap Sp("Super");
+	Sp.ninjaShoebox(S);
+	Sp.ninjaShoebox(F);
+	Sp.ninjaShoebox(S);
+	Sp.ninjaShoebox(F);
+	Sp.vaulthunter_dot_exe("Target42");
+	
+	std::cout << std::endl << "EXIT" << std::endl;
+	return (0);
 }

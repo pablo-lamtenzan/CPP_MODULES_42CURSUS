@@ -3,98 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   NinjaTrap.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 05:10:55 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/09 21:53:14 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/21 04:53:15 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "NinjaTrap.hpp"
 
-NinjaTrap::NinjaTrap(std::string name)
+NinjaTrap::NinjaTrap(const std::string& n)
 {
-    ClapTrap(60, 60, 120, 120, 1, name, 60, 5, 0);
-    this->__HitPoints = 60;
-    this->__MaxHitPoints = 60;
-    this->__EnergyPoints = 120;
-    this->__MaxEnergyPoints = 120;
-    this->__Level = 1;
-    this->__name = name;
-    this->__MeleeAttackDamage = 60;
-    this->__RangedAttackDamage = 5;
-    this->__ArmorDamageReduction = 0;
-    std::cout << "NinjaTrap Unleash!!!" << std::endl;
+	HitPoints = 60;
+	MaxEnergyPoints = 60;
+	EnergyPoints = 120;
+	MaxEnergyPoints = 120;
+	Level = 1;
+	name = n;
+	MeleeAttackDamage = 60;
+	RangedAttackDamage = 5;
+	ArmorDamageReduction = 0;
+    std::cout << "New NinjaTrap " << name << " has been created!" << std::endl;
 }
 
-NinjaTrap::NinjaTrap()
-{
-    
-}
+NinjaTrap::NinjaTrap() { }
 
 NinjaTrap::NinjaTrap(const NinjaTrap &src)
 {
-    //ClapTrap(src);
-    std::cout << "NinjaTrap Unleash!!!" << std::endl;
+    if (this != &src)
+		*this = src;
+    std::cout << "New NinjaTrap " << name << " has been created by copy!" << std::endl;
 }
 
-NinjaTrap::~NinjaTrap()
-{
-    std::cout << "End of NinjaTrap {" << this->__name << "} ..." << std::endl;
-}
+NinjaTrap::~NinjaTrap() { std::cout << "A NinjaTrap has been destroyed!" << std::endl; }
 
-NinjaTrap
-&NinjaTrap::operator= (const NinjaTrap &src)
+NinjaTrap&	NinjaTrap::operator= (const NinjaTrap &src)
 {
         if (this != &src)
     {
-        this->__HitPoints = src.__HitPoints;
-        this->__MaxHitPoints = src.__MaxHitPoints;
-        this->__EnergyPoints = src.__EnergyPoints;
-        this->__MaxEnergyPoints = src.__MaxEnergyPoints;
-        this->__Level = src.__Level;
-        this->__name = src.__name;
-        this->__MeleeAttackDamage = src.__MeleeAttackDamage;
-        this->__RangedAttackDamage = src.__RangedAttackDamage;
-        this->__ArmorDamageReduction = src.__ArmorDamageReduction;
+        HitPoints = src.HitPoints;
+        MaxHitPoints = MaxHitPoints;
+        EnergyPoints = src.EnergyPoints;
+        MaxEnergyPoints = src.MaxEnergyPoints;
+        Level = src.Level;
+        name = src.name;
+        MeleeAttackDamage = src.MeleeAttackDamage;
+        RangedAttackDamage = src.RangedAttackDamage;
+        ArmorDamageReduction = src.ArmorDamageReduction;
     }
     return (*this);
 }
 
-void
-NinjaTrap::rangedAttack(std::string const &target)
-{
-    std::cout << "FR4G-TP {" << this->__name << "} attacks {" << target << "} at range, causing {" << this->__RangedAttackDamage << "} points of damage !" << std::endl;
-    //EnergyPoints = (EnergyPoints - 15) > 0 ? EnergyPoints - 15 : 0;
-}
-
-void
-NinjaTrap::meleeAttack(std::string const &target)
-{
-    std::cout << "FR4G-TP {" << this->__name << "} attacks {" << target << "} at melee, causing {" << this->__MeleeAttackDamage << "} points of damage !" << std::endl;
-    //EnergyPoints = (EnergyPoints - 10) > 0 ? EnergyPoints - 10 : 0;
-}
-
-void
-NinjaTrap::ninjaShoebox(NinjaTrap &target)
-{
-    std::cout << "NinjaTrap uses this special Shoebox against:" << target.getName() << "!!" << std::endl;
-}
-
-void
-NinjaTrap::ninjaShoebox(ScavTrap &target)
-{
-    std::cout << "NinjaTrap uses this special Shoebox against:" << target.getName() << "!!" << std::endl;
-}
-
-void
-NinjaTrap::ninjaShoebox(FragTrap &target)
-{
-    std::cout << "NinjaTrap uses this special Shoebox against:" << target.getName() << "!!" << std::endl;
-}
-
-void
-NinjaTrap::ninjaShoebox(ClapTrap &target)
-{
-    std::cout << "NinjaTrap uses this special Shoebox against:" << target.getName() << "!!" << std::endl;
-}
+void		NinjaTrap::rangedAttack(std::string const& target) { std::cout << "NINJ4-TP {" << name << "} attacks {" << target << "} at range, causing {" << RangedAttackDamage << "} points of damage !" << std::endl; }
+void		NinjaTrap::meleeAttack(std::string const &target) { std::cout << "NINJ4-TP {" << name << "} attacks {" << target << "} at melee, causing {" << MeleeAttackDamage << "} points of damage !" << std::endl; }
+void		NinjaTrap::ninjaShoebox(const NinjaTrap& target) { std::cout << "NinjaTrap uses this special Shoebox against:" << target.getName() << "!!" << std::endl; }
+void		NinjaTrap::ninjaShoebox(const ScavTrap& target) { std::cout << "NinjaTrap uses this special Shoebox against:" << target.getName() << "!!" << std::endl; }
+void		NinjaTrap::ninjaShoebox(const FragTrap& target) { std::cout << "NinjaTrap uses this special Shoebox against:" << target.getName() << "!!" << std::endl; }
+void		NinjaTrap::ninjaShoebox(const ClapTrap& target) { std::cout << "NinjaTrap uses this special Shoebox against:" << target.getName() << "!!" << std::endl; }

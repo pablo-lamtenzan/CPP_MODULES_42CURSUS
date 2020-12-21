@@ -3,66 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 04:31:08 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/09 21:45:43 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/21 04:27:56 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap()
+// ClapTrap is created before been initialized, this is why we if try to print the values here there are uinitisized
+ClapTrap::ClapTrap() : itself(this) { std::cout << "An new CL4P-TRAP has been created!" << std::endl; }
+
+ClapTrap::ClapTrap(const ClapTrap &src)
 {
-    
+	if (this != &src)
+		*this = src;
+	std::cout << "A new CL4P-TRAP " << name << " has been created by copy!" << std::endl;
 }
 
-ClapTrap::ClapTrap(int HitPoints, int MaxHitPoints, int EnergyPoints,
-    int MaxEnergyPoints, int Level, std::string name, 
-    int MeleeAttackDamage, int RangedAttackDamage, int ArmorDamageReduction) :
-    __HitPoints(HitPoints), __MaxHitPoints(HitPoints), __MaxEnergyPoints(EnergyPoints),
-    __Level(Level), __name(name), __MeleeAttackDamage(MeleeAttackDamage),
-    __RangedAttackDamage(RangedAttackDamage), __ArmorDamageReduction(ArmorDamageReduction)
-{
-    std::cout << "You have constructed ClapTrap <[" << name << "]> !" << std::endl << std::endl;
-}
+ClapTrap::~ClapTrap() { std::cout << "A ClapTrap " << name << " has been destroyed!" << std::endl; }
 
-ClapTrap::ClapTrap(const ClapTrap &src) :
-    __HitPoints(src.__HitPoints), __MaxHitPoints(src.__HitPoints), __MaxEnergyPoints(src.__EnergyPoints),
-    __Level(src.__Level), __name(src.__name), __MeleeAttackDamage(src.__MeleeAttackDamage),
-    __RangedAttackDamage(src.__RangedAttackDamage), __ArmorDamageReduction(src.__ArmorDamageReduction)
+ClapTrap&		ClapTrap::operator= (const ClapTrap &src)
 {
-    std::cout << "You have constructed ClapTrap <[" << src.__name << "]> !" << std::endl << std::endl;
-}
-
-ClapTrap::~ClapTrap()
-{
-    std::cout << "ClapTrap <[" << this->__name << "]> died young but happy" << std::endl;
-}
-
-ClapTrap
-&ClapTrap::operator= (const ClapTrap &src)
-{
+	// unused
+	(void)src;
     return (*this);
 }
 
-void
-ClapTrap::beRepaired(unsigned int amount)
+void			ClapTrap::beRepaired(unsigned int amount)
 {
-    std::cout << "FRAG-TP <" << this->__name << "> has been repared by <" << amount << "> hp!" << std::endl;
-    this->__HitPoints = (this->__HitPoints + amount) <= this->__MaxHitPoints ? this->__HitPoints + amount : this->__MaxHitPoints;
+
+    std::cout << "FR4G <" << name << "> has been repared by <" << amount << "> hp!" << std::endl;
+    HitPoints = (HitPoints + amount) <= MaxHitPoints ? HitPoints + amount : MaxHitPoints;
 }
 
-void
-ClapTrap::takeDamage(unsigned int amount)
+void			ClapTrap::takeDamage(unsigned int amount)
 {
-    std::cout << "FR4G-TP <" << this->__name << "> has been atacked by <" << amount << "> hp!" << std::endl;
-    this->__HitPoints = (this->__HitPoints - amount) + this->__ArmorDamageReduction > 0 ? (this->__HitPoints - amount) + this->__ArmorDamageReduction : 0;
-    this->__HitPoints = this->__HitPoints < 0 ? 0 : (this->__HitPoints > this->__MaxHitPoints ? this->__MaxHitPoints : this->__HitPoints);
+    std::cout << "FR4G <" << name << "> has been atacked by <" << amount << "> hp!" << std::endl;
+    HitPoints = (HitPoints - amount) + ArmorDamageReduction > 0 ? (HitPoints - amount) + ArmorDamageReduction : 0;
+    HitPoints = HitPoints < 0 ? 0 : (HitPoints > MaxHitPoints ? MaxHitPoints : HitPoints);
 }
 
-std::string
-ClapTrap::getName() const
-{
-    return (this->__name);
-}
+std::string		ClapTrap::getName() const { return (name); }
+ssize_t			ClapTrap::get_hp() const { return (HitPoints); }
