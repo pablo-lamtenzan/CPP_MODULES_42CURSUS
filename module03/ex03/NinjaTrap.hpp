@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   NinjaTrap.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 04:55:28 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/09 21:34:57 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/21 04:44:33 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,17 @@
 class NinjaTrap : public ClapTrap
 {
     public :
-
-    // Constructors
     NinjaTrap();
-    NinjaTrap(std::string name);
-    NinjaTrap(const NinjaTrap &src);
-
-    // Destructors
+    NinjaTrap(const std::string& n);
+    NinjaTrap(const NinjaTrap& src);
     ~NinjaTrap();
-
-    // Operators
-    NinjaTrap &operator= (const NinjaTrap &src);
-
-    // Shared methods
-    void rangedAttack(std::string const &target);
-    void meleeAttack(std::string const &target);
-    void ninjaShoebox(NinjaTrap &target);
-    void ninjaShoebox(ClapTrap &target);
-    void ninjaShoebox(FragTrap &target);
-    void ninjaShoebox(ScavTrap &target);
+    NinjaTrap &operator=(const NinjaTrap& src);
+    void rangedAttack(std::string const& target);
+    void meleeAttack(std::string const& target);
+    void ninjaShoebox(const NinjaTrap& target);
+    void ninjaShoebox(const ClapTrap& target);
+    void ninjaShoebox(const FragTrap& target);
+    void ninjaShoebox(const ScavTrap& target);
 };
 
 #endif
