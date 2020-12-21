@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 06:12:35 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/05 01:48:12 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/21 06:38:46 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,11 @@
 
 int main()
 {
-    Sorcerer Joe("Joe", "clown");
-    Victim Jim("Jim");
-    Peon Jacob("Jacob");
-    //std::cout << Joe << '\n' << Jim << '\n' << Jacob << "\n\nPolimorphism:\n";
-
-    Joe.polymorph(Jim);
-    std::cout << '\n';
-    Joe.polymorph(Jacob);
-    std::cout << '\n';
+	Sorcerer robert("Robert", "the Magnificent");
+	Victim jim("Jimmy");
+	Peon joe("Joe");
+	std::cout << robert << jim << joe;
+	robert.polymorph(jim);
+	robert.polymorph(joe);
+	return 0;
 }

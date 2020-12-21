@@ -3,61 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   Peon.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 06:07:48 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/05 01:43:41 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/21 08:40:27 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Peon.hpp"
 
-// Constructors
+Peon::Peon(const std::string& n) : Victim(n) { std::cout << "Zog Zog" << std::endl; }
 
-Peon::Peon(std::string name)
+Peon::Peon(const Peon& src) : Victim(src)
 {
-    this->__name = name;
-    std::cout << "zzz\n";
-    return ;
-    
+	if (this != &src)
+    	*this = src;
+    std::cout << "Zog Zog" << std::endl;
 }
 
-Peon::Peon()
+Peon::~Peon() { std::cout << "Bleuark..." << std::endl; }
+
+Peon&	Peon::operator=(const Peon& src)
 {
-    this->__name = "Richard";
-    std::cout << "zzz\n";
-    return ;
-}
-
-Peon::Peon(const Peon &src)
-{
-    *this = src;
-    return ;
-}
-
-// Destructors
-
-Peon::~Peon()
-{
-    std::cout << "Ahhgggg!\n";
-    return ;
-}
-
-//Operators
-
-Peon
-&Peon::operator= (const Peon &src)
-{
-    if (this != &src)
-        this->__name = src.__name;
+    Victim::operator=(src);
+	std::cout << "Zog Zog" << std::endl;
     return (*this);
 }
 
-// Methods
+void	Peon::getPolymorphed() const { std::cout << get_Name() << " has been turned into a pink pony" << std::endl; }
 
-void
-Peon::getPolymorphed() const
-{
-    std::cout << this->__name << " has been turned into a pink pony!\n";
-    return ;
-}

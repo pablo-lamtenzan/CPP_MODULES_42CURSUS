@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Peon.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 06:05:15 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/05 01:40:50 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/21 08:30:08 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,18 @@
 
 #include "Victim.hpp"
 
-class Peon : public Victim
+class Peon : virtual public Victim
 {
-    private :
+	private:
+	Peon();
 
-    std::string __name;
-    
     public :
 
-    // Constructors
-    Peon(std::string name);
-    Peon();
-    Peon(const Peon &src);
-
-    // Destructors
+    Peon(const std::string& name);
+    Peon(const Peon& src);
     ~Peon();
-
-    // Operators
-    Peon &operator= (const Peon &src);
-
-    // Methods
-    virtual void getPolymorphed() const;
+    Peon& operator= (const Peon& src);
+    void getPolymorphed() const;
 };
 
 #endif
