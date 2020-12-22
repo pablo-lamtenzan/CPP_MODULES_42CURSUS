@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/05 22:33:48 by pablo             #+#    #+#             */
-/*   Updated: 2020/12/20 01:36:06 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2020/12/22 10:24:25 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,17 @@ class Phonebook
 	Phonebook() {}
 	~Phonebook() {}
 
-	const std::string &get_firstname() const {return (firtsname);}
-	const std::string &get_lastname() const {return (lastname);}
-	const std::string &get_nickname() const {return (nickname);}
-	const std::string &get_login() const {return (login);}
-	const std::string &get_postal_addr() const {return (postal_addr);}
-	const std::string &get_email_addr() const {return (email_addr);}
-	const std::string &get_phone_number() const {return (phone_number);}
-	const std::string &get_birthday() const {return (birthday);}
-	const std::string &get_fav_meal() const {return (fav_meal);}
-	const std::string &get_underwear_color() const {return (underwear_color);}
-	const std::string &get_darkest_secret() const {return (darkest_secret);}
+	const std::string& get_firstname() const {return (firtsname);}
+	const std::string& get_lastname() const {return (lastname);}
+	const std::string& get_nickname() const {return (nickname);}
+	const std::string& get_login() const {return (login);}
+	const std::string& get_postal_addr() const {return (postal_addr);}
+	const std::string& get_email_addr() const {return (email_addr);}
+	const std::string& get_phone_number() const {return (phone_number);}
+	const std::string& get_birthday() const {return (birthday);}
+	const std::string& get_fav_meal() const {return (fav_meal);}
+	const std::string& get_underwear_color() const {return (underwear_color);}
+	const std::string& get_darkest_secret() const {return (darkest_secret);}
 	bool sanitize_input(const std::string& regexes , std::string*const dest, bool once);
 	void add();
 	void display();
