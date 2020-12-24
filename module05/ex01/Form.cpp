@@ -3,158 +3,62 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 10:13:16 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/09 23:01:19 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/24 16:53:26 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
 
-// Constructors
-
-Form::Form(std::string name, int sign, int exec) : __name(name), __GradeSign(sign), __GradeExec(exec), _signed(false)
+Form::Form(const std::string& n, int sign, int exec) : name(n), F_CREATE(sign), F_EXEC(exec), is_signed(false)
 {
-    if (sign < 1)
-        throw GradeTooHighException(sign);
-    else if (sign > 150)
-        throw GradeToolowException(sign);
-    if (exec < 1)
-        throw GradeToolowException(exec);
-    else if (exec > 150)
-        throw GradeToolowException(exec);
-    return ;
+	std::cout << "A new Form has been created!" << std::endl;
+    if (sign < 1 || exec < 1)
+        throw GradeTooHighException();
+    if (sign > 150 || exec > 150)
+        throw GradeToolowException();
 }
 
-Form::Form(const Form &src) : __name(src.__name), __GradeSign(src.__GradeSign), __GradeExec(src.__GradeExec), _signed(src._signed)
+Form::Form(const Form& src)
 {
-    return ;
+    std::cout << "A new Form has been created!" << std::endl;
+	if (this != &src)
+    	*this = src;
 }
 
-_HIGHT::GradeTooHighException(int grade) : __grade(grade)
-{
-    
-}
+Form::~Form() { std::cout << "A form \"" << name << "\" has been destroyed!" << std::endl; }
 
-_HIGHT::GradeTooHighException(const _HIGHT &src) : __grade(src.__grade)
-{
-    
-}
-
-_LOW::GradeToolowException(int grade) : __grade(grade)
-{
-    
-}
-
-_LOW::GradeToolowException(const _LOW &src) : __grade(src.__grade)
-{
-    
-}
-
-// Destructors
-
-Form::~Form()
-{
-    return ;
-}
-
-_HIGHT::~GradeTooHighException() throw()
-{
-    
-}
-
-_LOW::~GradeToolowException() throw()
-{
-    
-}
-
-// Operators
-
-Form
-&Form::operator= (const Form &src)
-{
-    return (*this);
-}
-
-std::ostream &operator<< (std::ostream &out, const Form &src)
-{
-    out << "Form: " << src.getName() << " (sign " << src.getGradeSign() << ", exec " << src.getGradeExec() << ")\n";
-    return (out);
-}
-
-_HIGHT
-&_HIGHT::operator= (const _HIGHT &src)
+Form&	Form::operator=(const Form& src)
 {
     if (this != &src)
-        this->__grade = src.__grade;
-    return (*this);
+	{
+		name = src.getName();
+		F_CREATE = src.getGradeSign();
+		F_EXEC = src.getGradeExec();
+		is_signed = src.isSigned();
+	}
+	return (*this);
 }
 
-_LOW
-&_LOW::operator= (const _LOW &src)
+std::ostream&		operator<<(std::ostream& out, const Form& src) { return (out << "Form: " << src.getName() << " (sign " << src.getGradeSign() << ", exec " << src.getGradeExec() << ")"); }
+const std::string&	Form::getName() const { return (name); }
+int					Form::getGradeSign() const { return (F_CREATE); }
+int					Form::getGradeExec() const { return (F_EXEC); }
+bool				Form::isSigned() const { return (is_signed); }
+void				Form::beSigned(Bureaucrat& f)
 {
-    if (this != &src)
-        this->__grade = src.__grade;
-    return (*this);
+	if (is_signed)
+	{
+		std::cout << "Form " << name << " can't be signed beacuse it was alredy signed." << std::endl;
+		return ;
+	}
+    if (f.getGrade() > F_CREATE)
+        throw GradeToolowException();
+    is_signed = true;
 }
 
-// Methods
-
-const std::string
-Form::getName() const
-{
-    return (this->__name);
-}
-
-const int
-Form::getGradeSign() const
-{
-    return (this->__GradeSign);
-}
-
-const int
-Form::getGradeExec() const
-{
-    return (this->__GradeSign);
-}
-
-bool
-Form::isSigned() const
-{
-    return (this->_signed);
-}
-
-void
-Form::beSigned(Bureaucrat &obj)
-{
-    if (obj.getGrade() > this->__GradeSign)
-        throw GradeToolowException(obj.getGrade());
-    this->_signed = true;
-    return ;
-}
-
-int
-_HIGHT::getGrade() const
-{
-    return (this->__grade);
-}
-
-const char
-*_HIGHT::what() const throw()
-{
-    return ("Grade is too high\n");
-}
-
-int
-_LOW::getGrade() const
-{
-    return (this->__grade);
-}
-
-const char
-*_LOW::what() const throw()
-{
-    return ("Grade is too low\n");
-}
+const char*			F_HIGHT::what() const throw() { return ("Grade is too hight"); }
+const char*			F_LOW::what() const throw() { return ("Grade is too low"); }

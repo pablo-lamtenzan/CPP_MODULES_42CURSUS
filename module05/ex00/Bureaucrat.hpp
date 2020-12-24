@@ -3,15 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 08:11:52 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/06 07:28:58 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/24 15:39:17 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
+
+/*
+** The dynamic exception specification "throw()" is deprecated today, i don't know if i must use it
+** or not. Really, coding in cpp98 in 2020 is SO ANNOYING.
+** In this page: https://en.cppreference.com/w/cpp/language/except_spec it seems it's needed
+** by the exception destructor and what method (but i didn't completly got it). It seems its meaning is
+** the same as "noexcept" that means to not raise any exeception.
+*/
 
 #include <iostream>
 #include <string>
@@ -22,80 +30,26 @@
 
 class Bureaucrat
 {
-    private :
-
-    std::string __name;
-    int __grade;
+    std::string			name;
+    int					grade;
 
     public :
 
-    // Constructors
     Bureaucrat();
-    Bureaucrat(std::string name, int grade);
-    Bureaucrat(const Bureaucrat &src);
-
-    // Destructors
+    Bureaucrat(const std::string& n, int g);
+    Bureaucrat(const Bureaucrat& src);
     ~Bureaucrat();
+    Bureaucrat&			operator=(const Bureaucrat& src);
+    const std::string& 	getName() const;
+    int					getGrade() const;
+    void				CheckExeption(int g);
+    void				IncrementGrade();
+    void				DecrementGrade();
 
-    // Operators
-    Bureaucrat &operator= (const Bureaucrat &src);
-
-    // Shared Methods
-    std::string getName() const;
-    int getGrade() const;
-    void CheckExeption(int grade);
-    void IncrementGrade();
-    void DecrementGrade();
-
-    // Shared Sub-Classes
-
-    class GradeTooHighException : public std::exception
-    {
-        private :
-
-        int __grade;
-        
-        public :
-
-        // Constructors
-        GradeTooHighException(int grade);
-        GradeTooHighException(const GradeTooHighException &src);
-
-        // Destructors
-        ~GradeTooHighException() throw();
-
-        // Operators
-        GradeTooHighException &operator= (const GradeTooHighException &src);
-
-        // Shared Methods
-        int getGrade() const;
-        const char *what() const throw();
-    };
-
-    class GradeToolowException : public std::exception
-    {
-        private :
-
-        int __grade;
-    
-        public :
-
-        // Constructors
-        GradeToolowException(int grade);
-        GradeToolowException(const GradeToolowException &src);
-        
-        // Destructors
-        ~GradeToolowException() throw();
-
-        // Operators
-        GradeToolowException &operator= (const GradeToolowException &src);
-
-        // Shared Methods
-        int getGrade() const;
-        const char *what()const throw();
-    };
+    class GradeTooHighException : public std::exception { const char* what() const throw(); };
+ 	class GradeToolowException : public std::exception { const char* what() const throw(); };
 };
 
-std::ostream &operator<< (std::ostream &out, Bureaucrat const &src);
+std::ostream& operator<<(std::ostream& out, const Bureaucrat& src);
 
 #endif
