@@ -14,30 +14,23 @@
 #ifndef EASYFIND_HPP
 # define EASYFIND_HPP
 
-#include <iostream>
+# include <iostream>
 # include <exception>
+# include <algorithm>
 
-class NotMatchException : public std::exception
+class NotMatchException : public std::exception { const char* what() const throw() { return ("Error: no match."); } };
+class EmptyException : public std::exception { const char* what() const throw() { return ("Error: container is empty."); } };
+
+
+template <class T>
+int 	easyfind(T& t, int value)
 {
-    public :
-
-    // Shared Methods
-    virtual const char *what() const throw();
-};
-
-const char
-*NotMatchException::what() const throw()
-{
-    return ("Not match for the given integer in container\n");
-}
-
-template <typename T>
-int &easyfind(T t, int i)
-{
-    typename T::iterator f;
-    if ((f = std::find(t.begin(), t.end(), i)) == t.end())
-        throw NotMatchException();
-    return (*f);
+	if (t.empty())
+		throw EmptyException();
+	typename T::iterator i;
+	if ((i = std::find(t.begin(), t.end(), value)) == t.end())
+		throw NotMatchException();
+	return (*i);
 }       
 
 #endif
