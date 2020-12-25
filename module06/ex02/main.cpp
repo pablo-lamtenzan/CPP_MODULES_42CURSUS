@@ -3,247 +3,81 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 15:09:40 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/08 19:39:28 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/25 19:40:46 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <cstdlib>
-#include <string>
 
-class Base
+class Base { public: virtual ~Base(); };
+class A : public Base { };
+class B : public Base { };
+class C : public Base { };
+
+/*
+** Dynamic cast to pointer return NULL in case if failure.
+*/
+
+void		identify_from_pointer(Base* p)
 {
-    private :
-
-    public :
-
-    // Constructors
-    Base();
-    Base(const Base &src);
-
-    // Destructors
-    virtual ~Base();
-
-    // Operators
-    Base &operator= (const Base &src);
-};
-
-Base::Base()
-{
-
+	if (dynamic_cast<A*>(p))
+		std::cout << "Type is A!" << std::endl;
+	else if (dynamic_cast<B*>(p))
+		std::cout << "Type is B!" << std::endl;
+	else if (dynamic_cast<C*>(p))
+		std::cout << "Type is C!" << std::endl;
+	else
+		std::cerr << "Unknown type..." << std::endl;
 }
 
-Base::Base(const Base &src)
+/*
+** Dynamic cast to reference thows a bad cast exection in case of failure.
+*/
+
+void		identify_from_reference(Base& p)
 {
-    (void)src;
+	try
+	{
+		(void)dynamic_cast<A&>(p);
+		std::cout << "Type is A!" << std::endl;
+	}
+	catch(std::bad_cast& e)
+	{
+		try
+		{
+			(void)dynamic_cast<B&>(p);
+			std::cout << "Type is B!" << std::endl;
+		}
+		catch(std::bad_cast& e)
+		{
+			try
+			{
+				(void)dynamic_cast<C&>(p);
+				std::cout << "Type is C!" << std::endl;
+			}
+			catch (std::bad_cast& e) { std::cerr << "Unknown type..." << std::endl; }
+		}
+	}
 }
 
-Base::~Base()
-{
-    
-}
-
-Base
-&Base::operator= (const Base &src)
-{
-    (void)src;
-    return (*this);
-}
-
-class A : public Base
-{
-    private :
-
-    public :
-
-    // Constructors
-    A();
-    A(const A &src);
-
-    // Destructors
-    virtual ~A();
-
-    // Operators
-    A &operator= (const A &src);
-};
-
-A::A()
-{
-
-}
-
-A::A(const A &src)
-{
-    (void)src;
-}
-
-A::~A()
-{
-
-}
-
-A
-&A::operator= (const A &src)
-{
-    (void)src;
-    return (*this);
-}
-
-class B : public Base
-{
-    private :
-
-    public :
-
-    // Constructors
-    B();
-    B(const B &src);
-
-    // Destructors
-    virtual ~B();
-
-    // Operators
-    B &operator= (const B &src);
-};
-
-B::B()
-{
-
-}
-
-B::B(const B &src)
-{
-    (void)src;
-}
-
-B::~B()
-{
-
-}
-
-B
-&B::operator= (const B &src)
-{
-    (void)src;
-    return (*this);
-}
-
-class C : public Base
-{
-    private :
-
-    public :
-
-    // Constructors
-    C();
-    C(const C &src);
-
-    // Destructors
-    virtual ~C();
-
-    // Operators
-    C &operator= (const C &src);
-};
-
-C::C()
-{
-
-}
-
-C::C(const C &src)
-{
-    (void)src;
-}
-
-C::~C()
-{
-
-}
-
-C
-&C::operator= (const C &src)
-{
-    (void)src;
-    return (*this);
-}
-
-
-Base *generate()
-{
-    int i = rand() % 3;
-    if (i == 0)
-        return (new A());
-    else if (i == 1)
-        return (new B());
-    else
-        return (new C());
-}
-
-void identify_from_pointer(Base *p)
-{
-    if (dynamic_cast<A *>(p))
-        std::cout << 'A' << std::endl;
-    else if (dynamic_cast<B *>(p))
-        std::cout << 'B' << std::endl;
-    else if (dynamic_cast<C *>(p))
-        std::cout << 'C' << std::endl;
-}
-
-void identify_from_reference(Base &p)
-{
-    try
-    {
-        (void)dynamic_cast<A &>(p);
-        std::cout << 'A' << std::endl;
-        return ;
-    }
-    catch(const std::bad_cast &e)
-    {
-
-    }
-    try
-    {
-        (void)dynamic_cast<B &>(p);
-        std::cout << 'B' << std::endl;
-        return ;
-    }
-    catch(const std::bad_cast &e)
-    {
-
-    }
-    try
-    {
-        (void)dynamic_cast<C &>(p);
-        std::cout << 'C' << std::endl;
-        return ;
-    }
-    catch(const std::bad_cast &e)
-    {
-
-    }
-}
 
 int main()
 {
-    std::cout << "Pointer :" << std::endl;
-    int i = -1;
-    while (++i < 9)
-    {
-        Base *ptr = generate();
-        identify_from_pointer(ptr);
-        //identify_from_reference(*ptr);
-        delete ptr;
-    }
-    std::cout << std::endl << "Reference :" << std::endl;
-    i = -1;
-    while (++i < 9)
-    {
-        Base *ptr = generate();
-        identify_from_reference(*ptr);
-        delete ptr;
-    }
-    return (0);
+	A a = A();
+	B b = B();
+	C c = C();
+
+	identify_from_pointer(&a);
+	identify_from_pointer(&b);
+	identify_from_pointer(&c);
+	
+	identify_from_reference(a);
+	identify_from_reference(b);
+	identify_from_reference(c);
+
+	std::cout << "EXIT" << std::endl;
+	return (0);
 }
