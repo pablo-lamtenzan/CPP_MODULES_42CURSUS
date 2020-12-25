@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 20:07:46 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/08 20:16:09 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/25 21:21:24 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ template <typename T>
 static void printf_array(const Array<T> &src)
 {
     std::cout << "Array display : [size = " << src.size() << "] ";
-    int i = -1;
+    size_t i = -1;
     while (++i < src.size())
         std::cout << src[i] << "; ";
     std::cout << std::endl;

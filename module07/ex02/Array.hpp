@@ -20,123 +20,95 @@
 template <typename T>
 class Array
 {
-    private :
 
-    T *__array;
-    unsigned int __size;
+    T*		array;
+    size_t	_size;
 
     public :
 
-    // Contructor 
     Array();
-    Array(unsigned int n);
-    Array(const Array<T> &src);
-
-    // Destructors
+    Array(size_t n);
+    Array(const Array<T>& src);
     ~Array();
+    Array<T>&	operator=(const Array<T>& src);
+    T&			operator[](size_t pos);
+    const T&	operator[](size_t pos) const;
+    size_t		size() const;
+	T&			at(size_t pos) const;
 
-    // Operators
-    Array<T> &operator= (const Array<T> &src);
-    T &operator[] (unsigned int i);
-    T const &operator[] (unsigned int i) const;
-
-    // Shared Methods
-    unsigned int size() const;
-
-    // Shared Classes
-    class ArrayFailException : public std::exception
-    {
-        private :
-
-        // Shared Methods
-        virtual const char *what() const throw()
-        {
-            return ("index supplied causes array overflow\n");
-        }
-    };
+    class ArrayFailException : public std::exception { public: const char *what() const throw(); };
 };
 
 template <typename T>
-Array<T>::Array() : __array(NULL), __size(0)
-{
+Array<T>::Array() : array(NULL), _size(0) { }
 
+template <typename T>
+Array<T>::Array(size_t n) : array(new T[n]()), _size(n) { }
+
+template <typename T>
+Array<T>::~Array() { delete [] array; }
+
+template <typename T>
+Array<T>::Array(const Array<T>& src)
+{
+	if (this != &src)
+	{
+		const size_t s = src.size();
+		if (&src && s)
+		{
+			array = new T[s];
+			for (size_t i = 0 ; i < s ; i++)
+				array[i] = src.operator[](i);
+		}
+		else if (!&src)
+			*this = nullptr;
+		_size = s;
+	}
 }
 
 template <typename T>
-Array<T>::Array(unsigned int n) : __array(new T[n]()), __size(n)
+Array<T>&	Array<T>::operator=(const Array<T>& src)
 {
 
+	if (this != &src)
+	{
+		delete [] array;
+    	array = nullptr;
+		const size_t s = src.size();
+		if (&src && s)
+		{
+			array = new T[s];
+			for (size_t i = 0 ; i < s ; i++)
+				array[i] = src.operator[](i);
+		}
+		else if (!&src)
+			*this = nullptr;
+		_size = s;
+	}
 }
 
 template <typename T>
-Array<T>::Array(const Array<T> &src)
+T&			Array<T>::operator[](size_t pos)
 {
-    if (&src && src.len)
-    {
-        this->__array = new T[src.len];
-        int i = -1;
-        while (++i < src.__size)
-            this->__array[i] = src.__array[i];
-    }
-    this->__size = src.__size;
-    return (*this);
+	if (pos >= _size || !array)
+		throw ArrayFailException();
+	else
+		return (array[pos]);
 }
 
 template <typename T>
-Array<T>::~Array()
+const T&	Array<T>::operator[](size_t pos) const
 {
-    if (this->__array)
-        delete[] this->__array;
+    if (pos >= _size || !array)
+		throw ArrayFailException();
+	else
+		return (array[pos]);
 }
 
 template <typename T>
-Array<T>
-&Array<T>::operator= (const Array<T> &src)
-{
-    delete [] this->__array;
-    this->__array = NULL;
-    if (&src != this && src.size)
-    {
-        this->__array = new T[src.size];
-        int i = -1;
-        while (++i)
-            this->__array[i] = src.__array[i];
-    }
-    this->__size = src.__size;
-    return (*this);
-}
+size_t	Array<T>::size() const { return (_size); }
 
 template <typename T>
-T
-&Array<T>::operator[] (unsigned int i)
-{
-    if (!this->__array || i > this->__size)
-        throw ArrayFailException();
-    return (this->__array[i]);
-}
+const char*		Array<T>::ArrayFailException::what() const throw() { return ("Array error"); }
 
-template <typename T>
-const T
-&Array<T>::operator[] (unsigned int i) const
-{
-    if (!this->__array || i > this->__size)
-        throw ArrayFailException();
-    return (this->__array[i]);
-}
-
-template <typename T>
-unsigned int
-Array<T>::size() const
-{
-    return this->__size;
-}
-
-/*
-template <typename T>
-const char
-*Array<T>::ArrayFailExeption::what() const throw()
-{
-    return ("index supplied causes array overflow\n");
-}
-*/
 #endif

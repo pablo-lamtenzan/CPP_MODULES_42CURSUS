@@ -10,28 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include <iostream>
-
-template <typename T>
-void swap(T &a, T &b)
-{
-    T tmp = a;
-    a = b;
-    b = tmp;
-}
-
-template <typename T>
-T &max(T &a, T &b)
-{
-    return (a > b ? a : b);
-}
-
-template <typename T>
-T &min(T &a, T &b)
-{
-    return (a < b ? a : b);
-}
+#include "whatever.hpp"
 
 int main()
 {
@@ -48,9 +28,11 @@ int main()
     std::string d = "chaine2";
 
     ::swap(c, d);
+
     std::cout << "c = " << c << ", d = " << d << std::endl;
     std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
     std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
     
-    return 0;
+	std::cout << "EXIT" << std::endl;
+    return (0);
 }
