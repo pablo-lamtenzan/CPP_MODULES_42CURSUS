@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 09:59:09 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/06 10:29:39 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/25 11:38:55 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,13 @@
 
 class Intern
 {
-    protected :
-
-    typedef struct          s_intern
-    {
-        std::string         type;
-        Form                *(*make)(std::string target);
-    }                       t_intern;
-
     public :
 
-    // Constructors
     Intern();
-    Intern(const Intern &src);
-
-    // Destructors
+    Intern(const Intern& src);
     ~Intern();
-
-    // Operators
-    Intern &operator= (const Intern &src);
-
-    // Shared Methods
-    Form *makeForm(std::string type, std::string target);
+    Intern&	operator=(const Intern& src);
+    Form*	makeForm(const std::string& type, const std::string& target);
 };
 
 #endif

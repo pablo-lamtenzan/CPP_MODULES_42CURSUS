@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 09:42:35 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/24 16:32:51 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2020/12/24 17:15:04 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ class Form
     Form(const std::string& n, int sign, int exec);
     Form(const Form& src);
     ~Form();
-    Form &operator=(const Form& src);
-
+    Form&				operator=(const Form& src);
     const std::string&	getName() const;
     int					getGradeSign() const;
     int					getGradeExec() const;
