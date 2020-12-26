@@ -31,11 +31,11 @@ class Span
     Span(unsigned int n);
     Span(const Span& src);
     ~Span();
-    Span&	operator=(const Span& src);
-    void	addNumber(int num);
-    int		shortestSpan() const;
-    int		longestSpan() const;
-	unsigned int	get_amount() const;
+    Span&					operator=(const Span& src);
+    void					addNumber(int num);
+    int						shortestSpan() const;
+    int						longestSpan() const;
+	unsigned int			get_amount() const;
 	const std::vector<int>& get_container() const;
 
     class SpanException : public std::exception { const char *what() const throw(); };
