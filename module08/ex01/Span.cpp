@@ -13,78 +13,58 @@
 
 #include "Span.hpp"
 
-Span::Span() : __n(0), __container()
+Span::Span() : amount(0), container() { }
+Span::Span(unsigned int n) : amount(n), container() { }
+Span::Span(const Span &src) : amount(src.get_amount()), container(src.get_container()) { }
+Span::~Span() { }
+
+Span&	Span::operator=(const Span& src)
 {
 
-}
-
-Span::Span(unsigned int n) : __n(n), __container()
-{
-
-}
-
-Span::Span(const Span &src) : __n(src.__n), __container(src.__container)
-{
-
-}
-
-Span::~Span()
-{
-
-}
-
-Span
-&Span::operator= (const Span &src)
-{
-    if (&src != this)
-    {
-        this->__n = src.__n;
-        this->__container = src.__container;
-    }
+	container = src.container;
+    amount = src.get_amount();
     return (*this);
 }
 
-void
-Span::addNumber(int num)
+void	Span::addNumber(int num)
 {
-    if (this->__container.size() >= this->__n)
-        throw Span::SpanException();
-    this->__container.push_back(num);
+    if (container.size() >= amount)
+        throw SpanException();
+    container.push_back(num);
 }
 
-int
-Span::shortestSpan() const
+int		Span::shortestSpan() const
 {
-    if (this->__container.size() <= 1)
-        throw Span::SpanException();
-    std::vector<int>::const_iterator i = this->__container.begin() - 1;
-    std::vector<int> spans(this->__container);
-    while (++i != this->__container.end())
-    {
-        int diff = INT_MAX;
-        std::vector<int>::const_iterator y = this->__container.begin() - 1;
-        while (++y != this->__container.end())
-        {
-            if (y - this->__container.begin() != i - spans.begin())
-                diff = std::min(std::abs(*i - *y), diff);
-        }
-        *i = diff;
-    }
-    return *std::min_element(spans.begin(), spans.end());
+	if (container.size() <= 1)
+		throw SpanException();
+
+	// Get the min elem in vector
+	const int min = *std::min_element(container.begin(), container.end());
+	int		min2 = INT32_MAX;
+
+	// Get the second min elem in vector
+	for (size_t i = 0 ; i < container.size() ; i++)
+		if (container[i] < min2 && container[i] > min)
+			min2 = container[i];
+
+	// Throw exeption if min2 hasn't been updated
+	if (min2 == INT32_MAX && std::find(container.begin(), container.end(), INT32_MAX) == container.end())
+		throw SpanException();
+	
+	// Return the diff
+	return (min2 - min);
 }
 
-int
-Span::longestSpan() const
+int		Span::longestSpan() const
 {
-    if (this->__container.size() <= 1)
+    if (container.size() <= 1)
         throw Span::SpanException();
-    int min = *std::min_element(this->__container.begin(), this->__container.end());
-    int max = *std::max_element(this->__container.begin(), this->__container.end());
-    return (max - min);
+
+    return (*std::max_element(container.begin(), container.end()) \
+			- *std::min_element(container.begin(), container.end()));
 }
 
-const char
-*Span::SpanException::what() const throw()
-{
-    std::cout << "Span error" << std::endl;
-} 
+unsigned int			Span::get_amount() const { return (amount); }
+const std::vector<int>&	Span::get_container() const { return (container); }
+
+const char*				Span::SpanException::what() const throw() { return ("Error: not possible span."); }

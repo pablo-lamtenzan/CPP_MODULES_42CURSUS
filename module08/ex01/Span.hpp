@@ -17,41 +17,28 @@
 #include <iostream>
 #include <exception>
 #include <vector>
+#include <algorithm>
 
 class Span
 {
-    private :
 
-    unsigned int __n;
-    std::vector<int> __container;
+    unsigned int		amount;
+    std::vector<int>	container;
+	Span();
 
     public :
 
-    // Contructors
-
-    Span();
     Span(unsigned int n);
-    Span(const Span &src);
-
-    // Destructors
+    Span(const Span& src);
     ~Span();
+    Span&	operator=(const Span& src);
+    void	addNumber(int num);
+    int		shortestSpan() const;
+    int		longestSpan() const;
+	unsigned int	get_amount() const;
+	const std::vector<int>& get_container() const;
 
-    // Operators
-    Span &operator= (const Span &src);
-
-    // Shared Methods
-    void addNumber(int num);
-    int shortestSpan() const;
-    int longestSpan() const;
-
-    // Sub classes
-    class SpanException : public std::exception
-    {
-        public :
-
-        // Shared Methods
-        const char *what() const throw();
-    };
+    class SpanException : public std::exception { const char *what() const throw(); };
 };
 
 #endif
