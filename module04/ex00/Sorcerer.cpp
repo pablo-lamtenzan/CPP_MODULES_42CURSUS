@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 05:47:19 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/21 06:17:15 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/01/05 03:44:10 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ Sorcerer::Sorcerer(const std::string& n, const std::string& t) : name(n), title(
 Sorcerer::Sorcerer(const Sorcerer& src)
 {
 	if (this != &src)
-    	*this = src;
+		operator=(src);
 	std::cout << name << ", " << title << " is born!" << std::endl;
 }
 
-Sorcerer::~Sorcerer() { std::cout <<name << ", " << title << ", is dead. Consequences will never be the same!\n"; }
+Sorcerer::~Sorcerer() { std::cout <<name << ", " << title << ", is dead. Consequences will never be the same!" << std::endl; }
 
-Sorcerer&	Sorcerer::operator= (const Sorcerer &src)
+Sorcerer&	Sorcerer::operator=(const Sorcerer &src)
 {
     if (this != &src)
     {

@@ -6,12 +6,11 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 07:32:21 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/21 10:52:31 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/01/05 04:37:15 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RADSCORPION_HPP
-# define RADSCORPION_HPP
+# pragma once
 
 #include "Enemy.hpp"
 
@@ -20,9 +19,7 @@ class RadScorpion : public Enemy
     public :
 
 	RadScorpion();
-    RadScorpion(const RadScorpion& src);
+    RadScorpion(const Enemy& src);
     ~RadScorpion();
-    RadScorpion&	operator=(const RadScorpion& src);
+    RadScorpion&	operator=(const Enemy& src);
 };
-
-#endif

@@ -6,27 +6,23 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 06:05:15 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/21 08:30:08 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/01/05 04:04:47 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PEON_HPP
-# define PEON_HPP
+# pragma once
 
 #include "Victim.hpp"
 
-class Peon : virtual public Victim
+class Peon : public Victim
 {
-	private:
 	Peon();
 
     public :
 
     Peon(const std::string& name);
-    Peon(const Peon& src);
+    Peon(const Victim& src);
     ~Peon();
-    Peon& operator= (const Peon& src);
-    void getPolymorphed() const;
+    Peon&	operator=(const Victim& src);
+    void	getPolymorphed() const;
 };
-
-#endif

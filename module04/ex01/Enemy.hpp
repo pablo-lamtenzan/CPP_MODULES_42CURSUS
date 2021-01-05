@@ -6,19 +6,17 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 07:15:38 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/21 09:47:52 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/01/05 04:47:13 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENEMY_HPP
-# define ENEMY_HPP
+# pragma once
 
-#include <iostream>
-#include <string>
+# include <iostream>
+# include <string>
 
 class Enemy
 {
-    private:
 
 	Enemy();
     std::string		type;
@@ -26,7 +24,7 @@ class Enemy
 
     public :
 
-    Enemy(int hp, std::string const& t);
+    Enemy(int hp, const std::string& t);
     Enemy(const Enemy& src);
     virtual ~Enemy();
     Enemy&				operator=(const Enemy& shitpointsrc);
@@ -35,5 +33,3 @@ class Enemy
 	void				setHP(int hp);
     virtual void		takeDamage(int amount);
 };
-
-#endif

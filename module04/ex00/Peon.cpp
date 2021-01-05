@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 06:07:48 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/21 08:40:27 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/01/05 04:04:53 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,11 @@
 
 Peon::Peon(const std::string& n) : Victim(n) { std::cout << "Zog Zog" << std::endl; }
 
-Peon::Peon(const Peon& src) : Victim(src)
-{
-	if (this != &src)
-    	*this = src;
-    std::cout << "Zog Zog" << std::endl;
-}
+Peon::Peon(const Victim& src) : Victim(src) { std::cout << "Zog Zog" << std::endl; }
 
 Peon::~Peon() { std::cout << "Bleuark..." << std::endl; }
 
-Peon&	Peon::operator=(const Peon& src)
+Peon&	Peon::operator=(const Victim& src)
 {
     Victim::operator=(src);
 	std::cout << "Zog Zog" << std::endl;

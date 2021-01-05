@@ -6,23 +6,23 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 07:57:40 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/21 12:03:34 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/01/05 05:27:53 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
 
-Character::Character(std::string const& n) : name(n) { weapon = NULL; ap = 40; }
+Character::Character(std::string const& n) : weapon(NULL), ap(40), name(n) { std::cout << "A new Character has been created!" << std::endl; }
 
 Character::Character(const Character& src)
 {
-	if (this != &src)
-    	*this = src;
+	std::cout << "A new Character has been created!" << std::endl;
+	operator=(src);
 }
 
-Character::~Character() { }
+Character::~Character() { std::cout << "A new Character has been destroyed!" << std::endl; }
 
-Character&	Character::operator= (const Character& src)
+Character&	Character::operator=(const Character& src)
 {
     if (this != &src)
     {
@@ -45,18 +45,17 @@ void			Character::equip(AWeapon* w) { weapon = w; }
 
 void			Character::attack(Enemy* enemy)
 {
-	ssize_t tmp;
+	long  tmp;
 
 	if (!weapon || !enemy)
-	return ;
+		return ;
 
 	tmp = ap - weapon->getAPCost();
 	ap = tmp > 0 ? tmp : 0;
 
     std::cout << name << " attacks " << enemy->getType() << " with a " << weapon->getName() << " (Using " << weapon->getAPCost() << " ap!)" << std::endl;
 	weapon->attack();
-	tmp = enemy->getHP() - weapon->getDamage();
-	enemy->setHP(tmp > 0 ? tmp : 0);
+	enemy->takeDamage(weapon->getDamage());
 
     if (!enemy->getHP())
         delete enemy;
