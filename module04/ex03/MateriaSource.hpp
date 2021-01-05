@@ -3,41 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 06:39:10 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/05 07:31:41 by plamtenz         ###   ########.fr       */
+/*   Updated: 2021/01/05 08:15:54 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATERIASOURCE_HPP
-# define MATERIASOURCE_HPP
+# pragma once
 
 #include "IMateriaSource.hpp"
 
-class MateriaSource : public ImateriaSource
+class MateriaSource : public IMateriaSource
 {
-    private :
-    
-    AMateria *__stock[4];
-    int __idx;
+
+    AMateria*	stock[4];
+    int			idx;
 
     public :
 
-    // Constructors
     MateriaSource();
-    MateriaSource(const MateriaSource &src);
-
-    // Destructors
-    virtual ~IMateriaSource(); // wtf is wthat error ? 
+    MateriaSource(const MateriaSource& src);
     ~MateriaSource();
-
-    // Operator
-    MateriaSource &operator= (const MateriaSource &src);
-
-    // Shared Methods
-    virtual void learnMateria(AMateria*);
-    virtual AMateria* createMateria(std::string const & type);
+    MateriaSource &operator=(const MateriaSource& src);
+    void learnMateria(AMateria*);
+    AMateria* createMateria(std::string const& type);
 };
-
-#endif

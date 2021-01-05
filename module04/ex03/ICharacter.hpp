@@ -3,29 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ICharacter.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 06:12:22 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/05 06:14:21 by plamtenz         ###   ########.fr       */
+/*   Updated: 2021/01/05 08:32:23 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ICHARACTER_HPP
-# define ICHARACTER_HPP
+# pragma once
 
 #include <iostream>
 #include <string>
+#include "AMateria.hpp"
+
+class AMateria;
 
 class ICharacter
 {
     public :
     
-    // Methods
     virtual ~ICharacter() {}
-    virtual std::string const & getName() const = 0;
+    virtual const std::string& getName() const = 0;
     virtual void equip(AMateria* m) = 0;
-    virtual void unequip(int idx) = 0;
-    virtual void use(int idx, ICharacter& target) = 0;
+    virtual void unequip(int i) = 0;
+    virtual void use(int i, ICharacter& target) = 0;
 };
-
-#endif

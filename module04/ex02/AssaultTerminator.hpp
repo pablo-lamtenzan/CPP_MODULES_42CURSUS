@@ -3,38 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   AssaultTerminator.hpp                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 04:11:33 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/05 04:25:08 by plamtenz         ###   ########.fr       */
+/*   Updated: 2021/01/05 05:34:23 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASSAULTTERMINATOR_HPP
-# define ASSAULTTERMINATOR_HPP
+# pragma once
 
 #include "TacticalMarine.hpp"
 #include "ISpaceMarine.hpp"
 
 class AssaultTerminator : public ISpaceMarine
 {
-    public :
+	public : 
 
-    // Constructors
     AssaultTerminator();
-    AssaultTerminator(const AssaultTerminator &src);
-
-    // Destructors
+    AssaultTerminator(const AssaultTerminator& src);
     ~AssaultTerminator();
-
-    // Operators
-    AssaultTerminator &operator= (const AssaultTerminator &src);
-
-    // Methods
-    virtual TacticalMarine *clone() const;
-    virtual void battleCry() const;
-    virtual void rangedAtack() const;
-    virtual void meleeAttack() const;
-}
-
-#endif
+    AssaultTerminator&	operator=(const AssaultTerminator& src);
+    AssaultTerminator*	clone() const;
+    void 				battleCry() const;
+    void 				rangedAttack() const;
+    void 				meleeAttack() const;
+};

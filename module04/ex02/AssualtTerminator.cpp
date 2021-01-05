@@ -3,75 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   AssualtTerminator.cpp                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 04:15:54 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/05 04:23:37 by plamtenz         ###   ########.fr       */
+/*   Updated: 2021/01/05 05:54:33 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AssaultTerminator.hpp"
 
-// Constructor
-
-AssaultTerminator::AssaultTerminator()
-{
-    std::cout << "* teleports from space *\n";
-    return ;
-}
-
+AssaultTerminator::AssaultTerminator() { std::cout << "* teleports from space *" << std::endl; }
 AssaultTerminator::AssaultTerminator(const AssaultTerminator &src)
 {
-    *this = src;
-    std::cout << "* teleports from space *\n";
-    return ;
+	operator=(src);
+    std::cout << "* teleports from space *" << std::endl;
 }
+AssaultTerminator::~AssaultTerminator() { std::cout << "I’ll be back..." << std::endl; }
 
-// Destructors
+AssaultTerminator&		AssaultTerminator::operator=(const AssaultTerminator& src) { (void)src; return (*this); }
 
-AssaultTerminator::~AssaultTerminator()
-{
-    std::cout << "I’ll be back...\n";
-    return ;
-}
-
-// Operators
-
-AssaultTerminator
-&AssaultTerminator::operator= (const AssaultTerminator &src)
-{
-    if (this != &src)
-    {
-        ; // copy if i have properties
-    }
-    return (*this);
-}
-
-// Methods
-
-AssaultTerminator
-*TacticalMarine::clone() const
-{
-    return (new TacticalMarine); // correct that just need do find how init and allocate in pure virtual
-}
-
-void
-AssaultTerminator::battleCry() const
-{
-    std::cout << "This code is unclean. PURIFY IT!\n";
-    return ;
-}
-
-void
-AssaultTerminator::meleeAttack() const
-{
-    std::cout << "* attacks with chainfists *\n";
-    return ;
-}
-
-void
-AssaultTerminator::rangedAtack() const
-{
-    std::cout << "* does nothing *\n";
-    return ;
-}
+AssaultTerminator*	AssaultTerminator::clone() const { return (new AssaultTerminator(*this)); }
+void			AssaultTerminator::battleCry() const { std::cout << "This code is unclean. PURIFY IT!" << std::endl; }
+void			AssaultTerminator::meleeAttack() const { std::cout << "* attacks with chainfists *" << std::endl; }
+void			AssaultTerminator::rangedAttack() const { std::cout << " does nothing *" << std::endl; }

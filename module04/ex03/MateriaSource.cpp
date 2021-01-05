@@ -3,76 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 06:47:00 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/05 07:38:06 by plamtenz         ###   ########.fr       */
+/*   Updated: 2021/01/05 08:27:05 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MateriaSource.hpp"
 
-// Constructors
-
-MateriaSource::MateriaSource()
+MateriaSource::MateriaSource() : idx(0)
 {
-    this->__idx = 0;
-    int i = -1;
-    while (++i < 4)
-        this->__stock[i] = NULL;
-    return ;
+    for (size_t i = 0 ; i < sizeof(stock) / sizeof(*stock) ; i++)
+		stock[i] = NULL;
+	std::cout << "An empty MateriaSource has been created!" <<std::endl;
 }
 
-MateriaSource::MateriaSource(const MateriaSource &src)
+MateriaSource::MateriaSource(const MateriaSource& src)
 {
-    *this = src;
-    return ;
+	operator=(src);
+	std::cout << "A new MateriaSource has been created!" <<std::endl;
 }
-
-// Destructors
 
 MateriaSource::~MateriaSource()
 {
-    return ;
+	for (size_t i = 0 ; i < sizeof(stock) / sizeof(*stock) ; i++)
+		delete stock[i];
+	std::cout << "A MateriaSource has been destroyed!" <<std::endl;
 }
 
-// Operators
-
-MateriaSource
-&MateriaSource::operator= (const MateriaSource &src)
-{
-    if (this == &src)
+MateriaSource&	MateriaSource::operator=(const MateriaSource& src)
+{	
+    if (this != &src)
     {
-        this->__idx = src.__idx;
-        int i = -1;
-        while (++i < 4)
-        {
-            this->__stock[i] = NULL;
-            this->__stock[i] = src.__stock[0]->clone();
-        }
+        idx = src.idx;
+		for (size_t i = 0 ; i < sizeof(stock) / sizeof(*stock) ; i++)
+			delete stock[i];
+        for (size_t i = 0 ; i < sizeof(stock) / sizeof(*stock) ; i++)
+			learnMateria(src.stock[i]->clone());
     }
     return (*this);
 }
 
-// Methods
-
-void
-MateriaSource::learnMateria(AMateria *m)
+void	MateriaSource::learnMateria(AMateria* m)
 {
-    if (this->__idx >= 0 && this->__idx < 4)
-    {
-        this->__stock[this->__idx] = m;
-        this->__idx++;
-    }
-    return ;
+    if (idx >= 0 && static_cast<size_t>(idx) < sizeof(stock) / sizeof(*stock))
+	{
+		size_t i = -1;
+		while (++i < sizeof(stock) / sizeof(*stock) && stock[i])
+			;
+        stock[i] = m;
+		idx++;
+	}
 }
 
-AMateria
-*MateriaSource::createMateria(std::string const & type)
+AMateria*	MateriaSource::createMateria(std::string const& type)
 {
-    if (type == "ice")
-        return (new Ice());
-    else if (type == "cure")
-        return (new Cure());
-    return (NULL);
+	for (size_t i = 0 ; i < sizeof(stock) / sizeof(*stock) ; i++)
+		if (stock[i]->getType() == type)
+			return (stock[i]->clone());
+	return (NULL);
 }

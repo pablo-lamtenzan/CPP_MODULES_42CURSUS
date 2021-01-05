@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   Cure.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 07:39:23 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/05 07:59:13 by plamtenz         ###   ########.fr       */
+/*   Updated: 2021/01/05 08:17:49 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CURE_HPP
-# define CURE_HPP
+# pragma once
 
 #include "AMateria.hpp"
 
@@ -19,19 +18,10 @@ class Cure : public AMateria
 {
     public :
 
-    // Constructor
     Cure();
-    Cure(const Cure &src);
-
-    // Destructors
+    Cure(const AMateria& src);
     ~Cure();
-
-    // Operators
-    Cure &operator= (const Cure &src);
-
-    // Shared Methods
-    virtual AMateria *clone() const;
-    virtual void use(ICharacter &target);
+    Cure&			operator=(const AMateria& src);
+	AMateria*		clone() const;
+	void 			use(ICharacter& target);
 };
-
-#endif

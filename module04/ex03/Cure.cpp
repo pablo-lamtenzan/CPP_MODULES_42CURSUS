@@ -3,59 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 07:43:09 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/05 07:55:47 by plamtenz         ###   ########.fr       */
+/*   Updated: 2021/01/05 08:41:17 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cure.hpp"
 
-// Constructors
-
-Cure::Cure() : AMateria("cure")
+Cure::Cure() : AMateria("cure") { std::cout << "Cure has been created!" << std::endl; }
+Cure::Cure(const AMateria& src) : AMateria(src) { std::cout << "Cure has been created!" << std::endl; }
+Cure::~Cure() { std::cout << "A cure has been destroyed!" << std::endl; }
+Cure&		Cure::operator=(const AMateria& src)
 {
-    return ;
-}
-
-Cure::Cure(const Cure &src)
-{
-    *this = src;
-    return ;
-}
-
-// Destructors
-
-Cure::~Cure()
-{
-    return ;
-}
-
-// Operators
-
-Cure
-&Cure::operator= (const Cure &src)
-{
-    if (this != &src)
-    {
-        this->__type = src.__type;
-        this->_xp = src._xp;
-    }
+	AMateria::operator=(src);
     return (*this);
 }
 
-// Methods
-
-AMateria
-*Cure::clone() const
-{
-    return (new Cure());
-}
-
-void
-Cure::use(ICharacter &target)
-{
-    std::cout << " * heals " << target.getName() << "'s wounds *\n";
-    return ;
-}
+AMateria*	Cure::clone() const { return (new Cure(*this)); }
+void		Cure::use(ICharacter& target) { setXp(getXP() + 10); std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl; }

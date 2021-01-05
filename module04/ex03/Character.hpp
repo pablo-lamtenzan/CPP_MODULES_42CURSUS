@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   Character.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 06:17:36 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/05 07:02:38 by plamtenz         ###   ########.fr       */
+/*   Updated: 2021/01/05 08:31:58 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHARACTER_HPP
-# define CHARACTER_HPP
+# pragma once
 
 #include "ICharacter.hpp"
 #include "AMateria.hpp"
@@ -20,28 +19,20 @@ class Character : public ICharacter
 {
     private :
 
-    std::string __name;
-    AMateria *__stock[4];
-    int __idx;
+    std::string	name;
+    AMateria*	stock[4];
+    int			idx;
 
     public :
     
-    // Constructor
     Character();
-    Character(std::string &__name);
-    Character(const Character &src);
-
-    // Destructor
+    Character(const std::string& n);
+    Character(const Character& src);
     virtual ~Character();
-
-    // Operators
-    Character &operator= (const Character &src);
-
-    // Shared Methods
-    virtual std::string const & getName() const;
-    virtual void equip(AMateria* m);
-    virtual void unequip(int idx);
-    virtual void use(int idx, ICharacter& target) = 0;
+    Character &operator=(const Character& src);
+    std::string const& getName() const;
+    void equip(AMateria* m);
+    void unequip(int i);
+    void use(int i, ICharacter& target);
+	int get_idx() const;
 };
-
-#endif

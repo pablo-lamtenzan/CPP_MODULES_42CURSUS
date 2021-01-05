@@ -3,80 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   AMateria.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 05:54:58 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/05 06:58:58 by plamtenz         ###   ########.fr       */
+/*   Updated: 2021/01/05 08:34:00 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AMateria.hpp"
 
-// Constructors
+AMateria::AMateria() : _xp(0), type("Undefined") { std::cout << "An Undefined AMaeria has been created!" << std::endl; }
+AMateria::AMateria(std::string const& t) : _xp(0), type(t) { std::cout << "An new AMaeria has been created!" << std::endl; }
 
-AMateria::AMateria()
+AMateria::AMateria(const AMateria& src)
 {
-    this->__type = "not init";
-    this->_xp = 0;
-    return ;
+	std::cout << "An new AMaeria has been created!" << std::endl;
+	operator=(src);
 }
 
-AMateria::AMateria(std::string const &type)
-{
-    this->__type = type;
-    this->_xp = 0;
-    return ;
-}
+AMateria::~AMateria() { std::cout << "An AMateria type " << type << " has been destroyed" << std::endl; }
 
-AMateria::AMateria(const AMateria &src)
-{
-    *this = src;
-    return ;
-}
-
-// Destructors
-
-AMateria::~AMateria()
-{
-    return ;
-}
-
-// Operators
-
-AMateria
-&AMateria::operator= (const AMateria &src)
+AMateria&	AMateria::operator=(const AMateria& src)
 {
     if (this != &src)
     {
-        this->__type = src.__type;
-        this->_xp = src.xp;
+        type = src.getType();
+        _xp = src.getXP();
     }
     return (*this);
 }
 
-// Methods
-
-std::string const
-&AMateria::getType() const
-{
-    return (this->__type);
-}
-
-unsigned int
-AMateria::getXP() const
-{
-    return (this->_xp);    
-}
-
-void
-AMateria::use(ICharacter& target)
-{
-    // devevol the xp increase here
-    if (!strcmp(target.__type, "ice"))
-        std::cout << "* shoots an ice bolt at NAME *\n";
-    else if (!strcmp(target.__type , "cure"))
-        std::cout << "* heals NAME’s wounds *\n";
-    
-    
-    return ;
-}
+std::string const&	AMateria::getType() const { return (type); }
+unsigned int		AMateria::getXP() const { return (_xp); }
+void				AMateria::use(ICharacter& target) { (void)target; _xp += 10; }
+void				AMateria::setXp(unsigned int xp) { _xp = xp; }

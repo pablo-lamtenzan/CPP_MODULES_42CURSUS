@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   Ice.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 07:56:09 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/05 07:59:47 by plamtenz         ###   ########.fr       */
+/*   Updated: 2021/01/05 08:19:34 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ICE_CPP
-# define ICE_CPP
+# pragma once
 
 #include "AMateria.hpp"
 
@@ -19,19 +18,10 @@ class Ice : public AMateria
 {
     public :
 
-    // Constructor
     Ice();
-    Ice(const Ice &src);
-
-    // Destructor
+    Ice(const AMateria& src);
     ~Ice();
-
-    // Operator
-    Ice &operator= (const Ice &src);
-
-    // Shared Methods
-    virtual AMateria *clone() const;
-    virtual void use(ICharacter &traget);
+    Ice&		operator=(const AMateria& src);
+    AMateria* 	clone() const;
+    void		use(ICharacter& traget);
 };
-
-#endif

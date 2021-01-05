@@ -3,126 +3,92 @@
 /*                                                        :::      ::::::::   */
 /*   Squad.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 03:36:07 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/05 05:09:12 by plamtenz         ###   ########.fr       */
+/*   Updated: 2021/01/05 07:21:04 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Squad.hpp"
 
-// Constructors
+Squad::Squad() : amount(0), squad(NULL) { }
+Squad::Squad(const Squad &src) : amount(src.amount) { squad_dup(src); }
+Squad::~Squad() { squad_clear(); }
 
-Squad::Squad()
-{
-    this->__total = 0;
-    this->__squad = NULL;
-    return ;
-}
-
-Squad::Squad(const Squad &src)
-{
-    this->__CopyAllUnits(src);
-    this->__total = src.__total;
-    return ;
-}
-
-// Destructor
-
-Squad::~Squad()
-{
-    this->__DestroyAllUnits();
-    return ;
-}
-
-Squad
-&Squad::operator= (const Squad &src)
+Squad&	Squad::operator=(const Squad& src)
 {
     if (this != &src)
     {
-        this->__DeleteAllUnits();
-        this->__CopyAllUnits(src);
-        this->__total = src.__total;
+        amount = src.amount;
+		/*if (squad)
+		{
+			for (int i = 0 ; i < amount ; i++)
+			{
+				bool found = false;
+				for (int y = 0 ; y < src.getCount() ; y++)
+				{
+					if (src.getUnit(y) == squad[i])
+						found = true;
+				}
+				if (!found)
+					delete squad[i];
+			}
+			delete [] squad;
+			squad = NULL;
+		}*/
+		squad_dup(src);
     }
     return (*this);
 }
 
-// Methods
+int	Squad::getCount() const { return (amount); }
+ISpaceMarine*	Squad::getUnit(int n) const { return (n >= 0 && n < amount ? squad[n] : NULL); }
 
-int
-Squad::getCount() const
+int	Squad::push(ISpaceMarine *SpaceMarine)
 {
-    return (this->__total);
+	// Check if is alreaddy pushed
+	for (int i = 0 ; i < amount ; i++)
+		if (SpaceMarine == squad[i])
+		{
+			std::cout << "Double push from " << SpaceMarine << std::endl;
+			return (i);
+		}
+	
+	// Realloc
+	ISpaceMarine**	tmp = new ISpaceMarine*[amount + 1];
+	if (squad)
+	{
+		for (int i = 0 ; i < amount ; i++)
+			tmp[i] = squad[i];
+		delete [] squad;
+	}
+	tmp[amount] = SpaceMarine;
+	squad = tmp;
+	return (++amount);
 }
 
-ISpaceMarine
-*Squad::getUnit(int n) const
+void	Squad::squad_dup(const Squad& src)
 {
-    t_container *tmp = this->__squad;
-    if (n >= 0 && n < this->__total)
-    {
-        while (n-- > 0)
-            tmp = tmp->next;
-        return (tmp->unit);
-    }
-    return (NULL);
+	ISpaceMarine* sp;
+
+	for (int i = 0; i < src.getCount(); i++)
+	{
+		int t;
+		int am = amount;
+		if ((t = push(sp = src.getUnit(i)->clone())) != am + 1) // TEST THIS
+		{
+			std::cout << "tEst: errno push sp is in src:: " << t << i << std::endl;
+			delete sp;
+		}
+		else
+			std::cout << "XXXXxxxxxxxxx" << t << am << std::endl;
+	}
 }
 
-int
-Squad::push(ISpaceMarine *SpaceMarine)
+void	Squad::squad_clear()
 {
-    t_container *tmp = this->__squad;
-    if (SpaceMarine && this->__InSquad(SpaceMarine, tmp))
-        return (this->__total);
-    tmp = this->__squad;
-    if (tmp)
-    {
-        while (tmp->next)
-            tmp = tmp->next;
-        tmp->next = new t_container;
-        tmp->next->unit = SpaceMarine;
-        tmp->next->next = NULL;
-    }
-    else
-    {
-        this->__squad = new t_container;
-        this->__squad->unit = SpaceMarine;
-        this->__squad->next = NULL;
-    }
-    return (this->__total + 1);
-}
-
-char
-Squad::__InSquad(ISpaceMarine *SpaceMarine, t_container *container)
-{
-    if (!conatiner)
-        return (0);
-    else if (SpaceMarine == container->unit)
-        return (1);
-    else
-        return (this->__InSquad(SpaceMarine, conatiner->next));
-}
-
-void
-Squad::__CopyAllUnits(const Squad &src)
-{
-    int i = -1;
-    while (++i < src.getCount())
-        this->push(src.getUnit(i));
-    return ;
-}
-
-void
-Squad::__DeleteAllUnits()
-{
-    t_container *tmp;
-
-    if (this->__squad)
-        return ;
-    delete this->__squad->unit;
-    tmp = this->__squad;
-    this->__squad = this->__squad->next;
-    delete tmp;
-    return (this->__DeleteAllUnits()); // didnt know i can return a void function in a void function
+	for (int i = 0; i < amount ; i++)
+		delete squad[i];
+	delete [] squad;
 }

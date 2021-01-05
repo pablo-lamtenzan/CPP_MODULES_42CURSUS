@@ -3,44 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 05:48:14 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/05 06:57:51 by plamtenz         ###   ########.fr       */
+/*   Updated: 2021/01/05 08:32:45 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AMATERIA_HPP
-# define AMATERIA_HPP
+# pragma once
 
 #include "ICharacter.hpp"
 
+class ICharacter;
+
 class AMateria
 {
-    protected :
-
-    unsigned int _xp;
-    std::string __type;
+    unsigned int	_xp;
+    std::string		type;
 
     public :
 
-    // Constructor
-    AMateria(std::string const &type);
-    AMateria();
-    AMateria(const AMateria &src);
-
-    // Destructors
+	AMateria();
+    AMateria(std::string const& type);
+    AMateria(const AMateria& src);
     virtual ~AMateria();
-    
-    // Operators
-    AMateria &operator= (AMateria const &src);
-
-    // Shared Methods
-    std::string const &getType() const ; //Returns the materia type
-    unsigned int getXP() const; //Returns the Materia's XP
-
-    virtual AMateria* clone() const = 0;
-    virtual void use(ICharacter& target);
+    AMateria&			operator=(AMateria const& src);
+    const std::string&	getType() const ; //Returns the materia type
+    unsigned int		getXP() const; //Returns the Materia's XP
+    virtual AMateria* 	clone() const = 0;
+    virtual void 		use(ICharacter& target);
+	void				setXp(unsigned int xp);
 };
-
-#endif

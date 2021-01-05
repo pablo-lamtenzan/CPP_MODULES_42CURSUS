@@ -3,39 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   TacticalMarine.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 03:43:39 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/05 04:25:52 by plamtenz         ###   ########.fr       */
+/*   Updated: 2021/01/05 05:36:59 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TACTICALMARINE_HPP
-# define TACTIALMARINE_HPP
+# pragma once
 
 #include "ISpaceMarine.hpp"
 
 class TacticalMarine : public ISpaceMarine
 {
-    private :
-
     public :
 
-    // Constructors
     TacticalMarine();
-    TacticalMarine(const TacticalMarine &src);
-
-    // Destructors
+    TacticalMarine(const TacticalMarine& src);
     ~TacticalMarine();
-
-    // Operators
-    TacticalMarine &operator= (const TacticalMarine &src);
-
-    // Methods
-    virtual TacticalMarine *clone() const;
-    virtual void battleCry() const;
-    virtual void rangedAtack() const;
-    virtual void meleeAttack() const;
+    TacticalMarine&	operator=(const TacticalMarine& src);
+    TacticalMarine*	clone() const;
+    void 			battleCry() const;
+    void 			rangedAttack() const;
+    void 			meleeAttack() const;
 };
-
-#endif

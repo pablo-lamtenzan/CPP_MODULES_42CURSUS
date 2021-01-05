@@ -3,101 +3,69 @@
 /*                                                        :::      ::::::::   */
 /*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 06:17:38 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/05 07:13:04 by plamtenz         ###   ########.fr       */
+/*   Updated: 2021/01/05 08:25:21 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
 
-// Constructors
-
-Character::Character()
+Character::Character() : name("Undefined"), idx(0)
 {
-    this->__name = "not defined";
-    this->__idx = 0;
-    int i = -1;
-    while (++i < 4)
-        this->__stock[i] = NULL;
-    return ;
+    for (size_t i = 0 ; i < sizeof(stock) / sizeof(*stock) ; i++)
+		stock[i] = NULL;
+	std::cout << "An empty Characer has been created!" <<std::endl;
 }
 
-Character::Character(std::string &name)
+Character::Character(const std::string& n) : name(n), idx(0)
 {
-    this->__name = name;
-    this->__idx = 0;
-
-    int i = -1;
-    while (++i < 4)
-        this->__stock[i] = NULL;
-    return ;
+    for (size_t i = 0 ; i < sizeof(stock) / sizeof(*stock) ; i++)
+		stock[i] = NULL;
+	std::cout << "A new Characer has been created!" <<std::endl;
 }
 
-Character::Character(const Character &src)
+Character::Character(const Character& src)
 {
-    *this = src;
-    return ;
+	operator=(src);
+	std::cout << "A new Characer has been created by copy!" <<std::endl;
 }
-
-// Destructors
 
 Character::~Character()
 {
-    // must delete materia
-    return ;
+	for (size_t i = 0 ; i < sizeof(stock) / sizeof(*stock) ; i++)
+		delete stock[i];
+	std::cout << "Character " << name << " has been destroyed!" << std::endl;
 }
 
-// Operators
-
-Character
-&Character::operator= (const Character &src)
+Character&		Character::operator=(const Character& src)
 {
-    if (this == &src)
+    if (this != &src)
     {
-        this->__name = src.__name;
-        this->__idx = src.__idx;
-
-        int i = -1;
-        while (++i < 4)
-        {
-            this->__stock[i] = NULL;
-            this->__stock[i] = src.__stock[i]->clone();
-        }
+        name = src.getName();
+        idx = src.get_idx();
+        for (size_t i = 0 ; i < sizeof(stock) / sizeof(*stock) ; i++)
+			stock[i] = src.stock[i]->clone();
     }
     return (*this);
 }
 
-// Methods
-
-std::string const
-&Character::getName() const
+std::string const	&Character::getName() const { return (name); }
+void				Character::equip(AMateria* m)
 {
-    return (this->__name);
+    if (idx >= 0 && idx < 3)
+        stock[idx++] = m;
 }
 
-void
-Character::equip(AMateria* m)
+void					Character::unequip(int i)
 {
-    if (this->__idx >= 0 && this->__idx < 3)
-    {
-        this->__stock[this->__idx] = m;
-        this->__idx++;
-    }
-    return ;
+    if (i >= 0 && i < 3)
+	{
+        stock[i] = NULL;
+		idx--;
+	}
 }
 
-void
-Character::unequip(int idx)
-{
-    this->__stock[idx] = idx >= 0 && idx < 4 ? NULL : this->__stock[idx];
-    return ;
-}
-
-void
-Character::use(int idx, ICharacter& target)
-{
-    if (idx < this->__idx)
-        this->__stock[idx]->use(target);
-}
+void					Character::use(int i, ICharacter& target) { if (i < idx) stock[i]->use(target); }
+int						Character::get_idx() const { return (idx); }
