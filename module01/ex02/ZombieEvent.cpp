@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 01:32:25 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/20 04:25:11 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2020/12/23 08:05:47 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void ZombieEvent::setZombieType()
 	type = t;
 }
 
-std::string	ZombieEvent::get_type() const { return (type); }
+const std::string&	ZombieEvent::get_type() const { return (type); }
     
-Zombie	*ZombieEvent::newZombie(std::string& name)
+Zombie	*ZombieEvent::newZombie(const std::string& name)
 {
 	std::string t = get_type();
     return (new Zombie(name, t));

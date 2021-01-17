@@ -34,7 +34,6 @@ class Array
     T&			operator[](size_t pos);
     const T&	operator[](size_t pos) const;
     size_t		size() const;
-	T&			at(size_t pos) const;
 
     class ArrayFailException : public std::exception { public: const char *what() const throw(); };
 };
@@ -43,7 +42,7 @@ template <typename T>
 Array<T>::Array() : array(NULL), _size(0) { }
 
 template <typename T>
-Array<T>::Array(size_t n) : array(new T[n]()), _size(n) { }
+Array<T>::Array(size_t n) : array(new T [n]()), _size(n) { }
 
 template <typename T>
 Array<T>::~Array() { delete [] array; }
@@ -77,7 +76,7 @@ Array<T>&	Array<T>::operator=(const Array<T>& src)
 		const size_t s = src.size();
 		if (&src && s)
 		{
-			array = new T[s];
+			array = new T [s];
 			for (size_t i = 0 ; i < s ; i++)
 				array[i] = src.operator[](i);
 		}
@@ -85,6 +84,7 @@ Array<T>&	Array<T>::operator=(const Array<T>& src)
 			*this = nullptr;
 		_size = s;
 	}
+	return (*this);
 }
 
 template <typename T>

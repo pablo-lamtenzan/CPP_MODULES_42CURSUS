@@ -6,39 +6,23 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 03:41:16 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/21 04:40:01 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 17:58:57 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap(const std::string& n)
-{
-	HitPoints = 100;
-	MaxHitPoints = 100;
-	EnergyPoints = 50;
-	MaxEnergyPoints = 50;
-	Level = 1;
-	name = n;
-	MeleeAttackDamage = 20;
-	RangedAttackDamage = 15;
-	ArmorDamageReduction = 3;
-	std::cout << "New ScavTrap " << name << " has been created!"  << std::endl; }
+ScavTrap::ScavTrap(const std::string& n) : ClapTrap(100, 100, 50, 50, 1, n, 20, 15, 3) { std::cout << "New ScavTrap " << name << " has been created!"  << std::endl; }
 
 ScavTrap::ScavTrap()
 { ClapTrap Clap; std::cout << "An unitialised ScavTrap has been created!" << std::endl; }
 
-ScavTrap::ScavTrap(const ScavTrap& src)
-{
-	std::cout << "New ScavTrap " << src.name << " has been created by copy constructor!" << std::endl;
-    if (this != &src)
-		*this = src;
-}
+ScavTrap::ScavTrap(const ScavTrap& src) : ClapTrap(src.HitPoints, src.MaxHitPoints, src.EnergyPoints, src.MaxEnergyPoints, src.Level, src.name, src.MeleeAttackDamage, src.RangedAttackDamage, src.ArmorDamageReduction)
+{ std::cout << "New ScavTrap " << src.name << " has been created by copy constructor!" << std::endl; }
 
-// This is not right the solution ...
-ScavTrap::~ScavTrap() { itself->~ClapTrap(); std::cout << "A ScavTrap has been destroyed!" << std::endl; }
+ScavTrap::~ScavTrap() { std::cout << "A ScavTrap has been destroyed!" << std::endl; }
 
-ScavTrap&	ScavTrap::operator= (const ScavTrap& src)
+ScavTrap&	ScavTrap::operator=(const ScavTrap& src)
 {
     if (this != &src)
     {
@@ -60,7 +44,7 @@ void		ScavTrap::meleeAttack(std::string const& target) { std::cout << "SCAV-TP <
 
 void		ScavTrap::challengeNewcomer()
 {
-    static const char*const challenges[] {
+    static const char*const challenges[] = {
 		"Imagine a challenge",
 		"Having imagination to imagine challenges",
 		"Do not think about imagine challenges",

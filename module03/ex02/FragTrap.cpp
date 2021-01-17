@@ -6,36 +6,22 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 03:03:57 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/21 04:28:24 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 17:42:56 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap(const std::string& n)
-{
-	HitPoints = 100;
-	MaxHitPoints = 100;
-	EnergyPoints = 100;
-	MaxHitPoints = 100;
-	Level = 1;
-	name = n;
-	MeleeAttackDamage = 30;
-	RangedAttackDamage = 20;
-	ArmorDamageReduction = 5;
-	std::cout << "New FragTrap " << n << " has been created!" << std::endl;
-}
+FragTrap::FragTrap(const std::string& n) : ClapTrap(100, 100, 100, 100, 1, n, 30, 20, 5) { std::cout << "New FragTrap " << n << " has been created!" << std::endl; }
 
-FragTrap::FragTrap()
-{ ClapTrap Clap; std::cout << "An unitialised TragTrap has been created!" << std::endl; }
+FragTrap::FragTrap() : ClapTrap()
+{ std::cout << "An unitialised TragTrap has been created!" << std::endl; }
 
-FragTrap::FragTrap(const FragTrap& src) 
+FragTrap::FragTrap(const FragTrap& src) : ClapTrap(src.HitPoints, src.MaxHitPoints, src.EnergyPoints, src.MaxEnergyPoints, src.Level, src.name, src.MeleeAttackDamage, src.RangedAttackDamage, src.ArmorDamageReduction) 
 {
 	std::cout << "New FragTrap " << src.name << " has been created by copy constructor!" << std::endl;
-	if (this != &src)
-		*this = src;
 }
-FragTrap::~FragTrap() { itself->~ClapTrap(); std::cout << "A FragTrap has been destroyed!" << std::endl; }
+FragTrap::~FragTrap() { std::cout << "A FragTrap has been destroyed!" << std::endl; }
 
 FragTrap&	FragTrap::operator=(const FragTrap &src)
 {
@@ -59,7 +45,7 @@ void		FragTrap::meleeAttack(std::string const &target) { std::cout << "FR4G-TP <
 
 void		FragTrap::vaulthunter_dot_exe(std::string const &target)
 {
-	static const char*const attacks[] {
+	static const char*const attacks[] = {
 		"Normal attack",
 		"Heavy attack",
 		"Surprise attack",

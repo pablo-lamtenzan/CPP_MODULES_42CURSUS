@@ -6,12 +6,11 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 03:37:56 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/21 03:26:23 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 19:38:04 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-# define SCAVTRAP_HPP
+# pragma once
 
 #include <iostream>
 #include <random>
@@ -30,5 +29,3 @@ class ScavTrap : public ClapTrap
     void		meleeAttack(std::string const& target);
     void		challengeNewcomer();
 };
-
-#endif

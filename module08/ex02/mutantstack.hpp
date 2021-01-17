@@ -23,11 +23,14 @@ class MutantStack : public std::stack<C>
 
 	MutantStack();
 	MutantStack(const MutantStack& src);
+	// Do i need this ? Pointers are compatible
 	MutantStack(const std::stack<C>& src);
+	~MutantStack();
 	MutantStack&	operator=(const std::stack<C>& src);
 
-	typename std::stack<C>::container_type::iterator	begin();
-	typename std::stack<C>::container_type::iterator	end();
+	typedef typename std::stack<C>::container_type::iterator iterator;
+	iterator		begin();
+	iterator		end();
 };
 
 #endif

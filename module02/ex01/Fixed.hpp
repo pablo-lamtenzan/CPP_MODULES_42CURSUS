@@ -10,12 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED_HPP
-# define FIXED_HPP
+# pragma once
 
-#include <iostream>
-#include <ostream>
-#include <string>
+# include <iostream>
+# include <ostream>
+# include <string>
 
 class Fixed
 {
@@ -42,5 +41,3 @@ class Fixed
 };
 
 std::ostream& operator<<(std::ostream& out, const Fixed& src);
-
-#endif

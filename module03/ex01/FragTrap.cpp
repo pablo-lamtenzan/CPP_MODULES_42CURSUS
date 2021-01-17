@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 03:03:57 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/20 12:50:58 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 17:43:22 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void		FragTrap::beRepaired(unsigned int amount)
 
 void		FragTrap::vaulthunter_dot_exe(std::string const &target)
 {
-	static const char*const attacks[] {
+	static const char*const attacks[] = {
 		"Normal attack",
 		"Heavy attack",
 		"Surprise attack",

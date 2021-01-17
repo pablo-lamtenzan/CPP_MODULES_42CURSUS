@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 23:27:55 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/20 02:14:43 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2020/12/23 07:52:31 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 
 class Pony
 {
-    private :
-
 	std::string name;
     std::string color;
     std::string height;
@@ -27,12 +25,12 @@ class Pony
 
     public :
 
-    Pony(std::string n, std::string c, std::string h, std::string fm);
+    Pony(const std::string& n, const std::string& c, const std::string& h, const std::string& fm);
 	~Pony();
-    const std::string get_name() const;
-    const std::string get_color() const;
-    const std::string get_height() const;
-    const std::string get_fav_meal() const;
+    const std::string& get_name() const;
+    const std::string& get_color() const;
+    const std::string& get_height() const;
+    const std::string& get_fav_meal() const;
 };
 
 void        ponyOnTheHeap();

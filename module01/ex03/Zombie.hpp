@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 00:46:48 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/20 04:33:45 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2020/12/23 08:13:27 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ class Zombie
 	
     Zombie();
 	~Zombie();
-    Zombie(std::string& n, std::string &t);
+    Zombie(const std::string& n, const std::string& t);
     void announce();
     void RandName();
     void RandType();
-    const std::string get_name() const;
-    const std::string get_type() const;
+    const std::string& get_name() const;
+    const std::string& get_type() const;
 };
 
 #endif

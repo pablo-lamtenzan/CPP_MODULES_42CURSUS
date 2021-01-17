@@ -16,9 +16,9 @@
 Fixed::Fixed() : raw(0) { std::cout << "Default constructor called" << std::endl; }
 Fixed::Fixed(const Fixed& src) : raw(0)
 {
-	if (this != &src)	
-		*this = src;
 	std::cout << "Copy constructor called" << std::endl;
+	if (this != &src)	
+		operator=(src);
 }
 Fixed::Fixed(const int intValue) : raw(intValue << fract) { std::cout << "Int constructor called" << std::endl; }
 Fixed::Fixed(const float floatValue) : raw(roundf(floatValue * powershift)) { std::cout << "Float constructor called" << std::endl; }
@@ -32,11 +32,7 @@ Fixed&		Fixed::operator=(const Fixed& src)
     return (*this);
 }
 
-std::ostream& operator<<(std::ostream& out, const Fixed& src)
-{
-    out << src.toFloat();
-    return (out);
-}
+std::ostream& operator<<(std::ostream& out, const Fixed& src) { return (out << src.toFloat()); }
 
 int				Fixed::getRawBits() const { return (raw); }
 

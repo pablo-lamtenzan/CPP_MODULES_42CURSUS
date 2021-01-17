@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 20:07:46 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/25 21:21:24 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2020/12/25 21:50:01 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int main()
     }
     catch(const std::exception& e)
     {
-        std::cout << "exception catched :" << e.what() << std::endl;
+        std::cout << "exception catched: " << e.what() << std::endl;
     }
     return (0);
 }

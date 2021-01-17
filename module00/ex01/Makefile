@@ -1,6 +1,7 @@
 NAME	=	phonebook
 SRCS	=	phonebook.cpp
 CC		=	clang++
+
 CFLAGS	=	-Wall -Wextra -Werror
 
 all:		$(NAME)

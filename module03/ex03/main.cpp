@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/09 21:50:56 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/21 04:57:06 by pablo            ###   ########lyon.fr   */
+/*   Created: 2020/03/04 04:35:19 by plamtenz          #+#    #+#             */
+/*   Updated: 2020/12/29 18:17:23 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "NinjaTrap.hpp"
 #include "FragTrap.hpp"
 #include "ScavTrap.hpp"
+#include "NinjaTrap.hpp"
 
 int main()
 {
@@ -54,8 +54,7 @@ int main()
 	N.ninjaShoebox(F);
 	N.ninjaShoebox(S);
 	N.ninjaShoebox(F);
-	
-	
+
 	std::cout << std::endl << "EXIT" << std::endl;
 	return (0);
 }

@@ -15,9 +15,9 @@
 Fixed::Fixed() : raw(0) { std::cout << "Default constructor called" << std::endl; }
 Fixed::Fixed(const Fixed& src) : raw(0)
 {
+	std::cout << "Copy constructor called" << std::endl;
 	if (this != &src)
-    	*this = src;
-    std::cout << "Copy constructor called" << std::endl;
+    	operator=(src);
 }
 Fixed::~Fixed() { std::cout << "Destructor called" << std::endl; }
 

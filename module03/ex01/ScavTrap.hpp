@@ -6,12 +6,11 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 03:37:56 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/20 13:30:55 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 19:41:20 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-# define SCAVTRAP_HPP
+# pragma once
 
 #include <iostream>
 #include <random>
@@ -44,5 +43,3 @@ class ScavTrap
     void		beRepaired(unsigned int amount);
     void		challengeNewcomer();
 };
-
-#endif

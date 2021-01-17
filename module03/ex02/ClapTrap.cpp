@@ -6,14 +6,16 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 04:31:08 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/21 04:27:56 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 18:14:08 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-// ClapTrap is created before been initialized, this is why we if try to print the values here there are uinitisized
 ClapTrap::ClapTrap() : itself(this) { std::cout << "An new CL4P-TRAP has been created!" << std::endl; }
+
+ClapTrap::ClapTrap(ssize_t hp, ssize_t max_hp, ssize_t ep, ssize_t max_ep, ssize_t lv, const std::string& n, ssize_t m_ad, ssize_t r_ad, ssize_t armor) : HitPoints(hp), MaxHitPoints(max_hp), EnergyPoints(ep), MaxEnergyPoints(max_ep), Level(lv), name(n), MeleeAttackDamage(m_ad), RangedAttackDamage(r_ad), ArmorDamageReduction(armor)
+{ std::cout << "A new CL4P-TRAP " << name << " has been created by copy!" << std::endl; }
 
 ClapTrap::ClapTrap(const ClapTrap &src)
 {
@@ -45,5 +47,5 @@ void			ClapTrap::takeDamage(unsigned int amount)
     HitPoints = HitPoints < 0 ? 0 : (HitPoints > MaxHitPoints ? MaxHitPoints : HitPoints);
 }
 
-std::string		ClapTrap::getName() const { return (name); }
-ssize_t			ClapTrap::get_hp() const { return (HitPoints); }
+const std::string&	ClapTrap::getName() const { return (name); }
+ssize_t				ClapTrap::get_hp() const { return (HitPoints); }

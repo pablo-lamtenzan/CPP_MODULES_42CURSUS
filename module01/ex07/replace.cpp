@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 22:00:35 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/20 07:49:40 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2020/12/23 08:36:11 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	print_error(const std::string& err_msg)
 
 int main(int ac, const char** av)
 {
-	static const char *const errors[] {
+	static const char*	const errors[] {
 		"Error: Usage: Wrong argument number.",
 		"Error: Arguments must not be empty!",
 		"Error: File is not openable ..."

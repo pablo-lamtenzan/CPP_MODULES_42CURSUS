@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ex01.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plamtenz <plamtenz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 00:44:03 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/03/03 00:46:41 by plamtenz         ###   ########.fr       */
+/*   Updated: 2020/12/23 08:02:43 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,3 +19,5 @@ void memoryLeak()
     std::cout << *panther << std::endl;
     delete panther;
 }
+
+int main() { memoryLeak(); return 0; }

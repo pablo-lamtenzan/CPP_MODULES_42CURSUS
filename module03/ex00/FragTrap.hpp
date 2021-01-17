@@ -6,12 +6,11 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 02:20:47 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/20 12:18:29 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 19:40:42 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAGTRAP_HPP
-# define FRAGTRAP_HPP
+# pragma once
 
 #include <iostream>
 #include <random>
@@ -46,4 +45,3 @@ class FragTrap
 	ssize_t		get_hp() const;
 };
 
-#endif

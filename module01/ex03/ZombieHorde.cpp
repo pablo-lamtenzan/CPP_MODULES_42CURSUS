@@ -41,10 +41,9 @@ ZombieHorde::~ZombieHorde()
 }
 
 size_t	ZombieHorde::get_amount() const { return (amount); }
-Zombie	*ZombieHorde::get_horde() const & { return (HordeZombies); }
+Zombie	*ZombieHorde::get_horde() const { return (HordeZombies); }
 
-void
-ZombieHorde::foreach_anounce()
+void	ZombieHorde::foreach_anounce()
 {
 	for (size_t i = 0; i < amount; i++)
 		HordeZombies[i].announce();

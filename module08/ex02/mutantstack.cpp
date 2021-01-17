@@ -13,7 +13,7 @@
 #include "mutantstack.hpp"
 
 template <typename C>
-MutantStack<C>::MutantStack() { }
+MutantStack<C>::MutantStack() : std::stack<C>() { }
 
 template <typename C>
 MutantStack<C>::MutantStack(const MutantStack& src) : std::stack<C>(src) { }
@@ -22,10 +22,13 @@ template <typename C>
 MutantStack<C>::MutantStack(const std::stack<C>& src) : std::stack<C>(src) { }
 
 template <typename C>
+MutantStack<C>::~MutantStack() { }
+
+template <typename C>
 MutantStack<C>& MutantStack<C>::operator=(const std::stack<C>& src) { return (std::stack<C>::operator=(src)); }
 
 template <typename C>
-typename std::stack<C>::container_type::iterator MutantStack<C>::begin() { return (this->c.begin()); }
+typename MutantStack<C>::iterator MutantStack<C>::begin() { return (this->c.begin()); }
 
 template <typename C>
-typename std::stack<C>::container_type::iterator MutantStack<C>::end() { return (this->c.end()); }
+typename MutantStack<C>::iterator MutantStack<C>::end() { return (this->c.end()); }

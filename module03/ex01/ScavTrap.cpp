@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 03:41:16 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/21 04:05:28 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 17:47:05 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ ScavTrap::ScavTrap(const ScavTrap& src) : ptr((const void*const)&src)
 
 ScavTrap::~ScavTrap() { std::cout << "A ScavTrap has been destroyed!" << std::endl; }
 
-ScavTrap&	ScavTrap::operator= (const ScavTrap& src)
+ScavTrap&	ScavTrap::operator=(const ScavTrap& src)
 {
     if (this != &src)
     {
@@ -64,7 +64,7 @@ void		ScavTrap::beRepaired(unsigned int amount)
 
 void		ScavTrap::challengeNewcomer()
 {
-    static const char*const challenges[] {
+    static const char*const challenges[] = {
 		"Imagine a challenge",
 		"Having imagination to imagine challenges",
 		"Do not think about imagine challenges",

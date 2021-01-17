@@ -6,12 +6,11 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 02:20:47 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/21 03:26:49 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 19:38:37 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAGTRAP_HPP
-# define FRAGTRAP_HPP
+# pragma once
 
 #include <iostream>
 #include <random>
@@ -31,4 +30,3 @@ class FragTrap : public ClapTrap
     void		vaulthunter_dot_exe(std::string const& target);
 };
 
-#endif

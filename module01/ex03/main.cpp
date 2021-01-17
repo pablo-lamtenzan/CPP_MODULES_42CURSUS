@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 03:15:01 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/20 05:08:31 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2020/12/23 08:21:16 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ int main()
     Horde.foreach_anounce();
 	std::cout << "Type any key to terminate the program." << std::endl;
 	std::cin >> tmp;
+	std::cout << "EXIT" << std::endl;
 	return (0);
 }
