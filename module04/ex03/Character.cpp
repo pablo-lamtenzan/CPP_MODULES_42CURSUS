@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Character.cpp                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/05 06:17:38 by plamtenz          #+#    #+#             */
-/*   Updated: 2021/01/05 08:25:21 by pablo            ###   ########lyon.fr   */
-/*                                                                            */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   Character.cpp                                    .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: plamtenz <plamtenz@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2020/03/05 06:17:38 by plamtenz     #+#   ##    ##    #+#       */
+/*   Updated: 2021/01/19 16:08:08 by plamtenz    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
 /* ************************************************************************** */
-
 #include "Character.hpp"
 
 Character::Character() : name("Undefined"), idx(0)
@@ -46,7 +46,10 @@ Character&		Character::operator=(const Character& src)
         name = src.getName();
         idx = src.get_idx();
         for (size_t i = 0 ; i < sizeof(stock) / sizeof(*stock) ; i++)
+        {
+            delete stock[i];
 			stock[i] = src.stock[i]->clone();
+        }
     }
     return (*this);
 }
