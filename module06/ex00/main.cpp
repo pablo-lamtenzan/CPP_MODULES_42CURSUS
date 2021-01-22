@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/06 12:56:10 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/25 17:41:23 by pablo            ###   ########lyon.fr   */
-/*                                                                            */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   main.cpp                                         .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: plamtenz <plamtenz@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2020/03/06 12:56:10 by plamtenz     #+#   ##    ##    #+#       */
+/*   Updated: 2021/01/22 16:56:26 by plamtenz    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
 /* ************************************************************************** */
-
 #include <iostream>
 #include <sstream>
 #include <iomanip>
@@ -44,6 +44,10 @@ int main(int ac, const char **argv)
 	// Check for octal format
 	bool isOctal = (x.compare(0, 1, "0") == 0);
 
+	// Remove the 'f' form the floats
+    if (!isHex && !isInf && (x.find('f', x.length() - 1) != std::string::npos))
+        x = x.substr(0, x.length() - 2);
+
 	// I little bit of 'ramdon' format error handling
 	if (std::isdigit(x.at(0)) && (!isHex || !isOctal))
 	{
@@ -55,14 +59,8 @@ int main(int ac, const char **argv)
 			}
 	}
     
-	// Remove the 'f' form the floats
-    if (!isHex && !isInf &&
-            (x.find('f') != std::string::npos && x.length() - 1 == 'f'))
-        x.substr(0, x.length() - 1);
-
 	// MAX_SIZE container
     long double cast = 0;
-
 	// Convert not digit ascci to int
 	if (!isInf && std::isprint(x.at(0)) && !std::isdigit(x.at(0)))
 	{
