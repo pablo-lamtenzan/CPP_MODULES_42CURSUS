@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/05 09:31:26 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/24 16:59:44 by pablo            ###   ########lyon.fr   */
-/*                                                                            */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   main.cpp                                         .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: plamtenz <plamtenz@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2020/03/05 09:31:26 by plamtenz     #+#   ##    ##    #+#       */
+/*   Updated: 2021/01/22 15:22:42 by plamtenz    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
 /* ************************************************************************** */
-
 #include "Bureaucrat.hpp"
 
 int main()
@@ -39,5 +39,6 @@ int main()
 	}catch(const std::exception& e) { std::cerr << e.what() << std::endl; }
 
 	std::cout << "EXIT" << std::endl;
+	
 	return (0);
 }

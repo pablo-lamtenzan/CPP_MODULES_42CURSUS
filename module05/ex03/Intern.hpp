@@ -1,17 +1,17 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Intern.hpp                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/06 09:59:09 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/25 11:38:55 by pablo            ###   ########lyon.fr   */
-/*                                                                            */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   Intern.hpp                                       .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: plamtenz <plamtenz@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2020/03/06 09:59:09 by plamtenz     #+#   ##    ##    #+#       */
+/*   Updated: 2021/01/22 15:45:46 by plamtenz    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef INTERN_HPP
-# define INTERN_HPP
+# pragma once
 
 #include "Form.hpp"
 
@@ -25,5 +25,3 @@ class Intern
     Intern&	operator=(const Intern& src);
     Form*	makeForm(const std::string& type, const std::string& target);
 };
-
-#endif

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/06 07:35:31 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/24 17:43:54 by pablo            ###   ########lyon.fr   */
-/*                                                                            */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   ShrubberyCreationForm.hpp                        .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: plamtenz <plamtenz@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2020/03/06 07:35:31 by plamtenz     #+#   ##    ##    #+#       */
+/*   Updated: 2021/01/22 15:43:15 by plamtenz    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef SHRUBBERYCREATIONFORM_HPP
-# define SHRUBBERYCREATIONFORM_HPP
+# pragma once
 
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
@@ -27,5 +27,3 @@ class ShrubberyCreationForm : public Form
     ShrubberyCreationForm&	operator=(const ShrubberyCreationForm& src);
     void					execute(Bureaucrat const& executor) const;
 };
-
-#endif

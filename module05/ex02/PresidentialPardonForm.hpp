@@ -1,17 +1,17 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/06 09:11:11 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/24 17:38:45 by pablo            ###   ########lyon.fr   */
-/*                                                                            */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   PresidentialPardonForm.hpp                       .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: plamtenz <plamtenz@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2020/03/06 09:11:11 by plamtenz     #+#   ##    ##    #+#       */
+/*   Updated: 2021/01/22 15:42:31 by plamtenz    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef PRESIDENTIALPARDONFORM_HPP
-# define PRESIDENTIALPARDONFORM_HPP
+# pragma once
 
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
@@ -27,5 +27,3 @@ class PresidentialPardonForm : public Form
     PresidentialPardonForm&		operator=(const PresidentialPardonForm& src);
     void						execute(Bureaucrat const& executor) const;
 };
-
-#endif

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/05 09:42:35 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/24 18:14:06 by pablo            ###   ########lyon.fr   */
-/*                                                                            */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   Form.hpp                                         .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: plamtenz <plamtenz@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2020/03/05 09:42:35 by plamtenz     #+#   ##    ##    #+#       */
+/*   Updated: 2021/01/22 15:45:30 by plamtenz    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-# define FORM_HPP
+# pragma once
 
 #include <iostream>
 #include <string>
@@ -53,5 +53,3 @@ class Form
 };
 
 std::ostream& operator<<(std::ostream& out, const Form& src);
-
-#endif

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/06 08:56:37 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/24 17:38:53 by pablo            ###   ########lyon.fr   */
-/*                                                                            */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   RobotomyRequestForm.hpp                          .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: plamtenz <plamtenz@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2020/03/06 08:56:37 by plamtenz     #+#   ##    ##    #+#       */
+/*   Updated: 2021/01/22 15:46:19 by plamtenz    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef ROBOTOMYREQUESTFORM_HPP
-# define ROBOTOMYREQUESTFORM_HPP
+# pragma once
 
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
@@ -26,5 +26,3 @@ class RobotomyRequestForm : public Form
     RobotomyRequestForm&	operator=(const RobotomyRequestForm& src);
     void					execute(Bureaucrat const& executor) const;
 };
-
-#endif

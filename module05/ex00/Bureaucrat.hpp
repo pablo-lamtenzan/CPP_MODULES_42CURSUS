@@ -1,17 +1,17 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/05 08:11:52 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/24 15:39:17 by pablo            ###   ########lyon.fr   */
-/*                                                                            */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   Bureaucrat.hpp                                   .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: plamtenz <plamtenz@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2020/03/05 08:11:52 by plamtenz     #+#   ##    ##    #+#       */
+/*   Updated: 2021/01/22 15:41:18 by plamtenz    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef BUREAUCRAT_HPP
-# define BUREAUCRAT_HPP
+# pragma once
 
 /*
 ** The dynamic exception specification "throw()" is deprecated today, i don't know if i must use it
@@ -51,5 +51,3 @@ class Bureaucrat
 };
 
 std::ostream& operator<<(std::ostream& out, const Bureaucrat& src);
-
-#endif
