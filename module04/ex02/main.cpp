@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/22 13:23:39 by pablo             #+#    #+#             */
-/*   Updated: 2021/01/05 07:23:26 by pablo            ###   ########lyon.fr   */
-/*                                                                            */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   main.cpp                                         .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: plamtenz <plamtenz@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2020/12/22 13:23:39 by pablo        #+#   ##    ##    #+#       */
+/*   Updated: 2021/01/19 15:44:05 by plamtenz    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
 /* ************************************************************************** */
-
 #include "TacticalMarine.hpp"
 #include "AssaultTerminator.hpp"
 #include "Squad.hpp"
@@ -63,13 +63,12 @@ int main()
 	Squad* x = new Squad;
 	x->push(ss);
 	x->push(ss);
-	x = l; // TO DO must exclude ss
+	x = l;
 	
 	std::cout << "EXIT" << std::endl;
 	delete xlb;
 	std::cout << "----------------------------------" << std::endl;
 	delete l;
-	delete x; // TO DO: solve problems
 
-	return 0;
+	return (0);
 }

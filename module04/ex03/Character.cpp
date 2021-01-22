@@ -6,7 +6,7 @@
 /*   By: plamtenz <plamtenz@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/03/05 06:17:38 by plamtenz     #+#   ##    ##    #+#       */
-/*   Updated: 2021/01/19 16:08:08 by plamtenz    ###    #+. /#+    ###.fr     */
+/*   Updated: 2021/01/22 13:03:03 by plamtenz    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -45,7 +45,7 @@ Character&		Character::operator=(const Character& src)
     {
         name = src.getName();
         idx = src.get_idx();
-        for (size_t i = 0 ; i < sizeof(stock) / sizeof(*stock) ; i++)
+        for (size_t i = 0 ; i < sizeof(stock) / sizeof(*stock) && src.stock[i] ; i++)
         {
             delete stock[i];
 			stock[i] = src.stock[i]->clone();

@@ -47,12 +47,9 @@ int main()
 
 	// Free ressources
 
-	std::cout << std::endl << "EXIT" << std::endl;
-
 	delete src1;
 	delete src3;
 	delete ch1;
-	delete ch3;
 
 	return (0);
 }

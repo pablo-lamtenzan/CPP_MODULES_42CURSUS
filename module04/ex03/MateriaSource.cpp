@@ -6,7 +6,7 @@
 /*   By: plamtenz <plamtenz@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/03/05 06:47:00 by plamtenz     #+#   ##    ##    #+#       */
-/*   Updated: 2021/01/19 16:17:57 by plamtenz    ###    #+. /#+    ###.fr     */
+/*   Updated: 2021/01/22 13:17:57 by plamtenz    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,6 +21,8 @@ MateriaSource::MateriaSource() : idx(0)
 
 MateriaSource::MateriaSource(const MateriaSource& src)
 {
+	for (size_t i = 0 ; i < sizeof(stock) / sizeof(*stock) ; i++)
+		stock[i] = NULL;
 	operator=(src);
 	std::cout << "A new MateriaSource has been created!" <<std::endl;
 }
@@ -39,7 +41,7 @@ MateriaSource&	MateriaSource::operator=(const MateriaSource& src)
         idx = src.idx;
 		for (size_t i = 0 ; i < sizeof(stock) / sizeof(*stock) ; i++)
 			delete stock[i];
-        for (size_t i = 0 ; i < sizeof(stock) / sizeof(*stock) ; i++)
+        for (size_t i = 0 ; i < sizeof(stock) / sizeof(*stock) && src.stock[i] ; i++)
 			learnMateria(src.stock[i]->clone());
     }
     return (*this);

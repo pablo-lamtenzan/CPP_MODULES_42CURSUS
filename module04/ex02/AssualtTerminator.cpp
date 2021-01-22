@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   AssualtTerminator.cpp                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/05 04:15:54 by plamtenz          #+#    #+#             */
-/*   Updated: 2021/01/05 05:54:33 by pablo            ###   ########lyon.fr   */
-/*                                                                            */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   AssualtTerminator.cpp                            .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: plamtenz <plamtenz@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2020/03/05 04:15:54 by plamtenz     #+#   ##    ##    #+#       */
+/*   Updated: 2021/01/19 15:38:06 by plamtenz    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
 /* ************************************************************************** */
-
 #include "AssaultTerminator.hpp"
 
 AssaultTerminator::AssaultTerminator() { std::cout << "* teleports from space *" << std::endl; }
@@ -24,5 +24,6 @@ AssaultTerminator&		AssaultTerminator::operator=(const AssaultTerminator& src) {
 
 AssaultTerminator*	AssaultTerminator::clone() const { return (new AssaultTerminator(*this)); }
 void			AssaultTerminator::battleCry() const { std::cout << "This code is unclean. PURIFY IT!" << std::endl; }
-void			AssaultTerminator::meleeAttack() const { std::cout << "* attacks with chainfists *" << std::endl; }
 void			AssaultTerminator::rangedAttack() const { std::cout << " does nothing *" << std::endl; }
+void			AssaultTerminator::meleeAttack() const { std::cout << "* attacks with chainfists *" << std::endl; }
+
