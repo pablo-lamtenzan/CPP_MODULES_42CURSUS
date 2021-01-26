@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#ifndef ARRAY_HPP
-# define ARRAY_HPP
+# pragma once
 
 #include <iostream>
 # include <exception>
@@ -42,7 +40,7 @@ template <typename T>
 Array<T>::Array() : array(NULL), _size(0) { }
 
 template <typename T>
-Array<T>::Array(size_t n) : array(new T [n]()), _size(n) { }
+Array<T>::Array(size_t n) : array(new T[n]()), _size(n) { }
 
 template <typename T>
 Array<T>::~Array() { delete [] array; }
@@ -53,14 +51,12 @@ Array<T>::Array(const Array<T>& src)
 	if (this != &src)
 	{
 		const size_t s = src.size();
-		if (&src && s)
+		if (s > 0)
 		{
 			array = new T[s];
 			for (size_t i = 0 ; i < s ; i++)
 				array[i] = src.operator[](i);
 		}
-		else if (!&src)
-			*this = nullptr;
 		_size = s;
 	}
 }
@@ -72,7 +68,7 @@ Array<T>&	Array<T>::operator=(const Array<T>& src)
 	if (this != &src)
 	{
 		delete [] array;
-    	array = nullptr;
+    	array = NULL;
 		const size_t s = src.size();
 		if (&src && s)
 		{
@@ -80,8 +76,6 @@ Array<T>&	Array<T>::operator=(const Array<T>& src)
 			for (size_t i = 0 ; i < s ; i++)
 				array[i] = src.operator[](i);
 		}
-		else if (!&src)
-			*this = nullptr;
 		_size = s;
 	}
 	return (*this);
@@ -110,5 +104,3 @@ size_t	Array<T>::size() const { return (_size); }
 
 template <typename T>
 const char*		Array<T>::ArrayFailException::what() const throw() { return ("Array error"); }
-
-#endif
