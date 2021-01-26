@@ -6,14 +6,13 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 14:19:28 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/25 18:54:58 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/01/26 19:58:01 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
 #include <cstdlib>
-#include <random>
 
 typedef struct	data
 {
