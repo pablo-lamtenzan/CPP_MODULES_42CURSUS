@@ -19,7 +19,7 @@ int main()
 {
     std::cout << "Integer test 1: " << std::endl;
     int array[] = {1, 2, 3, 5, 8, 13, 21, 34, 55, 89};
-    ::iter(array, 10, test_int);
+    iter(array, 10, test_int);
 
     std::cout << std::endl << "Integer test 2: " << std::endl;
     iter(array, 5, test_int);
