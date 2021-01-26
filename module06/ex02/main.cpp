@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 15:09:40 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/25 19:48:29 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/01/26 20:10:20 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void		identify_from_pointer(Base* p)
 
 /*
 ** Dynamic cast to reference thows a bad cast exection in case of failure.
+** bad cast is included in typeinfo so i can't use it ... (subject rules)
 */
 
 void		identify_from_reference(Base& p)
@@ -44,21 +45,21 @@ void		identify_from_reference(Base& p)
 		(void)dynamic_cast<A&>(p);
 		std::cout << "Type is A!" << std::endl;
 	}
-	catch(std::bad_cast& e)
+	catch(std::exception& e)
 	{
 		try
 		{
 			(void)dynamic_cast<B&>(p);
 			std::cout << "Type is B!" << std::endl;
 		}
-		catch(std::bad_cast& e)
+		catch(std::exception& e)
 		{
 			try
 			{
 				(void)dynamic_cast<C&>(p);
 				std::cout << "Type is C!" << std::endl;
 			}
-			catch (std::bad_cast& e) { std::cerr << "Unknown type..." << std::endl; }
+			catch (std::exception& e) { std::cerr << "Unknown type..." << std::endl; }
 		}
 	}
 }
@@ -66,9 +67,9 @@ void		identify_from_reference(Base& p)
 
 int main()
 {
-	A a = A();
-	B b = B();
-	C c = C();
+	Base a = A();
+	Base b = B();
+	Base c = C();
 
 	identify_from_pointer(&a);
 	identify_from_pointer(&b);
