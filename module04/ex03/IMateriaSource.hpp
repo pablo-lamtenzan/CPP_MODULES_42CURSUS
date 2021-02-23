@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 06:35:36 by plamtenz          #+#    #+#             */
-/*   Updated: 2021/01/05 08:15:39 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 11:58:30 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,8 @@
 #include "Ice.hpp"
 #include "Cure.hpp"
 
-class IMateriaSource
+struct IMateriaSource
 {
-    public :
-    
     virtual ~IMateriaSource() {}
     virtual void learnMateria(AMateria*) = 0;
     virtual AMateria* createMateria(std::string const& type) = 0;

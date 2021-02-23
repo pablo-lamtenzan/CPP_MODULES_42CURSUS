@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 03:36:07 by plamtenz          #+#    #+#             */
-/*   Updated: 2021/01/05 07:21:04 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 12:06:25 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,7 @@ Squad&	Squad::operator=(const Squad& src)
     if (this != &src)
     {
         amount = src.amount;
-		/*if (squad)
-		{
-			for (int i = 0 ; i < amount ; i++)
-			{
-				bool found = false;
-				for (int y = 0 ; y < src.getCount() ; y++)
-				{
-					if (src.getUnit(y) == squad[i])
-						found = true;
-				}
-				if (!found)
-					delete squad[i];
-			}
-			delete [] squad;
-			squad = NULL;
-		}*/
+		squad_clear();
 		squad_dup(src);
     }
     return (*this);
@@ -73,17 +58,7 @@ void	Squad::squad_dup(const Squad& src)
 	ISpaceMarine* sp;
 
 	for (int i = 0; i < src.getCount(); i++)
-	{
-		int t;
-		int am = amount;
-		if ((t = push(sp = src.getUnit(i)->clone())) != am + 1) // TEST THIS
-		{
-			std::cout << "tEst: errno push sp is in src:: " << t << i << std::endl;
-			delete sp;
-		}
-		else
-			std::cout << "XXXXxxxxxxxxx" << t << am << std::endl;
-	}
+		push(sp = src.getUnit(i)->clone());
 }
 
 void	Squad::squad_clear()

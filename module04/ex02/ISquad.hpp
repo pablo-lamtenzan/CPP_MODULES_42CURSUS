@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 04:29:44 by plamtenz          #+#    #+#             */
-/*   Updated: 2021/01/05 05:35:19 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 11:22:26 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@
 
 #include "ISpaceMarine.hpp"
 
-class ISquad
+struct ISquad
 {
-    public :
-
 	virtual ~ISquad() {}
     virtual int getCount() const = 0;
     virtual ISpaceMarine* getUnit(int) const = 0;

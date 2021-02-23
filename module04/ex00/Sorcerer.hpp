@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 05:45:14 by plamtenz          #+#    #+#             */
-/*   Updated: 2021/01/05 03:41:37 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 10:23:39 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 
 class Sorcerer
 {
-    private :
-
 	Sorcerer();
     std::string name;
     std::string	title;

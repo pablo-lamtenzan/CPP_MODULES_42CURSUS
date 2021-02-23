@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 04:20:56 by plamtenz          #+#    #+#             */
-/*   Updated: 2021/01/05 05:34:34 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 11:22:40 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 #include <iostream>
 #include <string>
 
-class ISpaceMarine
+struct ISpaceMarine
 {
-    public :
-
 	virtual ~ISpaceMarine() {}
     virtual ISpaceMarine* clone() const = 0;
     virtual void battleCry() const = 0;

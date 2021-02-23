@@ -6,13 +6,12 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 05:47:19 by plamtenz          #+#    #+#             */
-/*   Updated: 2021/01/05 03:44:10 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 10:42:45 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Sorcerer.hpp"
 
-Sorcerer::Sorcerer() : name("Default Robert"), title("The Default Magnificient") { std::cout << name << ", " << title << " is born!" << std::endl; }
 Sorcerer::Sorcerer(const std::string& n, const std::string& t) : name(n), title(t) { std::cout << name << ", " << title << " is born!" << std::endl; }
 
 Sorcerer::Sorcerer(const Sorcerer& src)
@@ -22,7 +21,7 @@ Sorcerer::Sorcerer(const Sorcerer& src)
 	std::cout << name << ", " << title << " is born!" << std::endl;
 }
 
-Sorcerer::~Sorcerer() { std::cout <<name << ", " << title << ", is dead. Consequences will never be the same!" << std::endl; }
+Sorcerer::~Sorcerer() { std::cout << name << ", " << title << ", is dead. Consequences will never be the same!" << std::endl; }
 
 Sorcerer&	Sorcerer::operator=(const Sorcerer &src)
 {

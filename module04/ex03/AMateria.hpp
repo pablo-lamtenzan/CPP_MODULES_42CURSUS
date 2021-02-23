@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 05:48:14 by plamtenz          #+#    #+#             */
-/*   Updated: 2021/01/05 08:32:45 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 11:59:32 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include "ICharacter.hpp"
 
-class ICharacter;
+struct ICharacter;
 
 class AMateria
 {

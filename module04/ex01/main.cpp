@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 09:55:18 by pablo             #+#    #+#             */
-/*   Updated: 2021/01/05 05:19:39 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 10:56:16 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 int main()
 {
-	// Test dinamic assigantion
+	// Test dynamic assigantion
 	Character* me = new Character("me");
 	std::cout << *me;
 	Enemy* b = new RadScorpion();
