@@ -6,11 +6,12 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 09:01:25 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/24 18:18:01 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 13:16:33 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
+#include <cstdlib>
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string& target) : Form("robotomy request", 72, 45, target) { }
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& src) : Form(src.getName(), src.getGradeSign(), src.getGradeExec(), src.getTarget()) { }

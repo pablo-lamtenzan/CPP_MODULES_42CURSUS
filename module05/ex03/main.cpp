@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 12:01:24 by pablo             #+#    #+#             */
-/*   Updated: 2020/12/25 14:39:39 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 13:16:02 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include <stdlib.h>
 
 int main()
 {

@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 10:12:48 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/25 14:38:17 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 13:19:18 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ Form*		Intern::makeForm(const std::string& type, const std::string& target)
 		"robotomy request",
 		"presidential pardon"
 	};
-	Form*	(*methods[])(const std::string&) = {
+	Form*	(*const methods[])(const std::string&) = {
 		&SF,
 		&RF,
 		&PF

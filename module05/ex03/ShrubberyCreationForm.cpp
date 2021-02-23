@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 07:35:26 by plamtenz          #+#    #+#             */
-/*   Updated: 2020/12/25 11:22:23 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 13:15:44 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ void					ShrubberyCreationForm::execute(Bureaucrat const& executor) const
 				 "                              ;%@@@@%%:;;;. \n"
 				 "                          ...;%@@@@@%%:;;;;,..    Gilo97";
 
-    std::ofstream ifs(getTarget() + "__shrubbery");
+    std::ofstream ifs;
+	ifs.open(std::string(getTarget() + std::string("__shrubbery")).c_str());
     ifs << AsciiTree << std::endl;
     ifs.close();
 }
