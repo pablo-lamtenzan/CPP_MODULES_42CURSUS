@@ -6,16 +6,16 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 15:09:40 by plamtenz          #+#    #+#             */
-/*   Updated: 2021/01/26 20:10:20 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 12:51:53 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 
-class Base { public: virtual ~Base(); };
-class A : public Base { };
-class B : public Base { };
-class C : public Base { };
+struct Base { virtual ~Base(){} };
+struct A : public Base { };
+struct B : public Base { };
+struct C : public Base { };
 
 /*
 ** Dynamic cast to pointer return NULL in case if failure.
@@ -67,9 +67,10 @@ void		identify_from_reference(Base& p)
 
 int main()
 {
-	Base a = A();
-	Base b = B();
-	Base c = C();
+	A a = A();
+	B b = B();
+	C c = C();
+
 
 	identify_from_pointer(&a);
 	identify_from_pointer(&b);
