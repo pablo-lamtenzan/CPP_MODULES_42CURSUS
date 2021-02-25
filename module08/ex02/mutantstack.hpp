@@ -10,27 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MUTANTSTACK_HPP
-# define MUTANTSTACK_HPP
+# pragma once
 
 #include <iostream>
 #include <stack>
 
-template <typename C>
-class MutantStack : public std::stack<C>
+template < typename T, typename Container = std::deque<T> >
+struct MutantStack : public std::stack<T, Container>
 {
-	public :
+	typedef typename std::stack<T>::container_type::iterator iterator;
+	typedef typename std::stack<T>::container_type::const_iterator const_iterator;
 
-	MutantStack();
-	MutantStack(const MutantStack& src);
-	// Do i need this ? Pointers are compatible
-	MutantStack(const std::stack<C>& src);
-	~MutantStack();
-	MutantStack&	operator=(const std::stack<C>& src);
-
-	typedef typename std::stack<C>::container_type::iterator iterator;
-	iterator		begin();
-	iterator		end();
+	MutantStack() : std::stack<T>() { }
+	MutantStack(const MutantStack& other) : std::stack<T>(other) { }
+	~MutantStack() { }
+	MutantStack&	operator=(const std::stack<T>& other)
+	{
+		std::stack<T>::operator=(other);
+		return (*this);
+	}
+	iterator		begin() { return(std::stack<T, Container>::c.begin()); }
+	iterator		end() { return(std::stack<T, Container>::c.end()); }
+	const_iterator	begin() const { return(std::stack<T, Container>::c.begin()); }
+	const_iterator	end() const { return(std::stack<T, Container>::c.end()); }
 };
-
-#endif

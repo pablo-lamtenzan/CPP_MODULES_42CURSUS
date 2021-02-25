@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#ifndef SPAN_HPP
-# define SPAN_HPP
+# pragma once
 
 #include <iostream>
 #include <exception>
@@ -21,9 +19,8 @@
 
 class Span
 {
-
-    unsigned int		amount;
-    std::vector<int>	container;
+    unsigned int				amount;
+    std::vector<int>			container;
 	Span();
 
     public :
@@ -38,7 +35,8 @@ class Span
 	unsigned int			get_amount() const;
 	const std::vector<int>& get_container() const;
 
+	void					better_addNumber(int first, int last);
+	void					better_addNumber(size_t total);
+
     class SpanException : public std::exception { const char *what() const throw(); };
 };
-
-#endif

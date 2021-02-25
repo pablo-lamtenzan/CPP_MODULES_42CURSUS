@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#ifndef EASYFIND_HPP
-# define EASYFIND_HPP
+# pragma once
 
 # include <iostream>
 # include <exception>
@@ -20,7 +18,6 @@
 
 class NotMatchException : public std::exception { const char* what() const throw() { return ("Error: no match."); } };
 class EmptyException : public std::exception { const char* what() const throw() { return ("Error: container is empty."); } };
-
 
 template <class T>
 int 	easyfind(T& t, int value)
@@ -31,6 +28,4 @@ int 	easyfind(T& t, int value)
 	if ((i = std::find(t.begin(), t.end(), value)) == t.end())
 		throw NotMatchException();
 	return (*i);
-}       
-
-#endif
+}

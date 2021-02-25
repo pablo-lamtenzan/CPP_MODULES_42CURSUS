@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 20:07:46 by plamtenz          #+#    #+#             */
-/*   Updated: 2021/01/26 21:36:21 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 14:50:09 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@ static void printf_array(const Array<T> &src)
 
 int main()
 {
+	// Test empty
+	Array<int> e;
+	printf_array(e);
+
+	// Test 0 size
+	Array<int> u(0);
+	printf_array(u);
+
 	// Test operator[]
     Array<int> x(10);
     printf_array(x);
@@ -51,5 +59,18 @@ int main()
         std::cout << "exception catched: " << e.what() << std::endl;
     }
 
+	// Test const
+	const Array<int> s = x;
+	// s[0] = 2;
+	// Uncomment the line above to test const operator=
+	// Only read, no writting allowed.
+	printf_array(s);
+
+	// Test with other an arbitrary type
+	Array<std::string> w(3);
+	w[0] = "1";
+	w[2] = "2";
+	printf_array(w);
+	
     return (0);
 }

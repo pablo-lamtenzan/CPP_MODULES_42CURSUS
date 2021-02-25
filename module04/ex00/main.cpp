@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 06:12:35 by plamtenz          #+#    #+#             */
-/*   Updated: 2021/01/05 04:11:21 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 16:20:32 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int main()
 	robert.polymorph(more);
 	std::cout << std::endl;
 
-	
 	robert.introduce_himself();
 
 	// Test victim methods

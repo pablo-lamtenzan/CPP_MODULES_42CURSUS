@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 15:09:40 by plamtenz          #+#    #+#             */
-/*   Updated: 2021/02/24 12:51:53 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 14:28:49 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int main()
 	A a = A();
 	B b = B();
 	C c = C();
-
 
 	identify_from_pointer(&a);
 	identify_from_pointer(&b);
